@@ -41,7 +41,7 @@ export default function FreelanceLicenseAbuDhabi() {
   return (
     <ServiceLayout
       eyebrow="Business Setup Jurisdiction"
-      title="Freelance License \u2013 Abu Dhabi"
+      title="Freelance License - Abu Dhabi"
       subtitle="Work independently in Abu Dhabi under an eligible freelance activity."
     >
       <article>
