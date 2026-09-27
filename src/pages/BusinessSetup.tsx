@@ -48,7 +48,7 @@ const jurisdictions: Jurisdiction[] = [
   },
   {
     name: 'Freelance License \u2013 Abu Dhabi',
-    path: '/contact',
+    path: '/freelance-license-abu-dhabi',
     icon: Briefcase,
     description: 'Work independently in Abu Dhabi under an eligible freelance activity.',
     features: [
@@ -61,7 +61,7 @@ const jurisdictions: Jurisdiction[] = [
   },
   {
     name: 'E-Trader License',
-    path: '/contact',
+    path: '/e-trader-license',
     icon: ShoppingCart,
     description: 'Start your online business with a lower-cost setup.',
     features: [

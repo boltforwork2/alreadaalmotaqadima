@@ -16,6 +16,8 @@ import BankAccount from '@/pages/BankAccount';
 import Immigration from '@/pages/Immigration';
 import TradeLicense from '@/pages/TradeLicense';
 import GoldenVisa from '@/pages/GoldenVisa';
+import FreelanceLicenseAbuDhabi from '@/pages/FreelanceLicenseAbuDhabi';
+import ETraderLicense from '@/pages/ETraderLicense';
 
 export default function App() {
   return (
@@ -33,6 +35,8 @@ export default function App() {
           <Route path="/financial-centre" element={<FinancialCentre />} />
           <Route path="/free-zone" element={<FreeZone />} />
           <Route path="/offshore" element={<Offshore />} />
+          <Route path="/freelance-license-abu-dhabi" element={<FreelanceLicenseAbuDhabi />} />
+          <Route path="/e-trader-license" element={<ETraderLicense />} />
           <Route path="/services/liquidation" element={<Liquidation />} />
           <Route path="/services/bank-account" element={<BankAccount />} />
           <Route path="/services/immigration" element={<Immigration />} />

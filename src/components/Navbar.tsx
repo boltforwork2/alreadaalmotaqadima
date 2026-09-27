@@ -18,8 +18,8 @@ const dropdowns: DropdownItem[] = [
     children: [
       { name: 'Mainland License', path: '/mainland' },
       { name: 'Free Zone License', path: '/free-zone' },
-      { name: 'Freelance License \u2013 Abu Dhabi', path: '/contact' },
-      { name: 'E-Trader License', path: '/contact' },
+      { name: 'Freelance License \u2013 Abu Dhabi', path: '/freelance-license-abu-dhabi' },
+      { name: 'E-Trader License', path: '/e-trader-license' },
     ],
   },
   {
