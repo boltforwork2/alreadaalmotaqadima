@@ -85,7 +85,7 @@ export default function GoldenVisa() {
               key={stage.title}
               className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-sm font-bold text-white">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-navy-950 text-sm font-bold text-white">
                 {i + 1}
               </span>
               <h3 className="mt-3 font-display text-base font-bold text-navy-900">{stage.title}</h3>
@@ -100,7 +100,7 @@ export default function GoldenVisa() {
         <div className="mt-5 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
           <table className="w-full border-collapse text-left text-sm">
             <thead>
-              <tr className="bg-slate-900 text-white">
+              <tr className="bg-navy-950 text-white">
                 <th className="px-4 py-3.5 font-semibold">Process</th>
                 <th className="px-4 py-3.5 font-semibold">Documents Required</th>
                 <th className="px-4 py-3.5 font-semibold">Additional Conditions</th>

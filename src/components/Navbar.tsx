@@ -78,7 +78,7 @@ export default function Navbar() {
         animate={{
           backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0)',
           borderColor: scrolled ? 'rgba(226, 232, 240, 0.8)' : 'rgba(255, 255, 255, 0)',
-          boxShadow: scrolled ? '0 8px 32px rgba(15, 23, 42, 0.08)' : '0 0 0 rgba(0,0,0,0)',
+          boxShadow: scrolled ? '0 8px 32px rgba(3, 6, 13, 0.12)' : '0 0 0 rgba(0,0,0,0)',
         }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className="border-b backdrop-blur-xl"
@@ -86,7 +86,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
           {/* Logo */}
           <Link to="/" className="group flex items-center">
-            <img src="/logo.webp" alt="CentralHub" className="h-10 w-auto" />
+            <img src="/logo.png" alt="CentralHub" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop nav */}
@@ -142,7 +142,7 @@ export default function Navbar() {
                         : 'invisible -translate-y-1 opacity-0'
                     }`}
                   >
-                    <div className="overflow-hidden rounded-xl border border-slate-700/50 bg-slate-900 shadow-2xl shadow-slate-900/50">
+                    <div className="overflow-hidden rounded-xl border border-navy-700/50 bg-navy-950 shadow-2xl shadow-navy-950/50">
                       {dd.children.map((child) => {
                         const childActive = isActive(child.path);
                         return (
@@ -152,7 +152,7 @@ export default function Navbar() {
                             className={`block border-b border-slate-700/40 px-5 py-3 text-sm font-medium transition-colors duration-200 last:border-b-0 ${
                               childActive
                                 ? 'bg-teal-500/10 text-teal-400'
-                                : 'text-white hover:bg-slate-800 hover:text-teal-500'
+                                : 'text-white hover:bg-navy-800 hover:text-teal-500'
                             }`}
                           >
                             {child.name}

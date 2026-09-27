@@ -92,7 +92,7 @@ export default function Services() {
   return (
     <main className="pt-20">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-900 py-20">
+      <section className="relative overflow-hidden bg-navy-950 py-20">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-teal-500/5" />
         <div className="pointer-events-none absolute -left-40 top-0 h-72 w-72 rounded-full bg-teal-500/10 blur-3xl" />
         <div className="pointer-events-none absolute -right-40 bottom-0 h-72 w-72 rounded-full bg-teal-500/10 blur-3xl" />

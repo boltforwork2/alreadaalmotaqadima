@@ -127,7 +127,7 @@ export default function Home() {
           className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
         />
         {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-slate-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-950/95 via-navy-950/85 to-navy-900/75" />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-8 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12">
@@ -382,7 +382,7 @@ export default function Home() {
       </section>
 
       {/* ===== Stats / Social Proof Banner ===== */}
-      <section className="relative overflow-hidden bg-slate-900 py-24">
+      <section className="relative overflow-hidden bg-navy-950 py-24">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute left-1/4 top-0 h-64 w-64 rounded-full bg-teal-500/5 blur-3xl" />
           <div className="absolute right-1/4 bottom-0 h-64 w-64 rounded-full bg-teal-500/5 blur-3xl" />

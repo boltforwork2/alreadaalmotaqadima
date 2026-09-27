@@ -19,7 +19,7 @@ type StatsBarProps = {
 
 export default function StatsBar({ stats = defaultStats }: StatsBarProps) {
   return (
-    <div className="mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-slate-200 bg-slate-900 p-6 sm:grid-cols-4">
+    <div className="mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-slate-200 bg-navy-950 p-6 sm:grid-cols-4">
       {stats.map((stat) => (
         <div key={stat.label} className="text-center">
           <p className="font-display text-3xl font-bold text-teal-400">

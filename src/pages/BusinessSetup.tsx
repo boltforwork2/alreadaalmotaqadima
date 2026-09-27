@@ -61,7 +61,7 @@ export default function BusinessSetup() {
   return (
     <main className="pt-20">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-900 py-20 lg:py-24">
+      <section className="relative overflow-hidden bg-navy-950 py-20 lg:py-24">
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-teal-500/5" />
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.03]"

@@ -341,7 +341,7 @@ export default function FloatingChatbot() {
             className="flex h-[31rem] w-80 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl md:w-96"
           >
             {/* Header */}
-            <div className="flex items-center justify-between bg-slate-900 px-4 py-3.5">
+            <div className="flex items-center justify-between bg-navy-950 px-4 py-3.5">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-500/15">
                   <Hand className="h-5 w-5 text-teal-400" />
@@ -362,14 +362,14 @@ export default function FloatingChatbot() {
                   onClick={handleNewChat}
                   aria-label="Start new chat"
                   title="New Chat"
-                  className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-800 hover:text-teal-400"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-navy-800 hover:text-teal-400"
                 >
                   <RotateCcw className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Close chat"
-                  className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+                  className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-navy-800 hover:text-white"
                 >
                   <X className="h-5 w-5" />
                 </button>

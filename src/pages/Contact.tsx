@@ -25,7 +25,7 @@ export default function Contact() {
   return (
     <div>
       {/* ===== Hero ===== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-navy-950 via-navy-950 to-navy-900 py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -right-32 top-10 h-96 w-96 rounded-full border border-teal-500/10" />
           <div className="absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-teal-500/5 blur-3xl" />

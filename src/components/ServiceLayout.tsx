@@ -13,7 +13,7 @@ export default function ServiceLayout({ eyebrow, title, subtitle, children }: Se
   return (
     <main className="pt-20">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-slate-900 py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-navy-950 py-16 lg:py-20">
         {/* Geometric gradient pattern */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-transparent" />
         <div
