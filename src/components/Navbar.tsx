@@ -16,10 +16,10 @@ const dropdowns: DropdownItem[] = [
     name: 'Business Setup',
     path: '/business-setup',
     children: [
-      { name: 'Mainland', path: '/mainland' },
-      { name: 'Financial Centre', path: '/financial-centre' },
-      { name: 'Free Zone', path: '/free-zone' },
-      { name: 'Offshore', path: '/offshore' },
+      { name: 'Mainland License', path: '/mainland' },
+      { name: 'Free Zone License', path: '/free-zone' },
+      { name: 'Freelance License \u2013 Abu Dhabi', path: '/contact' },
+      { name: 'E-Trader License', path: '/contact' },
     ],
   },
   {
