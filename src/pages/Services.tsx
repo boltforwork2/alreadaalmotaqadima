@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Building2, Landmark, Globe as Globe2, Ship, Circle as XCircle, Wallet, Plane, FileText, Award, ArrowRight, Calculator } from 'lucide-react';
+import { Building2, Globe as Globe2, Circle as XCircle, Wallet, Plane, FileText, Award, ArrowRight, Calculator, Check, Briefcase, ShoppingCart } from 'lucide-react';
 
 type Jurisdiction = {
   name: string;
   path: string;
   icon: typeof Building2;
   description: string;
+  features: string[];
+  buttonText: string;
 };
 
 type Service = {
@@ -18,28 +20,56 @@ type Service = {
 
 const jurisdictions: Jurisdiction[] = [
   {
-    name: 'Mainland',
+    name: 'Mainland License',
     path: '/mainland',
     icon: Building2,
-    description: 'Trade anywhere in the UAE and globally with a mainland-licensed company.',
+    description: 'For businesses that want to operate directly in the UAE local market.',
+    features: [
+      'Physical office required',
+      'Wide range of business activities',
+      'Operate in the UAE local market',
+      'Investor and employee visa options',
+    ],
+    buttonText: 'Learn More',
   },
   {
-    name: 'Financial Centre',
-    path: '/financial-centre',
-    icon: Landmark,
-    description: 'World-class financial jurisdiction for banks, fintech, and investment firms.',
-  },
-  {
-    name: 'Free Zone',
+    name: 'Free Zone License',
     path: '/free-zone',
     icon: Globe2,
-    description: '100% foreign ownership, tax exemptions, and fast-track licensing.',
+    description: 'Flexible company setup without a physical office under our available packages.',
+    features: [
+      'No physical office required',
+      'Up to 10 investor visas depending on the Free Zone and selected package',
+      'Import & Export activities',
+      'Sell products online / E-Commerce',
+    ],
+    buttonText: 'Learn More',
   },
   {
-    name: 'Offshore',
-    path: '/offshore',
-    icon: Ship,
-    description: 'International business company structure for asset protection and holding.',
+    name: 'Freelance License \u2013 Abu Dhabi',
+    path: '/contact',
+    icon: Briefcase,
+    description: 'Work independently in Abu Dhabi under an eligible freelance activity.',
+    features: [
+      'No physical office required',
+      'One residence visa for the license holder',
+      'Family sponsorship available subject to requirements',
+      'Suitable for consultants, designers, and developers',
+    ],
+    buttonText: 'Check Your Eligibility',
+  },
+  {
+    name: 'E-Trader License',
+    path: '/contact',
+    icon: ShoppingCart,
+    description: 'Start your online business with a lower-cost setup.',
+    features: [
+      'No physical office required',
+      'No residence visa included',
+      'Lower-cost solution',
+      'Sell through eligible online marketplaces such as Amazon and Noon, subject to platform and activity requirements.',
+    ],
+    buttonText: 'Check Your Activity',
   },
 ];
 
@@ -133,7 +163,7 @@ export default function Services() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
+            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2"
           >
             {jurisdictions.map((item) => (
               <motion.div
@@ -141,22 +171,32 @@ export default function Services() {
                 variants={cardVariants}
                 whileHover={{ y: -8 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-xl"
+                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-teal-200 hover:shadow-xl"
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 transition-colors duration-300 group-hover:bg-teal-100">
                   <item.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
                 </div>
-                <h3 className="mt-5 font-display text-lg font-semibold text-navy-900">
+                <h3 className="mt-5 font-display text-lg font-bold text-navy-900">
                   {item.name}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-500">
+                <p className="mt-2 text-sm leading-relaxed text-navy-500">
                   {item.description}
                 </p>
+                <ul className="mt-5 flex-1 space-y-2.5">
+                  {item.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5">
+                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
+                        <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
+                      </span>
+                      <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
                 <Link
                   to={item.path}
-                  className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700"
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-teal-300 bg-teal-50 px-4 py-2.5 text-sm font-semibold text-teal-700 transition-all duration-200 group-hover:bg-teal-500 group-hover:text-white"
                 >
-                  Learn More
+                  {item.buttonText}
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                 </Link>
               </motion.div>
