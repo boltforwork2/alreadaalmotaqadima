@@ -335,7 +335,7 @@ export default function Home() {
               Choose Your Best Setup
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-500">
-              Explore the best jurisdictions for your company. Each option offers unique advantages tailored to different business needs.
+              Explore the best setups for your company. Each option offers unique advantages tailored to different business needs.
             </p>
           </motion.div>
 
