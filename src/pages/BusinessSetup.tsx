@@ -138,7 +138,7 @@ export default function BusinessSetup() {
             transition={{ duration: 0.4 }}
             className="text-center font-display text-3xl font-bold text-navy-900"
           >
-            Choose Your Business Jurisdiction
+            Choose Your Best Setup
           </motion.h2>
           <motion.div
             variants={container}
