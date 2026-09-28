@@ -123,7 +123,7 @@ export default function BusinessSetup() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-5 text-lg text-teal-400"
           >
-            Explore the best jurisdictions for your company.
+            Explore the best Setups for your company.
           </motion.p>
         </div>
       </section>
