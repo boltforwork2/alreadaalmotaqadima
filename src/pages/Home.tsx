@@ -158,6 +158,46 @@ const faqs = [
     q: 'What is the best free zone to open a company in Dubai?',
     a: 'Key factors include location, chosen business activities, and office space requirements. Contact our experts to find the perfect fit.',
   },
+  {
+    q: 'Which business license should I choose?',
+    a: 'It depends on your business activity, office requirements, visa needs and budget. Contact us and we\u2019ll help you identify the suitable option.',
+  },
+  {
+    q: 'Do I need an office for a Mainland company?',
+    a: 'A physical office or business premises is generally required, subject to the activity and applicable regulations.',
+  },
+  {
+    q: 'Do I need an office for a Free Zone company?',
+    a: 'Our available Free Zone packages can be established without a physical office. Requirements vary depending on the Free Zone and package.',
+  },
+  {
+    q: 'Can I get a Free Zone license without a residence visa?',
+    a: 'Yes, selected packages can be issued without a residence visa.',
+  },
+  {
+    q: 'How many investor visas can I get with a Free Zone company?',
+    a: 'Visa capacity depends on the Free Zone and selected package and can reach up to 10 investor visas in applicable packages.',
+  },
+  {
+    q: 'Can I open a company as a Freelancer?',
+    a: 'Eligible professionals may be able to obtain a Freelance license depending on their activity and qualifications.',
+  },
+  {
+    q: 'Can you handle my visa after setting up the company?',
+    a: 'Yes. We provide visa and immigration-related services as part of our business support.',
+  },
+  {
+    q: 'Do you provide license renewal services?',
+    a: 'Yes. We assist with license renewal and various license amendments.',
+  },
+  {
+    q: 'Do you provide trademark registration?',
+    a: 'Yes. We provide support with trademark registration procedures in the UAE.',
+  },
+  {
+    q: 'Do you provide Municipality services?',
+    a: 'Yes. We assist with municipality permits and approvals required for eligible business activities and premises.',
+  },
 ];
 
 export default function Home() {
