@@ -210,7 +210,7 @@ export default function Home() {
               >
                 Business Setup in Dubai &{' '}
                 <span className="bg-gradient-to-r from-teal-400 to-teal-300 bg-clip-text text-transparent">
-                  UAE Company Formation
+                  UAE Company Formation & PRO Services
                 </span>
               </motion.h1>
 
