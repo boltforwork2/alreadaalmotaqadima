@@ -20,6 +20,11 @@ import FreelanceLicenseAbuDhabi from '@/pages/FreelanceLicenseAbuDhabi';
 import ETraderLicense from '@/pages/ETraderLicense';
 import ProServices from '@/pages/ProServices';
 import MonthlyContract from '@/pages/MonthlyContract';
+import EmiratesId from '@/pages/EmiratesId';
+import MohreServices from '@/pages/MohreServices';
+import GdrfaServices from '@/pages/GdrfaServices';
+import RtaServices from '@/pages/RtaServices';
+import SiraServices from '@/pages/SiraServices';
 
 export default function App() {
   return (
@@ -46,6 +51,11 @@ export default function App() {
           <Route path="/services/golden-visa" element={<GoldenVisa />} />
           <Route path="/pro-services" element={<ProServices />} />
           <Route path="/monthly-contract" element={<MonthlyContract />} />
+          <Route path="/emirates-id" element={<EmiratesId />} />
+          <Route path="/mohre-services" element={<MohreServices />} />
+          <Route path="/gdrfa-services" element={<GdrfaServices />} />
+          <Route path="/rta-services" element={<RtaServices />} />
+          <Route path="/sira-services" element={<SiraServices />} />
         </Route>
       </Routes>
     </BrowserRouter>

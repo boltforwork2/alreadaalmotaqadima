@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, MessageCircle, ArrowRight, ChevronDown } from 'lucide-react';
+import { Menu, X, MessageCircle, ArrowRight, ChevronDown, ArrowRight as ArrowRightIcon } from 'lucide-react';
 
 type SimpleLink = { name: string; path: string };
 type DropdownLink = { name: string; path: string };
@@ -33,6 +33,11 @@ const dropdowns: DropdownItem[] = [
       { name: 'UAE Golden Visa', path: '/services/golden-visa' },
       { name: 'PRO Services', path: '/pro-services' },
       { name: 'Monthly PRO Contract', path: '/monthly-contract' },
+      { name: 'Emirates ID Services', path: '/emirates-id' },
+      { name: 'MOHRE Services', path: '/mohre-services' },
+      { name: 'GDRFA Services', path: '/gdrfa-services' },
+      { name: 'RTA Services', path: '/rta-services' },
+      { name: 'SIRA Services', path: '/sira-services' },
     ],
   },
 ];
@@ -145,7 +150,7 @@ export default function Navbar() {
                     }`}
                   >
                     <div className="overflow-hidden rounded-xl border border-navy-700/80 bg-navy-950 shadow-2xl shadow-black/50">
-                      {dd.children.map((child) => {
+                      {dd.children.slice(0, dd.path === '/services' ? 5 : undefined).map((child) => {
                         const childActive = isActive(child.path);
                         return (
                           <Link
@@ -161,6 +166,15 @@ export default function Navbar() {
                           </Link>
                         );
                       })}
+                      {dd.path === '/services' && (
+                        <Link
+                          to="/services"
+                          className="flex items-center justify-between border-t-2 border-teal-500/30 bg-teal-500/5 px-5 py-3 text-sm font-bold text-teal-400 transition-colors duration-200 hover:bg-teal-500/15"
+                        >
+                          View All Services
+                          <ArrowRightIcon className="h-4 w-4" />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

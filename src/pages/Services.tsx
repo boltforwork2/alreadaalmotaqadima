@@ -11,6 +11,11 @@ import {
   Check,
   ArrowRight,
   Calculator,
+  IdCard,
+  Users as UsersIcon,
+  Stamp,
+  Car,
+  ShieldCheck,
 } from 'lucide-react';
 
 type Service = {
@@ -104,6 +109,66 @@ const services: Service[] = [
       'Residency & Visa Support',
       'Trade License & MOHRE Support',
       'Deadline & Expiry Reminders',
+    ],
+  },
+  {
+    name: 'Emirates ID Services',
+    path: '/emirates-id',
+    icon: IdCard,
+    description: 'Comprehensive support for all your Emirates identity card requirements.',
+    features: [
+      'New Emirates ID applications',
+      'ID Renewal procedures',
+      'Replacement of lost cards',
+      'Fast application follow-up',
+    ],
+  },
+  {
+    name: 'MOHRE Services',
+    path: '/mohre-services',
+    icon: UsersIcon,
+    description: 'Complete management of Ministry of Human Resources and labour files.',
+    features: [
+      'Work permits issuance',
+      'Employment contracts',
+      'Company labour file services',
+      'Employee government procedures',
+    ],
+  },
+  {
+    name: 'GDRFA Services',
+    path: '/gdrfa-services',
+    icon: Stamp,
+    description: 'Expert handling of all immigration, visa, and residency transactions.',
+    features: [
+      'Residence & Entry permits',
+      'Visa services & stamping',
+      'Residence renewal',
+      'Visa cancellation',
+    ],
+  },
+  {
+    name: 'RTA Services',
+    path: '/rta-services',
+    icon: Car,
+    description: 'Smooth processing of transport authority approvals and vehicle procedures.',
+    features: [
+      'RTA-related transactions',
+      'Vehicle government procedures',
+      'Commercial transport approvals',
+      'Application follow-up',
+    ],
+  },
+  {
+    name: 'SIRA Services',
+    path: '/sira-services',
+    icon: ShieldCheck,
+    description: 'Securing necessary safety and security approvals for your business premises.',
+    features: [
+      'SIRA applications',
+      'CCTV & Security approvals',
+      'NOC procedures',
+      'Security licensing procedures',
     ],
   },
 ];
