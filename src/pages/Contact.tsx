@@ -1,17 +1,15 @@
 import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, MessageCircle, Mail, Clock, Send, CircleCheck as CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, CircleCheck as CheckCircle } from 'lucide-react';
 
 const contactInfo = [
   {
     icon: MapPin,
     label: 'Address',
-    value: 'Offices 2803–2804, Concord Tower, Media City, Dubai, UAE',
+    value: 'Office G83, Elegant Star Business Center, Deira, Dubai, UAE',
   },
-  { icon: Phone, label: 'Phone', value: '+971 4 238 8381' },
-  { icon: MessageCircle, label: 'WhatsApp', value: '+971 58 557 0778' },
-  { icon: Mail, label: 'Email', value: 'info@centralhub.ae' },
-  { icon: Clock, label: 'Business Hours', value: 'Monday – Friday / 9AM – 6PM' },
+  { icon: Phone, label: 'Phone / WhatsApp', value: '050 257 774' },
+  { icon: Mail, label: 'Email', value: 'info@alreyada-almotaqdima.ae' },
 ];
 
 export default function Contact() {
