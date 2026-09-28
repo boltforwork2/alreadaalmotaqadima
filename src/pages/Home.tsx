@@ -332,7 +332,7 @@ export default function Home() {
               UAE Company Formation
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-              Choose Your Business Jurisdiction
+              Choose Your Best Setup
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-500">
               Explore the best jurisdictions for your company. Each option offers unique advantages tailored to different business needs.
