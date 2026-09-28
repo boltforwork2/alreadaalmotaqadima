@@ -31,6 +31,8 @@ const dropdowns: DropdownItem[] = [
       { name: 'Immigration & Registration', path: '/services/immigration' },
       { name: 'Trade License', path: '/services/trade-license' },
       { name: 'UAE Golden Visa', path: '/services/golden-visa' },
+      { name: 'PRO Services', path: '/pro-services' },
+      { name: 'Monthly PRO Contract', path: '/monthly-contract' },
     ],
   },
 ];

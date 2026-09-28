@@ -18,6 +18,8 @@ import TradeLicense from '@/pages/TradeLicense';
 import GoldenVisa from '@/pages/GoldenVisa';
 import FreelanceLicenseAbuDhabi from '@/pages/FreelanceLicenseAbuDhabi';
 import ETraderLicense from '@/pages/ETraderLicense';
+import ProServices from '@/pages/ProServices';
+import MonthlyContract from '@/pages/MonthlyContract';
 
 export default function App() {
   return (
@@ -42,6 +44,8 @@ export default function App() {
           <Route path="/services/immigration" element={<Immigration />} />
           <Route path="/services/trade-license" element={<TradeLicense />} />
           <Route path="/services/golden-visa" element={<GoldenVisa />} />
+          <Route path="/pro-services" element={<ProServices />} />
+          <Route path="/monthly-contract" element={<MonthlyContract />} />
         </Route>
       </Routes>
     </BrowserRouter>

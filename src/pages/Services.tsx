@@ -1,12 +1,24 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Circle as XCircle, Wallet, Plane, FileText, Award, ArrowRight, Calculator } from 'lucide-react';
+import {
+  Circle as XCircle,
+  Wallet,
+  Plane,
+  FileText,
+  Award,
+  Briefcase,
+  CalendarCheck,
+  Check,
+  ArrowRight,
+  Calculator,
+} from 'lucide-react';
 
 type Service = {
   name: string;
   path: string;
   icon: typeof XCircle;
   description: string;
+  features: string[];
 };
 
 const services: Service[] = [
@@ -15,30 +27,84 @@ const services: Service[] = [
     path: '/services/liquidation',
     icon: XCircle,
     description: 'Professional closure and deregistration of your company in full compliance.',
+    features: [
+      'Official company deregistration',
+      'Visa and establishment card closure',
+      'Audit report & clearance letters',
+      'Full compliance with UAE laws',
+    ],
   },
   {
     name: 'Corporate Bank Account',
     path: '/services/bank-account',
     icon: Wallet,
     description: 'Fast-track corporate bank account opening with leading UAE banks.',
+    features: [
+      'Partnerships with top UAE banks',
+      'Fast-track approval process',
+      'Multi-currency account options',
+      'Dedicated banking assistance',
+    ],
   },
   {
     name: 'Immigration & Registration',
     path: '/services/immigration',
     icon: Plane,
     description: 'Visa processing, Emirates ID, and medical fitness for you and your staff.',
+    features: [
+      'Investor & employee visa processing',
+      'Emirates ID applications & renewals',
+      'Medical fitness test coordination',
+      'Family sponsorship support',
+    ],
   },
   {
     name: 'Trade License',
     path: '/services/trade-license',
     icon: FileText,
     description: 'New license issuance, renewal, and activity amendment handled end-to-end.',
+    features: [
+      'New license issuance',
+      'Annual license renewal',
+      'Business activity amendments',
+      'Partner & manager updates',
+    ],
   },
   {
     name: 'UAE Golden Visa',
     path: '/services/golden-visa',
     icon: Award,
     description: 'Long-term 10-year residency for investors, entrepreneurs, and talent.',
+    features: [
+      '10-year long-term residency',
+      'For investors, talents & entrepreneurs',
+      'No local sponsor required',
+      'Family and domestic staff sponsorship',
+    ],
+  },
+  {
+    name: 'PRO Services',
+    path: '/pro-services',
+    icon: Briefcase,
+    description: 'We handle your company and government transactions from start to finish.',
+    features: [
+      'Government applications & approvals',
+      'Document processing & clearance',
+      'Government authority coordination',
+      'Fast application follow-up',
+    ],
+  },
+  {
+    name: 'Monthly PRO Contract',
+    path: '/monthly-contract',
+    icon: CalendarCheck,
+    description: 'Complete ongoing government support and transaction management.',
+    features: [
+      'Dedicated PRO Support',
+      'Residency & Visa Support',
+      'Trade License & MOHRE Support',
+      'Deadline & Expiry Reminders',
+    ],
   },
 ];
 
@@ -99,7 +165,7 @@ export default function Services() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {services.map((item) => (
               <motion.div
@@ -107,26 +173,34 @@ export default function Services() {
                 variants={cardVariants}
                 whileHover={{ y: -8 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="group flex items-start gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-xl"
+                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-xl"
               >
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-teal-50 transition-colors duration-300 group-hover:bg-teal-100">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 transition-colors duration-300 group-hover:bg-teal-100">
                   <item.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
                 </div>
-                <div className="flex flex-1 flex-col">
-                  <h3 className="font-display text-lg font-semibold text-navy-900">
-                    {item.name}
-                  </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-navy-500">
-                    {item.description}
-                  </p>
-                  <Link
-                    to={item.path}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700"
-                  >
-                    Learn More
-                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Link>
-                </div>
+                <h3 className="mt-5 font-display text-lg font-bold text-navy-900">
+                  {item.name}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-navy-500">
+                  {item.description}
+                </p>
+                <ul className="mt-5 flex-1 space-y-2.5">
+                  {item.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5">
+                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
+                        <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
+                      </span>
+                      <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to={item.path}
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-teal-300 bg-teal-50 px-4 py-2.5 text-sm font-semibold text-teal-700 transition-colors duration-200 group-hover:bg-teal-500 group-hover:text-white"
+                >
+                  Learn More
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                </Link>
               </motion.div>
             ))}
           </motion.div>
