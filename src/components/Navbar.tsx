@@ -19,7 +19,7 @@ const dropdowns: DropdownItem[] = [
       { name: 'Mainland License', path: '/mainland' },
       { name: 'Free Zone License', path: '/free-zone' },
       { name: 'Freelance License \u2013 Abu Dhabi', path: '/freelance-license-abu-dhabi' },
-      { name: 'E-Trader License \u2013 Dubai ', path: '/e-trader-license' },
+      { name: 'E-Trader License \u2013 Dubai', path: '/e-trader-license' },
     ],
   },
   {
