@@ -54,7 +54,7 @@ const jurisdictions: Jurisdiction[] = [
     buttonText: 'Check Your Eligibility',
   },
   {
-    name: 'E-Trader License',
+    name: 'E-Trader License - Dubai ',
     path: '/e-trader-license',
     icon: ShoppingCart,
     description: 'Start your online business with a lower-cost setup.',
