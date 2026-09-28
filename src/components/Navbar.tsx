@@ -76,9 +76,9 @@ export default function Navbar() {
       <motion.nav
         initial={false}
         animate={{
-          backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0)',
-          borderColor: scrolled ? 'rgba(226, 232, 240, 0.8)' : 'rgba(255, 255, 255, 0)',
-          boxShadow: scrolled ? '0 8px 32px rgba(3, 6, 13, 0.12)' : '0 0 0 rgba(0,0,0,0)',
+          backgroundColor: scrolled ? 'rgba(7, 11, 22, 0.95)' : 'rgba(7, 11, 22, 0.75)',
+          borderColor: scrolled ? 'rgba(212, 175, 55, 0.2)' : 'rgba(255, 255, 255, 0.08)',
+          boxShadow: scrolled ? '0 8px 32px rgba(0, 0, 0, 0.4)' : '0 0 0 rgba(0,0,0,0)',
         }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className="border-b backdrop-blur-xl"
@@ -98,7 +98,7 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                    active ? 'text-teal-600' : 'text-navy-700 hover:text-teal-500'
+                    active ? 'text-teal-400' : 'text-slate-200 hover:text-teal-400'
                   }`}
                 >
                   {link.name}
@@ -124,13 +124,13 @@ export default function Navbar() {
                   <Link
                     to={dd.path}
                     className={`flex items-center gap-1 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                      active ? 'text-teal-600' : 'text-navy-700 group-hover:text-teal-500'
+                      active ? 'text-teal-400' : 'text-slate-200 group-hover:text-teal-400'
                     }`}
                   >
                     {dd.name}
                     <ChevronDown
                       className={`h-4 w-4 transition-transform duration-200 group-hover:rotate-180 ${
-                        active ? 'text-teal-600' : 'text-navy-400 group-hover:text-teal-500'
+                        active ? 'text-teal-400' : 'text-slate-400 group-hover:text-teal-400'
                       }`}
                     />
                   </Link>
@@ -142,17 +142,17 @@ export default function Navbar() {
                         : 'invisible -translate-y-1 opacity-0'
                     }`}
                   >
-                    <div className="overflow-hidden rounded-xl border border-navy-700/50 bg-navy-950 shadow-2xl shadow-navy-950/50">
+                    <div className="overflow-hidden rounded-xl border border-navy-700/80 bg-navy-950 shadow-2xl shadow-black/50">
                       {dd.children.map((child) => {
                         const childActive = isActive(child.path);
                         return (
                           <Link
                             key={child.path}
                             to={child.path}
-                            className={`block border-b border-slate-700/40 px-5 py-3 text-sm font-medium transition-colors duration-200 last:border-b-0 ${
+                            className={`block border-b border-navy-800 px-5 py-3 text-sm font-medium transition-colors duration-200 last:border-b-0 ${
                               childActive
                                 ? 'bg-teal-500/10 text-teal-400'
-                                : 'text-white hover:bg-navy-800 hover:text-teal-500'
+                                : 'text-slate-300 hover:bg-navy-800 hover:text-teal-400'
                             }`}
                           >
                             {child.name}
@@ -172,7 +172,7 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                    active ? 'text-teal-600' : 'text-navy-700 hover:text-teal-500'
+                    active ? 'text-teal-400' : 'text-slate-200 hover:text-teal-400'
                   }`}
                 >
                   {link.name}
@@ -194,7 +194,7 @@ export default function Navbar() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-navy-200 text-navy-700 transition-all duration-200 hover:border-teal-400 hover:bg-teal-50 hover:text-teal-600"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-600 text-slate-300 transition-all duration-200 hover:border-teal-500 hover:bg-teal-500/10 hover:text-teal-400"
             >
               <MessageCircle className="h-5 w-5" />
             </a>
@@ -210,7 +210,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-navy-800 transition-colors hover:bg-navy-100 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-100 transition-colors hover:bg-white/10 lg:hidden"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
