@@ -45,7 +45,7 @@ export default function ETraderLicense() {
   return (
     <ServiceLayout
       eyebrow="Business Setup Jurisdiction"
-      title="E-Trader License"
+      title="E-Trader License - Dubai"
       subtitle="Start your online business with a lower-cost setup."
     >
       <article>
