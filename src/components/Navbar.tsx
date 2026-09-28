@@ -76,7 +76,7 @@ export default function Navbar() {
       <motion.nav
         initial={false}
         animate={{
-          backgroundColor: scrolled ? 'rgba(10, 25, 47, 0.97)' : 'rgba(10, 25, 47, 0.82)',
+          backgroundColor: scrolled ? 'rgba(15, 23, 42, 0.98)' : 'rgba(15, 23, 42, 0.94)',
           borderColor: scrolled ? 'rgba(212, 175, 55, 0.2)' : 'rgba(255, 255, 255, 0.08)',
           boxShadow: scrolled ? '0 8px 32px rgba(0, 0, 0, 0.4)' : '0 0 0 rgba(0,0,0,0)',
         }}
