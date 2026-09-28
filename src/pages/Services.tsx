@@ -121,6 +121,9 @@ const cardVariants = {
 };
 
 export default function Services() {
+  const featured = services.find((s) => s.path === '/monthly-contract')!;
+  const rest = services.filter((s) => s.path !== '/monthly-contract');
+
   return (
     <main className="pt-20">
       {/* Hero */}
@@ -160,14 +163,59 @@ export default function Services() {
           >
             Our Corporate Services
           </motion.h2>
+
+          {/* Featured card */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto mt-12 max-w-4xl"
+          >
+            <div className="group flex flex-col rounded-2xl border-2 border-teal-300 bg-gradient-to-br from-teal-50 to-white p-8 shadow-lg shadow-teal-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/20 sm:p-10">
+              <div className="flex items-center gap-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-teal-100 transition-colors duration-300 group-hover:bg-teal-200">
+                  <featured.icon className="h-9 w-9 text-teal-500" strokeWidth={1.75} />
+                </div>
+                <span className="rounded-full bg-teal-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+                  Featured
+                </span>
+              </div>
+              <h3 className="mt-6 font-display text-2xl font-bold text-navy-900">
+                {featured.name}
+              </h3>
+              <p className="mt-3 text-base leading-relaxed text-navy-500">
+                {featured.description}
+              </p>
+              <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {featured.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2.5">
+                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-100">
+                      <Check className="h-3.5 w-3.5 text-teal-600" strokeWidth={3} />
+                    </span>
+                    <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to={featured.path}
+                className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-6 py-3 text-base font-semibold text-navy-900 shadow-lg shadow-teal-500/25 transition-all duration-200 group-hover:shadow-xl group-hover:shadow-teal-500/40"
+              >
+                Learn More
+                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Remaining services grid */}
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
-            {services.map((item) => (
+            {rest.map((item) => (
               <motion.div
                 key={item.path}
                 variants={cardVariants}
