@@ -23,6 +23,14 @@ function FacebookIcon({ className }: IconProps) {
   );
 }
 
+function TiktokIcon({ className }: IconProps) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M19.589 6.826a4.993 4.993 0 0 1-3.076-1.074 5.026 5.026 0 0 1-1.708-2.684 5.02 5.02 0 0 1-.087-.748v-.394H11.45v12.95a2.898 2.898 0 0 1-2.898 2.898 2.898 2.898 0 1 1 .804-5.683V9.015a6.753 6.753 0 0 0-1.054-.082 6.75 6.75 0 1 0 6.75 6.75V9.155a8.153 8.153 0 0 0 4.537 1.375V6.826h-.001z" />
+    </svg>
+  );
+}
+
 const quickLinks = [
   { name: 'Home', path: '/' },
   { name: 'Business Setup', path: '/business-setup' },
@@ -34,6 +42,7 @@ const quickLinks = [
 const socials = [
   { name: 'Instagram', icon: InstagramIcon, href: 'https://www.instagram.com/alreyada.almotaqdima?stkn=MjRsd2E2bzdyYmVw' },
   { name: 'Facebook', icon: FacebookIcon, href: 'https://www.facebook.com/share/1F49H8fJWm/' },
+  { name: 'TikTok', icon: TiktokIcon, href: 'https://www.tiktok.com/@alreyadaalmotaqdima?_r=1&_t=ZS-9A7NIBoY0tJ' },
 ];
 
 export default function Footer() {
