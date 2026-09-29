@@ -70,7 +70,7 @@ const jurisdictions: Jurisdiction[] = [
       'Lower-cost solution',
       'Sell through eligible online marketplaces such as Amazon and Noon, subject to platform and activity requirements.',
     ],
-    buttonText: 'Check Your Activity',
+    buttonText: 'Learn More',
   },
 ];
 
