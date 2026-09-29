@@ -50,7 +50,7 @@ export default function ETraderLicense() {
     >
       <article>
         <img
-          src="/images/pages/page1.jpg"
+          src="/images/pages/page4.jpg"
           alt="Online entrepreneur managing an e-commerce business"
           className="h-64 w-full rounded-2xl object-cover object-center shadow-lg sm:h-80"
         />
