@@ -16,6 +16,7 @@ import {
   Stamp,
   Car,
   ShieldCheck,
+  Building2,
 } from 'lucide-react';
 
 type Service = {
@@ -196,6 +197,59 @@ const cardVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
 
+type Authority = {
+  shortName: string;
+  name: string;
+  description: string;
+  icon: typeof Building2;
+  markClassName: string;
+};
+
+const authorities: Authority[] = [
+  {
+    shortName: 'GDRFA',
+    name: 'General Directorate of Residency and Foreigners Affairs',
+    description: 'Immigration and residency transactions',
+    icon: Plane,
+    markClassName: 'bg-[#f2f6f4] text-[#16745f]',
+  },
+  {
+    shortName: 'MOHRE',
+    name: 'Ministry of Human Resources and Emiratisation',
+    description: 'Labour files, permits, and employment services',
+    icon: UsersIcon,
+    markClassName: 'bg-[#fff8e8] text-[#b58a22]',
+  },
+  {
+    shortName: 'RTA',
+    name: 'Roads and Transport Authority',
+    description: 'Transport approvals and vehicle procedures',
+    icon: Car,
+    markClassName: 'bg-[#fff1f0] text-[#d72c2c]',
+  },
+  {
+    shortName: 'DUBAI DET',
+    name: 'Dubai Department of Economy and Tourism',
+    description: 'Business licensing and economic services',
+    icon: Briefcase,
+    markClassName: 'bg-[#eef8f7] text-[#138b86]',
+  },
+  {
+    shortName: 'DUBAI MUNICIPALITY',
+    name: 'Dubai Municipality',
+    description: 'Municipality permits and property-related approvals',
+    icon: Building2,
+    markClassName: 'bg-[#fff8ed] text-[#b87d2d]',
+  },
+  {
+    shortName: 'SIRA',
+    name: 'Security Industry Regulatory Agency',
+    description: 'Security, CCTV, and safety approvals',
+    icon: ShieldCheck,
+    markClassName: 'bg-[#f2f4f6] text-[#263541]',
+  },
+];
+
 export default function Services() {
   const featured = services.find((s) => s.path === '/monthly-contract')!;
   const rest = services.filter((s) => s.path !== '/monthly-contract');
@@ -364,6 +418,67 @@ export default function Services() {
                 </Link>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Government authorities */}
+      <section className="relative overflow-hidden bg-slate-50 py-20">
+        <div className="pointer-events-none absolute -right-32 top-8 h-72 w-72 rounded-full border-[28px] border-white" />
+        <div className="pointer-events-none absolute -left-24 bottom-0 h-56 w-56 rounded-full bg-teal-500/5 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.4 }}
+            className="mx-auto max-w-2xl text-center"
+          >
+            <span className="text-sm font-bold uppercase tracking-[0.18em] text-teal-600">
+              Trusted government liaison
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
+              Government Authorities We Support
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-navy-500">
+              Professional coordination with the UAE authorities that keep your business moving.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {authorities.map((authority) => {
+              const AuthorityIcon = authority.icon;
+              return (
+                <motion.div
+                  key={authority.shortName}
+                  variants={cardVariants}
+                  className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg hover:shadow-navy-900/5"
+                >
+                  <div
+                    className={`flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105 ${authority.markClassName}`}
+                  >
+                    <AuthorityIcon className="h-6 w-6" strokeWidth={1.8} />
+                    <span className="mt-1 text-[9px] font-extrabold leading-none tracking-tight">
+                      {authority.shortName}
+                    </span>
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-display text-base font-bold leading-tight text-navy-900">
+                      {authority.name}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-navy-500">
+                      {authority.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
