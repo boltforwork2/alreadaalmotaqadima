@@ -125,35 +125,55 @@ const processSteps: ProcessStep[] = [
 export default function BusinessSetup() {
   return (
     <main>
-      {/* Hero */}
-      <section
-        className="relative isolate overflow-hidden bg-[#020617] py-16 sm:py-20 lg:min-h-[22rem] lg:py-14"
-        style={{ backgroundImage: "url('/images/pages/image.png')", backgroundSize: 'cover', backgroundPosition: 'right center' }}
-      >
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(90deg, #020617 0%, #020617 45%, rgba(2, 6, 23, 0.98) 56%, rgba(2, 6, 23, 0.72) 70%, rgba(2, 6, 23, 0.2) 88%, rgba(2, 6, 23, 0) 100%)',
-          }}
-        />
-        <div className="relative mx-auto flex min-h-[15rem] max-w-7xl items-center px-5 sm:px-8 lg:min-h-[19rem] lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl"
+      {/* Banner */}
+      <section className="relative overflow-hidden bg-[#f8fafc]">
+        <div className="mx-auto grid min-h-[31rem] max-w-7xl grid-cols-1 lg:min-h-[19rem] lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="relative z-10 flex flex-col justify-center px-5 py-10 sm:px-8 lg:px-12 lg:py-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-teal-600 sm:text-sm">
+                UAE Company Formation
+              </span>
+              <h1 className="mt-2 max-w-xl font-display text-3xl font-bold leading-tight text-navy-900 sm:text-4xl lg:text-5xl">
+                Business Setup in Dubai & <span className="text-teal-600">UAE Company Formation</span>
+              </h1>
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-navy-600 sm:text-base">
+                Explore the best setups for your company.
+              </p>
+
+              <div className="mt-6 grid max-w-2xl grid-cols-1 gap-2 sm:grid-cols-2 lg:mt-5 lg:gap-2.5">
+                {jurisdictions.map((item) => {
+                  const SetupIcon = item.icon;
+                  return (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className="group flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
+                    >
+                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-teal-50 text-teal-600 transition-colors group-hover:bg-teal-500 group-hover:text-white">
+                        <SetupIcon className="h-4 w-4" strokeWidth={1.8} />
+                      </span>
+                      <span className="min-w-0 text-xs font-semibold leading-tight text-navy-800 sm:text-sm">
+                        {item.name}
+                      </span>
+                      <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-teal-500 transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </div>
+
+          <div
+            className="relative min-h-[13rem] bg-cover bg-center lg:min-h-0"
+            style={{ backgroundImage: "url('/images/pages/image.png')" }}
+            aria-hidden="true"
           >
-            <span className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
-              UAE Company Formation
-            </span>
-            <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Business Setup in Dubai & <span className="text-teal-300">UAE Company Formation</span>
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-teal-200">
-              Explore the best Setups for your company.
-            </p>
-          </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/35 to-transparent lg:bg-gradient-to-r lg:from-[#f8fafc] lg:via-[#f8fafc]/10 lg:to-transparent" />
+          </div>
         </div>
       </section>
 

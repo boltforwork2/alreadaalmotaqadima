@@ -191,33 +191,13 @@ export default function Services() {
 
   return (
     <main>
-      {/* Hero */}
-      <section
-        className="relative isolate overflow-hidden bg-[#020617] py-16 sm:py-20 lg:min-h-[22rem] lg:py-14"
-        style={{ backgroundImage: "url('/images/pages/image copy.png')", backgroundSize: 'cover', backgroundPosition: 'right center' }}
-      >
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(90deg, #020617 0%, #020617 45%, rgba(2, 6, 23, 0.98) 56%, rgba(2, 6, 23, 0.72) 70%, rgba(2, 6, 23, 0.2) 88%, rgba(2, 6, 23, 0) 100%)',
-          }}
+      {/* Banner */}
+      <section className="overflow-hidden bg-white">
+        <img
+          src="/images/pages/image copy 2.png"
+          alt="Business and government services in the UAE"
+          className="block h-[180px] w-full object-cover object-left sm:h-[230px] sm:object-center lg:h-auto lg:aspect-[1280/283]"
         />
-        <div className="relative mx-auto flex min-h-[15rem] max-w-7xl items-center px-5 sm:px-8 lg:min-h-[19rem] lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl"
-          >
-            <h1 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Our Corporate <span className="text-teal-300">Services</span>
-            </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-teal-200">
-              Comprehensive business setup and corporate services tailored for your success in the UAE.
-            </p>
-          </motion.div>
-        </div>
       </section>
 
       {/* Corporate Services */}
