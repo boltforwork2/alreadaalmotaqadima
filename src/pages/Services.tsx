@@ -16,7 +16,6 @@ import {
   Stamp,
   Car,
   ShieldCheck,
-  Building2,
 } from 'lucide-react';
 
 type Service = {
@@ -197,56 +196,30 @@ const cardVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
 
-type Authority = {
-  shortName: string;
-  name: string;
-  description: string;
-  icon: typeof Building2;
-  markClassName: string;
-};
-
-const authorities: Authority[] = [
+const governmentPartners = [
   {
-    shortName: 'GDRFA',
     name: 'General Directorate of Residency and Foreigners Affairs',
-    description: 'Immigration and residency transactions',
-    icon: Plane,
-    markClassName: 'bg-[#f2f6f4] text-[#16745f]',
+    logo: '/images/pages/gdfra.png',
   },
   {
-    shortName: 'MOHRE',
     name: 'Ministry of Human Resources and Emiratisation',
-    description: 'Labour files, permits, and employment services',
-    icon: UsersIcon,
-    markClassName: 'bg-[#fff8e8] text-[#b58a22]',
+    logo: '/images/pages/mohre.png',
   },
   {
-    shortName: 'RTA',
     name: 'Roads and Transport Authority',
-    description: 'Transport approvals and vehicle procedures',
-    icon: Car,
-    markClassName: 'bg-[#fff1f0] text-[#d72c2c]',
+    logo: '/images/pages/rta.png',
   },
   {
-    shortName: 'DUBAI DET',
     name: 'Dubai Department of Economy and Tourism',
-    description: 'Business licensing and economic services',
-    icon: Briefcase,
-    markClassName: 'bg-[#eef8f7] text-[#138b86]',
+    logo: '/images/pages/dubai.png',
   },
   {
-    shortName: 'DUBAI MUNICIPALITY',
     name: 'Dubai Municipality',
-    description: 'Municipality permits and property-related approvals',
-    icon: Building2,
-    markClassName: 'bg-[#fff8ed] text-[#b87d2d]',
+    logo: '/images/pages/muni.png',
   },
   {
-    shortName: 'SIRA',
     name: 'Security Industry Regulatory Agency',
-    description: 'Security, CCTV, and safety approvals',
-    icon: ShieldCheck,
-    markClassName: 'bg-[#f2f4f6] text-[#263541]',
+    logo: '/images/pages/sira.png',
   },
 ];
 
@@ -422,63 +395,52 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Government authorities */}
-      <section className="relative overflow-hidden bg-slate-50 py-20">
-        <div className="pointer-events-none absolute -right-32 top-8 h-72 w-72 rounded-full border-[28px] border-white" />
-        <div className="pointer-events-none absolute -left-24 bottom-0 h-56 w-56 rounded-full bg-teal-500/5 blur-3xl" />
+      {/* Government partners */}
+      <section className="relative overflow-hidden border-y border-[#eee5d8] bg-[#fbf7ef] py-12 sm:py-14">
+        <div className="pointer-events-none absolute -left-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-white/70 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#eadfcf]/40 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.4 }}
-            className="mx-auto max-w-2xl text-center"
+            className="mb-8 text-center"
           >
-            <span className="text-sm font-bold uppercase tracking-[0.18em] text-teal-600">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
               Trusted government liaison
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy-900 sm:text-4xl">
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-navy-950 sm:text-3xl">
               Government Authorities We Support
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-navy-500">
-              Professional coordination with the UAE authorities that keep your business moving.
-            </p>
           </motion.div>
 
           <motion.div
-            variants={container}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
-            className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.08 } },
+            }}
+            className="grid grid-cols-2 overflow-hidden rounded-2xl border border-[#eadfce] bg-[#fffdf9] shadow-sm sm:grid-cols-3 lg:grid-cols-6"
           >
-            {authorities.map((authority) => {
-              const AuthorityIcon = authority.icon;
-              return (
-                <motion.div
-                  key={authority.shortName}
-                  variants={cardVariants}
-                  className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-lg hover:shadow-navy-900/5"
-                >
-                  <div
-                    className={`flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105 ${authority.markClassName}`}
-                  >
-                    <AuthorityIcon className="h-6 w-6" strokeWidth={1.8} />
-                    <span className="mt-1 text-[9px] font-extrabold leading-none tracking-tight">
-                      {authority.shortName}
-                    </span>
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="font-display text-base font-bold leading-tight text-navy-900">
-                      {authority.name}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-navy-500">
-                      {authority.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {governmentPartners.map((partner) => (
+              <motion.div
+                key={partner.name}
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+                }}
+                className="group flex min-h-32 items-center justify-center border-b border-[#eee5d8] px-4 py-5 transition-colors duration-200 hover:bg-white sm:min-h-36 sm:px-5 sm:py-6 lg:min-h-40 lg:border-b-0 lg:border-r lg:last:border-r-0"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-24 w-full max-w-[9rem] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-28"
+                />
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
