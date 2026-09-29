@@ -46,7 +46,7 @@ export default function FreelanceLicenseAbuDhabi() {
     >
       <article>
         <img
-          src="/images/pages/about.jpg"
+          src="/images/pages/page3.jpg"
           alt="Freelance professional working independently in Abu Dhabi"
           className="h-64 w-full rounded-2xl object-cover object-center shadow-lg sm:h-80"
         />
