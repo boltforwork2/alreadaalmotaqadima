@@ -106,9 +106,7 @@ export default function About() {
                 Your Trusted Partner for Business Setup & Growth
               </h2>
               <p className="mt-6 text-base leading-relaxed text-slate-600">
-                We differentiate ourselves by building long-term and lasting relationships, working
-                with and guiding you along every step of your journey to ensure your company is set
-                up and positioned to achieve long-term success.
+                We help entrepreneurs and businesses start, manage and grow their companies in the UAE with professional business setup, PRO and government services.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
                 Recognizing the growing demand from Entrepreneurs and Business Owners to have a
