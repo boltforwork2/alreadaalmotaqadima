@@ -86,45 +86,36 @@ const cardVariants = {
 
 export default function BusinessSetup() {
   return (
-    <main className="pt-20">
+    <main>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-navy-950 py-20 lg:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/10 via-transparent to-teal-500/5" />
+      <section
+        className="relative isolate overflow-hidden bg-[#020617] py-16 sm:py-20 lg:min-h-[22rem] lg:py-14"
+        style={{ backgroundImage: "url('/images/pages/image.png')", backgroundSize: 'cover', backgroundPosition: 'right center' }}
+      >
         <div
-          className="pointer-events-none absolute inset-0 opacity-[0.03]"
+          className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-            backgroundSize: '48px 48px',
+            background:
+              'linear-gradient(90deg, #020617 0%, #020617 45%, rgba(2, 6, 23, 0.98) 56%, rgba(2, 6, 23, 0.72) 70%, rgba(2, 6, 23, 0.2) 88%, rgba(2, 6, 23, 0) 100%)',
           }}
         />
-        <div className="pointer-events-none absolute -left-40 top-0 h-72 w-72 rounded-full bg-teal-500/15 blur-3xl" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-72 w-72 rounded-full bg-teal-500/10 blur-3xl" />
-        <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <motion.span
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-sm font-semibold uppercase tracking-wide text-teal-400"
-          >
-            UAE Company Formation
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+        <div className="relative mx-auto flex min-h-[15rem] max-w-7xl items-center px-5 sm:px-8 lg:min-h-[19rem] lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="mt-3 font-display text-4xl font-bold text-white lg:text-5xl"
+            className="max-w-2xl"
           >
-            Business Setup in Dubai & UAE Company Formation
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-5 text-lg text-teal-400"
-          >
-            Explore the best Setups for your company.
-          </motion.p>
+            <span className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">
+              UAE Company Formation
+            </span>
+            <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl">
+              Business Setup in Dubai & <span className="text-teal-300">UAE Company Formation</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-teal-200">
+              Explore the best Setups for your company.
+            </p>
+          </motion.div>
         </div>
       </section>
 
