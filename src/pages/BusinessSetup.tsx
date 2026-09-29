@@ -52,8 +52,8 @@ const jurisdictions: Jurisdiction[] = [
       'Import & Export activities',
       'Sell products online / E-Commerce',
     ],
-    image: 'https://images.pexels.com/photos/4115457/pexels-photo-4115457.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Modern warehouse facility for free zone operations',
+    image: '/images/pages/freezone.jpg',
+    imageAlt: 'Dubai Free Zone business center',
     buttonText: 'Learn More',
   },
   {
