@@ -52,7 +52,7 @@ const jurisdictions: Jurisdiction[] = [
       'Import & Export activities',
       'Sell products online / E-Commerce',
     ],
-    image: '/images/pages/freezone.jpg',
+    image: '/images/pages/freelance copy.jpg',
     imageAlt: 'Dubai Free Zone business center',
     buttonText: 'Learn More',
   },
