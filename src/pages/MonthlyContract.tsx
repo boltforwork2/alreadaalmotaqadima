@@ -136,6 +136,37 @@ const packages: Package[] = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* Government partners                                                */
+/* ------------------------------------------------------------------ */
+
+const governmentPartners = [
+  {
+    name: 'General Directorate of Residency and Foreigners Affairs',
+    logo: '/images/pages/gdfra.png',
+  },
+  {
+    name: 'Ministry of Human Resources and Emiratisation',
+    logo: '/images/pages/mohre.png',
+  },
+  {
+    name: 'Roads and Transport Authority',
+    logo: '/images/pages/rta.png',
+  },
+  {
+    name: 'Dubai Department of Economy and Tourism',
+    logo: '/images/pages/dubai.png',
+  },
+  {
+    name: 'Dubai Municipality',
+    logo: '/images/pages/muni.png',
+  },
+  {
+    name: 'Security Industry Regulatory Agency',
+    logo: '/images/pages/sira.png',
+  },
+];
+
+/* ------------------------------------------------------------------ */
 /* Animations                                                          */
 /* ------------------------------------------------------------------ */
 
@@ -247,6 +278,56 @@ export default function MonthlyContract() {
                 <p className="mt-2 text-sm leading-relaxed text-navy-500">
                   {benefit.description}
                 </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ===== Government Authorities We Support ===== */}
+      <section className="relative overflow-hidden border-y border-[#eee5d8] bg-[#fbf7ef] py-12 sm:py-14">
+        <div className="pointer-events-none absolute -left-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-white/70 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#eadfcf]/40 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.4 }}
+            className="mb-8 text-center"
+          >
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
+              Trusted government liaison
+            </span>
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-navy-950 sm:text-3xl">
+              Government Authorities We Support
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.08 } },
+            }}
+            className="grid grid-cols-2 overflow-hidden rounded-2xl border border-[#eadfce] bg-[#fffdf9] shadow-sm sm:grid-cols-3 lg:grid-cols-6"
+          >
+            {governmentPartners.map((partner) => (
+              <motion.div
+                key={partner.name}
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
+                }}
+                className="group flex min-h-32 items-center justify-center border-b border-[#eee5d8] px-4 py-5 transition-colors duration-200 hover:bg-white sm:min-h-36 sm:px-5 sm:py-6 lg:min-h-40 lg:border-b-0 lg:border-r lg:last:border-r-0"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-24 w-full max-w-[9rem] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-28"
+                />
               </motion.div>
             ))}
           </motion.div>
