@@ -8,6 +8,10 @@ import {
   Check,
   Briefcase,
   ShoppingCart,
+  FileText,
+  ClipboardCheck,
+  CircleDollarSign,
+  CircleCheck,
 } from 'lucide-react';
 
 type Jurisdiction = {
@@ -83,6 +87,40 @@ const cardVariants = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
+
+type ProcessStep = {
+  number: string;
+  icon: typeof FileText;
+  title: string;
+  description: string;
+};
+
+const processSteps: ProcessStep[] = [
+  {
+    number: '1',
+    icon: FileText,
+    title: 'Choose Your Setup',
+    description: 'Select the best option for your business.',
+  },
+  {
+    number: '2',
+    icon: ClipboardCheck,
+    title: 'Prepare Documents',
+    description: 'We guide you with the required documents.',
+  },
+  {
+    number: '3',
+    icon: CircleDollarSign,
+    title: 'Submit & Approvals',
+    description: 'We handle all government submissions and follow-ups.',
+  },
+  {
+    number: '4',
+    icon: CircleCheck,
+    title: 'Receive Your Trade License',
+    description: 'Start your business with confidence.',
+  },
+];
 
 export default function BusinessSetup() {
   return (
@@ -172,6 +210,69 @@ export default function BusinessSetup() {
                 </Link>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Simple process */}
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.4 }}
+            className="max-w-2xl"
+          >
+            <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
+              A Simple <span className="text-teal-500">Process</span>
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-navy-500 sm:text-base">
+              We make company setup in the UAE simple and hassle-free.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-5 lg:gap-8"
+          >
+            {processSteps.map((step, index) => {
+              const StepIcon = step.icon;
+              return (
+                <motion.div
+                  key={step.number}
+                  variants={cardVariants}
+                  className="relative flex items-start gap-4 md:block"
+                >
+                  <div className="flex shrink-0 items-center gap-3 md:gap-4">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-500 font-display text-lg font-bold text-navy-900 shadow-md shadow-teal-500/20">
+                      {index === processSteps.length - 1 ? (
+                        <Check className="h-5 w-5" strokeWidth={3} />
+                      ) : (
+                        step.number
+                      )}
+                    </span>
+                    <StepIcon className="h-7 w-7 text-teal-500" strokeWidth={1.8} />
+                  </div>
+
+                  <div className="md:mt-4">
+                    <h3 className="font-display text-base font-bold leading-snug text-navy-900">
+                      {step.title}
+                    </h3>
+                    <p className="mt-1.5 max-w-[15rem] text-sm leading-relaxed text-navy-500">
+                      {step.description}
+                    </p>
+                  </div>
+
+                  {index < processSteps.length - 1 && (
+                    <ArrowRight className="absolute -bottom-7 left-4 h-5 w-5 rotate-90 text-navy-300 md:-right-5 md:left-auto md:top-3 md:bottom-auto md:rotate-0 lg:-right-7" />
+                  )}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
