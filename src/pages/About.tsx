@@ -109,10 +109,8 @@ export default function About() {
                 We help entrepreneurs and businesses start, manage and grow their companies in the UAE with professional business setup, PRO and government services.
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
-                Recognizing the growing demand from Entrepreneurs and Business Owners to have a
-                company that provides more than a once-off business set up service, Central Hub was
-                established to provide bespoke solutions tailored to meet each company's unique
-                requirements.
+                From company formation and trade licences to visas, PRO services and government approvals, our team provides practical support throughout your business journey.
+Our goal is simple: to make UAE business setup and government processes easier, faster and more straightforward for our clients.
               </p>
             </motion.div>
 
