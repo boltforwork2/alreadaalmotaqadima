@@ -16,6 +16,7 @@ import {
   Building2,
   type LucideIcon,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import ConsultationForm from '@/components/ConsultationForm';
 
 /* ------------------------------------------------------------------ */
@@ -101,7 +102,7 @@ const packages: Package[] = [
       'Trade license services',
       'Ongoing support & consultation',
     ],
-    button: 'Get Started',
+    button: 'Request a Quote',
   },
   {
     name: 'Standard Package',
@@ -115,7 +116,7 @@ const packages: Package[] = [
       'Dedicated PRO officer',
       'Monthly reporting & follow-up',
     ],
-    button: 'Get Started',
+    button: 'Request a Quote',
     popular: true,
   },
   {
@@ -130,7 +131,7 @@ const packages: Package[] = [
       'NOC, attestation & legal document support',
       'Monthly reports & customized solutions',
     ],
-    button: 'Contact Us',
+    button: 'Request a Quote',
   },
 ];
 
@@ -328,16 +329,18 @@ export default function MonthlyContract() {
                   ))}
                 </ul>
 
-                <button
+                <Link
+                  to="/contact"
                   className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 ${
                     pkg.popular
                       ? 'bg-gradient-to-r from-teal-500 to-teal-400 text-white shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40'
-                      : 'border border-teal-300 bg-teal-50 text-teal-700 group-hover:bg-teal-500 group-hover:text-white'
-                  }`}
+                      : 'border border-teal-400 bg-teal-50 text-navy-900 hover:bg-teal-100'
+                  }`
+                  }
                 >
                   {pkg.button}
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </button>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
