@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Briefcase, ShieldCheck, Check, CircleCheck as CheckCircle, Phone, Building2, Globe as Globe2, Archive, Award, Stamp, UserCheck, Landmark, Plane, ShoppingCart, ChevronDown } from 'lucide-react';
+import { ArrowRight, Briefcase, ShieldCheck, Check, CircleCheck as CheckCircle, MessageCircle, Building2, Globe as Globe2, Archive, Award, Stamp, UserCheck, Landmark, Plane, ShoppingCart, ChevronDown } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
 
 type Jurisdiction = {
@@ -285,7 +285,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-lg border border-slate-400/60 px-7 py-3.5 text-base font-medium text-slate-100 transition-colors duration-200 hover:border-teal-500/50 hover:text-teal-300"
                 >
-                  <Phone className="h-5 w-5" />
+                  <MessageCircle className="h-5 w-5" />
                   +971 50 257 774
                 </a>
               </motion.div>
