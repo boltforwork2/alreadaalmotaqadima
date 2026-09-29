@@ -268,7 +268,7 @@ export default function BusinessSetup() {
                   </div>
 
                   {index < processSteps.length - 1 && (
-                    <ArrowRight className="absolute -bottom-7 left-4 h-5 w-5 rotate-90 text-navy-300 md:-right-5 md:left-auto md:top-3 md:bottom-auto md:rotate-0 lg:-right-7" />
+                    <ArrowRight className="absolute -right-5 top-3 hidden h-5 w-5 text-navy-300 md:block lg:-right-7" />
                   )}
                 </motion.div>
               );
