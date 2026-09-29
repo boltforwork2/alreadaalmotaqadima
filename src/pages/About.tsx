@@ -76,7 +76,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="font-display text-5xl font-bold tracking-tight text-white"
           >
-            About Al Reyada Al Motaqadim
+            About Al Reyada Al Motaqadima
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
