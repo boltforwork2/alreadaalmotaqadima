@@ -93,7 +93,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
           {/* Logo */}
           <Link to="/" className="group flex items-center">
-            <img src="/logo3.png" alt="CentralHub" className="h-14 w-auto" />
+            <img src="/logo4.png" alt="CentralHub" className="h-14 w-auto" />
           </Link>
 
           {/* Desktop nav */}
