@@ -286,7 +286,7 @@ export default function Home() {
                   className="inline-flex items-center gap-2 rounded-lg border border-slate-400/60 px-7 py-3.5 text-base font-medium text-slate-100 transition-colors duration-200 hover:border-teal-500/50 hover:text-teal-300"
                 >
                   <Phone className="h-5 w-5" />
-                  971 50 257 774
+                  +971 50 257 774
                 </a>
               </motion.div>
             </div>
