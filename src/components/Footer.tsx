@@ -107,7 +107,7 @@ export default function Footer() {
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 shrink-0 text-teal-500" />
                 <a href="tel:+97150257774" className="transition-colors hover:text-teal-400">
-                  050 257 774
+                  971 50 257 774
                 </a>
               </li>
               <li className="flex items-center gap-3">
