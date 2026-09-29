@@ -100,7 +100,7 @@ export default function About() {
               transition={{ duration: 0.5 }}
             >
               <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-                Who is Central Hub?
+                Who is Al Reyada Al Motaqadima ?
               </span>
               <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900">
                 Bespoke Solutions for Your Long-term Success
