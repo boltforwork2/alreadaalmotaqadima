@@ -50,7 +50,7 @@ export default function FreeZone() {
     >
       <article>
         <img
-          src="/images/pages/page1.jpg"
+          src="/images/pages/image.png"
           alt="Business team collaborating in a Dubai office"
           className="h-64 w-full rounded-2xl object-cover object-center shadow-lg sm:h-80"
         />
