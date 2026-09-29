@@ -250,7 +250,7 @@ export default function Navbar() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -16, opacity: 0 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="mx-4 mt-2 overflow-hidden rounded-2xl border border-navy-100 bg-white shadow-2xl"
+              className="mx-4 mt-2 max-h-[calc(100dvh-6rem)] overflow-y-auto overscroll-contain rounded-2xl border border-navy-100 bg-white shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col p-3">
