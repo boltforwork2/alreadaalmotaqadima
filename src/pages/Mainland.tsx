@@ -54,7 +54,7 @@ export default function Mainland() {
     >
       <article>
         <img
-          src="/images/pages/page2.png"
+          src="/images/pages/page2.jpg"
           alt="Business partners shaking hands in a Dubai office"
           className="h-64 w-full rounded-2xl object-cover object-center shadow-lg sm:h-80"
         />
