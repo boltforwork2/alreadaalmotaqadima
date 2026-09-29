@@ -103,7 +103,7 @@ export default function About() {
                 Who is Al Reyada Al Motaqadima ?
               </span>
               <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900">
-                Bespoke Solutions for Your Long-term Success
+                Your Trusted Partner for Business Setup & Growth
               </h2>
               <p className="mt-6 text-base leading-relaxed text-slate-600">
                 We differentiate ourselves by building long-term and lasting relationships, working
