@@ -173,6 +173,17 @@ const services: Service[] = [
   },
 ];
 
+const heroServices = [
+  { label: 'Trade License', detail: 'Services', icon: FileText },
+  { label: 'Employee', detail: 'Procedures', icon: UsersIcon },
+  { label: 'MOHRE', detail: 'Transactions', icon: Briefcase },
+  { label: 'Immigration', detail: '& Residency', icon: Plane },
+  { label: 'Municipality', detail: '& Land Services', icon: ShieldCheck },
+  { label: 'RTA', detail: 'Transactions', icon: Car },
+  { label: 'Corporate', detail: 'Bank Account', icon: Wallet },
+  { label: 'Ongoing', detail: 'PRO Support', icon: CalendarCheck },
+];
+
 const container = {
   hidden: {},
   show: {
@@ -191,13 +202,66 @@ export default function Services() {
 
   return (
     <main>
-      {/* Banner */}
-      <section className="overflow-hidden bg-white">
-        <img
-          src="/images/pages/image copy 2.png"
-          alt="Business and government services in the UAE"
-          className="block h-[180px] w-full object-cover object-left sm:h-[230px] sm:object-center lg:h-auto lg:aspect-[1280/283]"
-        />
+      {/* Services hero */}
+      <section className="relative overflow-hidden bg-[#f7f8fa]">
+        <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full border-[26px] border-white/80" />
+        <div className="pointer-events-none absolute bottom-[-7rem] left-[44%] h-72 w-72 rotate-45 border-[34px] border-teal-500/20" />
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 lg:min-h-[32rem] lg:grid-cols-[1.08fr_0.92fr]">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative z-10 flex flex-col justify-center px-5 py-14 sm:px-8 lg:px-12 lg:py-16"
+          >
+            <div className="max-w-2xl">
+              <p className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-navy-950 sm:text-5xl lg:text-[3.6rem]">
+                Business &
+                <span className="block text-teal-600">Government Services</span>
+              </p>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-navy-700 sm:text-lg">
+                Professional support for your company&apos;s setup and ongoing government transactions in the UAE.
+              </p>
+
+              <div className="mt-8 grid max-w-2xl grid-cols-2 gap-2.5 sm:grid-cols-4">
+                {heroServices.map((service, index) => {
+                  const ServiceIcon = service.icon;
+                  return (
+                    <motion.div
+                      key={service.label}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, delay: 0.25 + index * 0.05 }}
+                      className="flex min-h-[4.75rem] items-center gap-2 rounded-lg border border-slate-200 bg-white/90 px-2.5 py-2 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-teal-50 text-teal-600">
+                        <ServiceIcon className="h-5 w-5" strokeWidth={1.7} />
+                      </span>
+                      <span className="text-[11px] font-bold leading-tight text-navy-900 sm:text-xs">
+                        {service.label}
+                        <span className="block font-medium text-navy-500">{service.detail}</span>
+                      </span>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="relative min-h-[18rem] overflow-hidden lg:min-h-0"
+          >
+            <img
+              src="https://images.pexels.com/photos/17238022/pexels-photo-17238022.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Dubai skyline at sunset"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#f7f8fa] via-[#f7f8fa]/15 to-transparent lg:from-[#f7f8fa] lg:via-transparent lg:to-transparent" />
+            <div className="absolute inset-y-0 left-0 hidden w-20 bg-[#f7f8fa] [clip-path:polygon(0_0,100%_0,35%_50%,100%_100%,0_100%)] lg:block" />
+          </motion.div>
+        </div>
       </section>
 
       {/* Corporate Services */}
