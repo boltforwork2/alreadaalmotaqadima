@@ -20,6 +20,8 @@ type Jurisdiction = {
   icon: typeof Building2;
   description: string;
   features: string[];
+  image: string;
+  imageAlt: string;
   buttonText: string;
 };
 
@@ -35,6 +37,8 @@ const jurisdictions: Jurisdiction[] = [
       'Operate in the UAE local market',
       'Investor and employee visa options',
     ],
+    image: 'https://images.pexels.com/photos/25309271/pexels-photo-25309271.jpeg?auto=compress&cs=tinysrgb&w=1000',
+    imageAlt: 'Dubai skyline with modern business towers',
     buttonText: 'Learn More',
   },
   {
@@ -48,6 +52,8 @@ const jurisdictions: Jurisdiction[] = [
       'Import & Export activities',
       'Sell products online / E-Commerce',
     ],
+    image: 'https://images.pexels.com/photos/4115457/pexels-photo-4115457.jpeg?auto=compress&cs=tinysrgb&w=1000',
+    imageAlt: 'Modern warehouse facility for free zone operations',
     buttonText: 'Learn More',
   },
   {
@@ -61,6 +67,8 @@ const jurisdictions: Jurisdiction[] = [
       'Family sponsorship available subject to requirements',
       'Suitable for consultants, designers, and developers',
     ],
+    image: 'https://images.pexels.com/photos/30349399/pexels-photo-30349399.jpeg?auto=compress&cs=tinysrgb&w=1000',
+    imageAlt: 'Freelancer working in a modern home office',
     buttonText: 'Learn More',
   },
   {
@@ -74,6 +82,8 @@ const jurisdictions: Jurisdiction[] = [
       'Lower-cost solution',
       'Sell through eligible online marketplaces such as Amazon and Noon, subject to platform and activity requirements.',
     ],
+    image: 'https://images.pexels.com/photos/7289719/pexels-photo-7289719.jpeg?auto=compress&cs=tinysrgb&w=1000',
+    imageAlt: 'Online seller packing products for an ecommerce business',
     buttonText: 'Learn More',
   },
 ];
@@ -125,109 +135,127 @@ const processSteps: ProcessStep[] = [
 export default function BusinessSetup() {
   return (
     <main>
-      {/* Banner */}
-      <section className="relative overflow-hidden bg-[#f8fafc]">
-        <div className="mx-auto grid min-h-[31rem] max-w-7xl grid-cols-1 lg:min-h-[19rem] lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="relative z-10 flex flex-col justify-center px-5 py-10 sm:px-8 lg:px-12 lg:py-8">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-teal-600 sm:text-sm">
-                UAE Company Formation
-              </span>
-              <h1 className="mt-2 max-w-xl font-display text-3xl font-bold leading-tight text-navy-900 sm:text-4xl lg:text-5xl">
-                Business Setup in Dubai & <span className="text-teal-600">UAE Company Formation</span>
-              </h1>
-              <p className="mt-3 max-w-xl text-sm leading-relaxed text-navy-600 sm:text-base">
-                Explore the best setups for your company.
-              </p>
+      {/* Business setup hero */}
+      <section className="relative isolate overflow-hidden bg-navy-950">
+        <img
+          src="https://images.pexels.com/photos/25309271/pexels-photo-25309271.jpeg?auto=compress&cs=tinysrgb&w=1800"
+          alt="Dubai skyline viewed from a modern business office"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/95 to-navy-950/20" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/80 via-transparent to-navy-950/20" />
 
-              <div className="mt-6 grid max-w-2xl grid-cols-1 gap-2 sm:grid-cols-2 lg:mt-5 lg:gap-2.5">
-                {jurisdictions.map((item) => {
-                  const SetupIcon = item.icon;
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className="group flex items-center gap-2.5 rounded-lg border border-slate-200 bg-white px-3 py-2.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md"
-                    >
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-teal-50 text-teal-600 transition-colors group-hover:bg-teal-500 group-hover:text-white">
-                        <SetupIcon className="h-4 w-4" strokeWidth={1.8} />
-                      </span>
-                      <span className="min-w-0 text-xs font-semibold leading-tight text-navy-800 sm:text-sm">
-                        {item.name}
-                      </span>
-                      <ArrowRight className="ml-auto h-3.5 w-3.5 shrink-0 text-teal-500 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                  );
-                })}
-              </div>
-            </motion.div>
-          </div>
-
-          <div
-            className="relative min-h-[13rem] bg-cover bg-center lg:min-h-0"
-            style={{ backgroundImage: "url('/images/pages/image.png')" }}
-            aria-hidden="true"
+        <div className="mx-auto grid min-h-[35rem] max-w-7xl items-center px-5 py-16 sm:px-8 lg:min-h-[38rem] lg:grid-cols-[1.1fr_0.9fr] lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-2xl"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/35 to-transparent lg:bg-gradient-to-r lg:from-[#f8fafc] lg:via-[#f8fafc]/10 lg:to-transparent" />
-          </div>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-300 sm:text-sm">
+              Your trusted
+            </span>
+            <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[0.98] tracking-tight text-white sm:text-5xl lg:text-7xl">
+              Business Setup
+              <span className="block">Partner <span className="text-teal-400">in Dubai</span></span>
+            </h1>
+            <p className="mt-6 max-w-lg text-base leading-relaxed text-slate-200 sm:text-lg">
+              Complete business setup and government services for investors, entrepreneurs and companies in the UAE.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                to="/cost-calculator"
+                className="group inline-flex items-center gap-2 rounded-lg bg-teal-500 px-6 py-3 text-sm font-bold text-navy-950 shadow-lg shadow-teal-500/25 transition-all hover:bg-teal-400 hover:shadow-xl"
+              >
+                Get Started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/50 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-teal-300 hover:bg-white/10"
+              >
+                Contact Us
+              </Link>
+            </div>
+            <div className="mt-10 grid max-w-xl grid-cols-2 gap-4 border-t border-white/15 pt-5 sm:grid-cols-4">
+              {['Reliable & Professional', 'End-to-End Support', 'Transparent Process', 'Dedicated Consultant'].map((item) => (
+                <div key={item} className="flex items-start gap-2 text-xs font-semibold leading-tight text-white">
+                  <CircleCheck className="mt-0.5 h-4 w-4 shrink-0 text-teal-400" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Jurisdiction grid */}
-      <section className="bg-slate-50 py-20">
+      <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.4 }}
-            className="text-center font-display text-3xl font-bold text-navy-900"
+            className="mx-auto max-w-3xl text-center"
           >
-            Choose Your Best Setup
-          </motion.h2>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-600">UAE company formation</span>
+            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-navy-950 sm:text-4xl">
+              Explore Your <span className="text-teal-600">Business Setup</span> Options
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-navy-500 sm:text-base">
+              Choose the right setup for your business goals. Compare the options and get started with expert support.
+            </p>
+          </motion.div>
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2"
+            className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
           >
             {jurisdictions.map((item) => (
               <motion.div
                 key={item.path}
                 variants={cardVariants}
-                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl hover:shadow-navy-900/10"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50">
-                  <item.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.imageAlt}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-lg bg-navy-950/85 text-teal-300 backdrop-blur-sm">
+                    <item.icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
                 </div>
-                <h3 className="mt-5 font-display text-lg font-bold text-navy-900">
-                  {item.name}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                  {item.description}
-                </p>
-                <ul className="mt-5 flex-1 space-y-2.5">
-                  {item.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5">
-                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
-                        <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
-                      </span>
-                      <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={item.path}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-teal-300 bg-teal-50 px-4 py-2.5 text-sm font-semibold text-teal-700 transition-colors duration-200 group-hover:bg-teal-500 group-hover:text-white"
-                >
-                  {item.buttonText}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-display text-lg font-bold leading-tight text-navy-900">
+                    {item.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-navy-500">
+                    {item.description}
+                  </p>
+                  <ul className="mt-5 flex-1 space-y-2.5">
+                    {item.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2.5">
+                        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
+                          <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
+                        </span>
+                        <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={item.path}
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-teal-500 px-4 py-2.5 text-sm font-semibold text-navy-950 transition-all duration-200 hover:bg-teal-400"
+                  >
+                    {item.buttonText}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </motion.div>
