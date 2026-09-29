@@ -172,7 +172,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-navy-800 pt-8 sm:flex-row">
           <p className="text-sm text-navy-500">
-            © {new Date().getFullYear()} CentralHub. All rights reserved.
+            © {new Date().getFullYear()} Al REYADA AL MOTAQADIMA. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm text-navy-500">
             <a href="#" className="transition-colors hover:text-teal-400">
