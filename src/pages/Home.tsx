@@ -261,9 +261,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="mt-5 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg"
               >
-                Are you a startup or a small to medium business (SME) who wants to start a business in
-                Dubai free zone or a mainland company in Dubai or any other Emirate of the UAE? Or an
-                individual simply requiring your own UAE trade license?{' '}
+                Start, manage and grow your business in the UAE with professional business setup and government services. Whether you need a Mainland or Free Zone company, trade licence, visa services, PRO services or government approvals, our team is here to make the process simple and straightforward.{' '}
                 <span className="font-semibold text-white">WE CAN HELP!</span>
               </motion.p>
 
