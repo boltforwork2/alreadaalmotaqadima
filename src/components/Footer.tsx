@@ -65,7 +65,7 @@ export default function Footer() {
               <img src="/logo3.png" alt="AL REYADA AL MOTAQADIMA" className="h-12 w-auto" />
             </Link>
             <p className="mt-5 text-sm leading-relaxed text-navy-400">
-              CentralHub is here to ensure Investors, Entrepreneurs, and Business Owners no longer
+              Al REYADA AL MOTAQADIMA is here to ensure Investors, Entrepreneurs, and Business Owners no longer
               lose sleep worrying about the complexities of business setup.
             </p>
           </div>
