@@ -57,7 +57,7 @@ const jurisdictions: Jurisdiction[] = [
       'Family sponsorship available subject to requirements',
       'Suitable for consultants, designers, and developers',
     ],
-    buttonText: 'Check Your Eligibility',
+    buttonText: 'Learn More',
   },
   {
     name: 'E-Trader License - Dubai',
