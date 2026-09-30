@@ -234,7 +234,7 @@ export default function Home() {
   return (
     <div>
       {/* ===== Hero Section ===== */}
-      <section className="relative flex min-h-[calc(100dvh-5rem)] flex-col justify-center overflow-hidden">
+      <section className="relative flex min-h-[72vh] flex-col justify-center overflow-hidden">
         <img
           src="/images/bc copy.jpg"
           alt="Luxury Dubai business office overlooking the skyline"
@@ -243,7 +243,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/75 to-navy-950/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-navy-950/20" />
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 sm:px-8 lg:px-12 lg:py-12">
           <div className="max-w-2xl text-left">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -304,7 +304,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-10 grid grid-cols-1 gap-5 border-t border-white/20 pt-6 sm:grid-cols-3"
+              className="mt-7 grid grid-cols-1 gap-5 border-t border-white/20 pt-5 sm:grid-cols-3"
             >
               {[
                 { icon: Award, title: 'Trusted', description: 'Professional Support' },
