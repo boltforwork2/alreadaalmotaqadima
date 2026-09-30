@@ -25,6 +25,7 @@ import MohreServices from '@/pages/MohreServices';
 import GdrfaServices from '@/pages/GdrfaServices';
 import RtaServices from '@/pages/RtaServices';
 import SiraServices from '@/pages/SiraServices';
+import NotaryServices from '@/pages/NotaryServices';
 
 export default function App() {
   return (
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="/gdrfa-services" element={<GdrfaServices />} />
           <Route path="/rta-services" element={<RtaServices />} />
           <Route path="/sira-services" element={<SiraServices />} />
+          <Route path="/notary-services" element={<NotaryServices />} />
         </Route>
       </Routes>
     </BrowserRouter>

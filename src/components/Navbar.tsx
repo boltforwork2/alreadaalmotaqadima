@@ -38,6 +38,7 @@ const dropdowns: DropdownItem[] = [
       { name: 'GDRFA Services', path: '/gdrfa-services' },
       { name: 'RTA Services', path: '/rta-services' },
       { name: 'SIRA Services', path: '/sira-services' },
+      { name: 'Notary Public Services', path: '/notary-services' },
     ],
   },
 ];

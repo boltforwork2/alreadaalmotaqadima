@@ -56,6 +56,20 @@ const services: Service[] = [
     imageAlt: 'Person signing a business document at an office desk',
   },
   {
+    name: 'Notary Public Services',
+    path: '/notary-services',
+    icon: Stamp,
+    description: 'Fast and reliable notarization, attestation, and legal document services in the UAE.',
+    features: [
+      'Power of Attorney (POA)',
+      'MOA & Amendments',
+      'Signature Attestation',
+      'Legal Documents Notarization',
+    ],
+    image: '/images/pages/courts copy 2.jpg',
+    imageAlt: 'Dubai Courts building representing notary and legal document services',
+  },
+  {
     name: 'MOHRE Services',
     path: '/mohre-services',
     icon: UsersIcon,
