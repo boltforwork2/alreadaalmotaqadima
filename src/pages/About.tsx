@@ -64,27 +64,39 @@ export default function About() {
   return (
     <div>
       {/* ===== Hero ===== */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-navy-950 via-navy-950 to-navy-900 py-20">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -right-32 top-10 h-96 w-96 rounded-full border border-teal-500/10" />
-          <div className="absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-teal-500/5 blur-3xl" />
-        </div>
-        <div className="relative mx-auto max-w-3xl px-6 text-center sm:px-8 lg:px-12">
+      <section className="relative isolate min-h-[30rem] overflow-hidden bg-navy-950 sm:min-h-[34rem]">
+        <img
+          src="/images/pages/aboutbc.jpg"
+          alt="Dubai skyline and a modern business office at sunset"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 -z-10 bg-navy-950/70" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-navy-950/80 via-navy-950/45 to-navy-950/85" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-8 -z-10 h-px bg-gradient-to-r from-transparent via-teal-400 to-transparent opacity-80" />
+        <div className="relative mx-auto flex min-h-[30rem] max-w-5xl flex-col items-center justify-center px-6 py-16 text-center sm:min-h-[34rem] sm:px-8 lg:px-12">
+          <motion.img
+            src="/logo.png"
+            alt="Al Reyada Al Motaqadima logo"
+            initial={{ opacity: 0, scale: 0.92, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="w-44 drop-shadow-[0_12px_30px_rgba(0,0,0,0.5)] sm:w-56 lg:w-64"
+          />
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-display text-5xl font-bold tracking-tight text-white"
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="mt-6 max-w-3xl font-display text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
             About Al Reyada Al Motaqadima
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-5 text-lg font-medium text-teal-300"
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-100 sm:text-lg"
           >
-            Your trusted partner for business setup in the UAE.
+            Your trusted partner for business setup and government services in the UAE.
           </motion.p>
         </div>
       </section>
