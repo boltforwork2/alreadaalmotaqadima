@@ -490,48 +490,6 @@ export default function Home() {
                 </p>
               </motion.div>
             ))}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.45, delay: 0.08 }}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/5"
-            >
-              <div className="relative h-40 overflow-hidden">
-                <img
-                  src="/images/pages/courts copy 2.jpg"
-                  alt="Dubai Courts building representing notary and legal document services"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-lg bg-navy-950/85 text-teal-300 backdrop-blur-sm">
-                  <Stamp className="h-5 w-5" strokeWidth={1.75} />
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="font-display text-lg font-bold text-navy-900">Notary Public Services</h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                  Fast and reliable notarization, attestation, and legal document services in the UAE.
-                </p>
-                <ul className="mt-5 flex-1 space-y-2.5">
-                  {['Power of Attorney (POA)', 'MOA & Amendments', 'Signature Attestation', 'Legal Documents Notarization'].map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5">
-                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
-                        <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
-                      </span>
-                      <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/notary-services"
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-teal-300 bg-teal-50 px-4 py-2.5 text-sm font-semibold text-teal-700 transition-colors duration-200 group-hover:bg-teal-500 group-hover:text-white"
-                >
-                  Learn More
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
