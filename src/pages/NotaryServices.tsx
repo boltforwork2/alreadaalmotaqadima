@@ -21,11 +21,6 @@ export default function NotaryServices() {
       subtitle="Fast and reliable notarization, attestation, and legal document services in the UAE."
     >
       <article>
-        <img
-          src="/images/pages/courts copy 2.jpg"
-          alt="Dubai Courts building representing notary and legal document services"
-          className="h-64 w-full rounded-2xl object-cover object-center shadow-lg sm:h-80"
-        />
 
         <p className="mt-8 text-lg leading-relaxed text-navy-600">
           Professional notary and attestation services are essential for legalizing your business
