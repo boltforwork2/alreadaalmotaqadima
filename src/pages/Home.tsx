@@ -18,6 +18,8 @@ type Jurisdiction = {
   icon: typeof Building2;
   description: string;
   features: string[];
+  image: string;
+  imageAlt: string;
   buttonText: string;
 };
 
@@ -33,6 +35,8 @@ const jurisdictions: Jurisdiction[] = [
       'Operate in the UAE local market',
       'Investor and employee visa options',
     ],
+    image: 'https://images.pexels.com/photos/25309271/pexels-photo-25309271.jpeg?auto=compress&cs=tinysrgb&w=1000',
+    imageAlt: 'Dubai skyline with modern business towers',
     buttonText: 'Learn More',
   },
   {
@@ -46,6 +50,8 @@ const jurisdictions: Jurisdiction[] = [
       'Import & Export activities',
       'Sell products online / E-Commerce',
     ],
+    image: '/images/pages/freezone.jpg',
+    imageAlt: 'Dubai Free Zone business center',
     buttonText: 'Learn More',
   },
   {
@@ -59,6 +65,8 @@ const jurisdictions: Jurisdiction[] = [
       'Family sponsorship available subject to requirements',
       'Suitable for consultants, designers, and developers',
     ],
+    image: '/images/pages/freelance.jpg',
+    imageAlt: 'Freelancer working in a modern home office',
     buttonText: 'Learn More',
   },
   {
@@ -72,6 +80,8 @@ const jurisdictions: Jurisdiction[] = [
       'Lower-cost solution',
       'Sell through eligible online marketplaces such as Amazon and Noon, subject to platform and activity requirements.',
     ],
+    image: '/images/pages/e-trader.jpg',
+    imageAlt: 'Online seller packing products for an ecommerce business',
     buttonText: 'Learn More',
   },
 ];
@@ -334,34 +344,44 @@ export default function Home() {
               <motion.div
                 key={item.path}
                 variants={jurisdictionCardVariants}
-                className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl hover:shadow-slate-900/5"
+                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl hover:shadow-navy-900/10"
               >
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 transition-colors duration-300 group-hover:bg-teal-100">
-                  <item.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.imageAlt}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-lg bg-navy-950/85 text-teal-300 backdrop-blur-sm">
+                    <item.icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
                 </div>
-                <h3 className="mt-5 font-display text-lg font-bold text-navy-900">
-                  {item.name}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                  {item.description}
-                </p>
-                <ul className="mt-5 flex-1 space-y-2.5">
-                  {item.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5">
-                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
-                        <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
-                      </span>
-                      <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={item.path}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-teal-300 bg-teal-50 px-4 py-2.5 text-sm font-semibold text-teal-700 transition-colors duration-200 group-hover:bg-teal-500 group-hover:text-white"
-                >
-                  {item.buttonText}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                </Link>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-display text-lg font-bold leading-tight text-navy-900">
+                    {item.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-navy-500">
+                    {item.description}
+                  </p>
+                  <ul className="mt-5 flex-1 space-y-2.5">
+                    {item.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2.5">
+                        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
+                          <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
+                        </span>
+                        <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={item.path}
+                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-teal-500 px-4 py-2.5 text-sm font-semibold text-navy-950 transition-all duration-200 hover:bg-teal-400"
+                  >
+                    {item.buttonText}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </motion.div>
