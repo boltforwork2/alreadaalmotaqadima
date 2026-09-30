@@ -20,6 +20,17 @@ import { Link } from 'react-router-dom';
 import ConsultationForm from '@/components/ConsultationForm';
 
 /* ------------------------------------------------------------------ */
+/* Hero benefits (compact highlights for header)                       */
+/* ------------------------------------------------------------------ */
+
+const heroBenefits: { icon: LucideIcon; title: string; description: string }[] = [
+  { icon: Headset, title: 'Dedicated PRO', description: 'A specialized team for your ongoing needs' },
+  { icon: Stamp, title: 'Visa Management', description: 'Investor, employee & family visas handled' },
+  { icon: ShieldCheck, title: 'Gov. Approvals', description: 'Coordination with all relevant authorities' },
+  { icon: CalendarClock, title: 'Expiry Reminders', description: 'Proactive reminders to avoid penalties' },
+];
+
+/* ------------------------------------------------------------------ */
 /* Benefits data                                                      */
 /* ------------------------------------------------------------------ */
 
@@ -84,6 +95,7 @@ const benefits: Benefit[] = [
 type Package = {
   name: string;
   subtitle: string;
+  price: number;
   icon: LucideIcon;
   features: string[];
   button: string;
@@ -94,6 +106,7 @@ const packages: Package[] = [
   {
     name: 'Basic Package',
     subtitle: 'Small Businesses',
+    price: 2500,
     icon: Users,
     features: [
       'Up to 8 government transactions/month',
@@ -107,6 +120,7 @@ const packages: Package[] = [
   {
     name: 'Standard Package',
     subtitle: 'Growing Businesses',
+    price: 3500,
     icon: Building2,
     features: [
       'Up to 20 government transactions/month',
@@ -122,6 +136,7 @@ const packages: Package[] = [
   {
     name: 'Premium Package',
     subtitle: 'Larger Companies',
+    price: 4500,
     icon: Crown,
     features: [
       'Unlimited government transactions',
@@ -217,6 +232,25 @@ export default function MonthlyContract() {
               Let our expert team manage your complete government requirements on a monthly
               retainer, ensuring your business operations are never interrupted.
             </p>
+
+            {/* Hero benefits highlights */}
+            <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {heroBenefits.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
+                  className="group flex flex-col gap-2 rounded-xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm transition-colors duration-200 hover:border-teal-500/40 hover:bg-white/[0.1]"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-500/15 text-teal-400 transition-colors duration-200 group-hover:bg-teal-500/25">
+                    <item.icon className="h-5 w-5" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="font-display text-sm font-bold text-white">{item.title}</h3>
+                  <p className="text-xs leading-relaxed text-slate-400">{item.description}</p>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
@@ -241,8 +275,111 @@ export default function MonthlyContract() {
         </div>
       </section>
 
-      {/* ===== Benefits Grid (3×3) ===== */}
+      {/* ===== Monthly PRO Packages ===== */}
       <section className="bg-slate-50 py-16 lg:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+          <div className="text-center">
+            <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
+              Pricing Plans
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
+              Monthly PRO Packages
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-500">
+              Flexible packages designed to support businesses of all sizes.
+            </p>
+          </div>
+
+          <motion.div
+            variants={gridContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-80px' }}
+            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3"
+          >
+            {packages.map((pkg) => (
+              <motion.div
+                key={pkg.name}
+                variants={cardVariants}
+                className={`group relative flex flex-col rounded-2xl border-2 p-8 transition-all duration-300 hover:-translate-y-1 ${
+                  pkg.popular
+                    ? 'border-teal-400 bg-gradient-to-br from-teal-50 to-white shadow-xl shadow-teal-500/15 lg:scale-105'
+                    : 'border-slate-200 bg-white shadow-sm hover:shadow-xl hover:shadow-slate-900/5'
+                }`}
+              >
+                {pkg.popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-teal-500/30">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+
+                <div
+                  className={`flex h-14 w-14 items-center justify-center rounded-xl transition-colors duration-300 ${
+                    pkg.popular
+                      ? 'bg-teal-100 group-hover:bg-teal-200'
+                      : 'bg-slate-100 group-hover:bg-teal-50'
+                  }`}
+                >
+                  <pkg.icon
+                    className={`h-7 w-7 ${pkg.popular ? 'text-teal-500' : 'text-slate-600 group-hover:text-teal-500'}`}
+                    strokeWidth={1.75}
+                  />
+                </div>
+
+                <h3 className="mt-5 font-display text-xl font-bold text-navy-900">
+                  {pkg.name}
+                </h3>
+                <p className="mt-1 text-sm font-medium text-teal-600">{pkg.subtitle}</p>
+
+                {/* Price */}
+                <div className="mt-5 flex items-baseline gap-1.5">
+                  <span className="font-display text-4xl font-bold text-navy-900">
+                    {pkg.price.toLocaleString()}
+                  </span>
+                  <span className="text-sm font-semibold text-slate-500">AED</span>
+                  <span className="text-sm text-slate-400">/month</span>
+                </div>
+
+                <ul className="mt-6 flex-1 space-y-3">
+                  {pkg.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5">
+                      <span
+                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+                          pkg.popular ? 'bg-teal-100' : 'bg-slate-100'
+                        }`}
+                      >
+                        <Check
+                          className={`h-3.5 w-3.5 ${pkg.popular ? 'text-teal-600' : 'text-slate-600'}`}
+                          strokeWidth={3}
+                        />
+                      </span>
+                      <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  to="/contact"
+                  className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 ${
+                    pkg.popular
+                      ? 'bg-gradient-to-r from-teal-500 to-teal-400 text-white shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40'
+                      : 'border border-teal-400 bg-teal-50 text-navy-900 hover:bg-teal-100'
+                  }`
+                  }
+                >
+                  {pkg.button}
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ===== Benefits Grid (3x3) ===== */}
+      <section className="bg-white py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <div className="text-center">
             <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
@@ -328,100 +465,6 @@ export default function MonthlyContract() {
                   alt={partner.name}
                   className="max-h-24 w-full max-w-[9rem] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-28"
                 />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ===== Monthly PRO Packages ===== */}
-      <section className="bg-white py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-          <div className="text-center">
-            <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-              Pricing Plans
-            </span>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-navy-900 sm:text-4xl">
-              Monthly PRO Packages
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-500">
-              Flexible packages designed to support businesses of all sizes.
-            </p>
-          </div>
-
-          <motion.div
-            variants={gridContainer}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3"
-          >
-            {packages.map((pkg) => (
-              <motion.div
-                key={pkg.name}
-                variants={cardVariants}
-                className={`group relative flex flex-col rounded-2xl border-2 p-8 transition-all duration-300 hover:-translate-y-1 ${
-                  pkg.popular
-                    ? 'border-teal-400 bg-gradient-to-br from-teal-50 to-white shadow-xl shadow-teal-500/15 lg:scale-105'
-                    : 'border-slate-200 bg-white shadow-sm hover:shadow-xl hover:shadow-slate-900/5'
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-teal-500/30">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                <div
-                  className={`flex h-14 w-14 items-center justify-center rounded-xl transition-colors duration-300 ${
-                    pkg.popular
-                      ? 'bg-teal-100 group-hover:bg-teal-200'
-                      : 'bg-slate-100 group-hover:bg-teal-50'
-                  }`}
-                >
-                  <pkg.icon
-                    className={`h-7 w-7 ${pkg.popular ? 'text-teal-500' : 'text-slate-600 group-hover:text-teal-500'}`}
-                    strokeWidth={1.75}
-                  />
-                </div>
-
-                <h3 className="mt-5 font-display text-xl font-bold text-navy-900">
-                  {pkg.name}
-                </h3>
-                <p className="mt-1 text-sm font-medium text-teal-600">{pkg.subtitle}</p>
-
-                <ul className="mt-6 flex-1 space-y-3">
-                  {pkg.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5">
-                      <span
-                        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-                          pkg.popular ? 'bg-teal-100' : 'bg-slate-100'
-                        }`}
-                      >
-                        <Check
-                          className={`h-3.5 w-3.5 ${pkg.popular ? 'text-teal-600' : 'text-slate-600'}`}
-                          strokeWidth={3}
-                        />
-                      </span>
-                      <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/contact"
-                  className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 ${
-                    pkg.popular
-                      ? 'bg-gradient-to-r from-teal-500 to-teal-400 text-white shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/40'
-                      : 'border border-teal-400 bg-teal-50 text-navy-900 hover:bg-teal-100'
-                  }`
-                  }
-                >
-                  {pkg.button}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </Link>
               </motion.div>
             ))}
           </motion.div>
