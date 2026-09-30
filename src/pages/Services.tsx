@@ -136,8 +136,8 @@ const services: Service[] = [
       'No local sponsor required',
       'Family and domestic staff sponsorship',
     ],
-    image: 'https://images.pexels.com/photos/17576484/pexels-photo-17576484.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Modern skyscrapers in Dubai showcasing luxury real estate investment',
+    image: '/images/pages/gvisa.jpg',
+    imageAlt: 'Golden Visa document with the Dubai skyline in the background',
   },
   {
     name: 'Emirates ID Services',
@@ -150,8 +150,8 @@ const services: Service[] = [
       'Replacement of lost cards',
       'Fast application follow-up',
     ],
-    image: 'https://images.pexels.com/photos/17155842/pexels-photo-17155842.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Person using a fingerprint scanner for secure identity verification',
+    image: '/images/pages/id.jpg',
+    imageAlt: 'United Arab Emirates identity card displayed with the Dubai skyline',
   },
   {
     name: 'Corporate Bank Account',
