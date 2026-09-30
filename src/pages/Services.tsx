@@ -108,8 +108,8 @@ const services: Service[] = [
       'Commercial transport approvals',
       'Application follow-up',
     ],
-    image: 'https://images.pexels.com/photos/38199714/pexels-photo-38199714.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Parked commercial delivery trucks lined up in the city',
+    image: '/images/pages/rta.jpg',
+    imageAlt: 'Roads and Transport Authority logo',
   },
   {
     name: 'PRO Services',
