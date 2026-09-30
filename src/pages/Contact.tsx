@@ -8,7 +8,8 @@ const contactInfo = [
     label: 'Address',
     value: 'Office G83, Elegant Star Business Center, Deira, Dubai, UAE',
   },
-  { icon: Phone, label: 'Phone / WhatsApp', value: '971 50 257 774' },
+  { icon: Phone, label: 'Call', value: '+971 50 250 7774' },
+  { icon: Phone, label: 'WhatsApp', value: '+971 50 422 9389' },
   { icon: Mail, label: 'Email', value: 'info@alreyada-almotaqdima.ae' },
 ];
 

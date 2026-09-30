@@ -206,7 +206,7 @@ export default function Navbar() {
           {/* Right side */}
           <div className="hidden items-center gap-3 lg:flex">
             <a
-              href="https://wa.me/97150257774"
+              href="https://wa.me/971504229389"
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
@@ -323,7 +323,7 @@ export default function Navbar() {
 
                 <div className="mt-2 flex items-center gap-3 border-t border-navy-100 pt-3">
                   <a
-                    href="https://wa.me/97150257774"
+                    href="https://wa.me/971504229389"
                     target="_blank"
                     rel="noreferrer"
                     className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy-200 text-navy-700 transition-colors hover:border-teal-400 hover:text-teal-600"
