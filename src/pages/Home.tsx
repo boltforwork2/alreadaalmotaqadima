@@ -235,79 +235,91 @@ export default function Home() {
     <div>
       {/* ===== Hero Section ===== */}
       <section className="relative flex min-h-[calc(100dvh-5rem)] flex-col justify-center overflow-hidden">
-        {/* Background image */}
         <img
-          src="/images/home.jpg"
-          alt="Dubai skyline"
-          className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+          src="/images/bc copy.jpg"
+          alt="Luxury Dubai business office overlooking the skyline"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-950/95 via-navy-950/85 to-navy-900/75" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-950/95 via-navy-950/75 to-navy-950/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-navy-950/20" />
 
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-8 sm:px-8 lg:px-12">
-          <div className="flex flex-col items-center text-center lg:text-left">
-            {/* Left: copy */}
-            <div className="max-w-3xl">
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-1.5 text-sm font-medium text-teal-300"
-              >
-                <span className="flex h-2 w-2 rounded-full bg-teal-400" />
-                Your Trusted Dubai Business Setup Partner
-              </motion.div>
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-20">
+          <div className="max-w-2xl text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-navy-950/40 px-4 py-1.5 text-sm font-medium text-teal-200 backdrop-blur-sm"
+            >
+              <span className="flex h-2 w-2 rounded-full bg-teal-400" />
+              Your Trusted Dubai Business Setup Partner
+            </motion.div>
 
-              {/* Headline */}
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-5 font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
-              >
-                Business Setup in Dubai &{' '}
-                <span className="bg-gradient-to-r from-teal-400 to-teal-300 bg-clip-text text-transparent">
-                  UAE Company Formation & PRO Services
-                </span>
-              </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
+            >
+              Business Setup in Dubai &{' '}
+              <span className="bg-gradient-to-r from-teal-300 to-teal-100 bg-clip-text text-transparent">
+                UAE Company Formation & PRO Services
+              </span>
+            </motion.h1>
 
-              {/* Sub-headline */}
-              <motion.p
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-5 max-w-2xl text-base leading-relaxed text-slate-200 sm:text-lg"
-              >
-                Start, manage and grow your business in the UAE with professional business setup and government services. Whether you need a Mainland or Free Zone company, trade licence, visa services, PRO services or government approvals, our team is here to make the process simple and straightforward.{' '}
-                <span className="font-semibold text-white">WE CAN HELP!</span>
-              </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-5 max-w-xl text-base leading-relaxed text-slate-200 sm:text-lg"
+            >
+              Start, manage and grow your business in the UAE with professional business setup and government services. Whether you need a Mainland or Free Zone company, trade licence, visa services, PRO services or government approvals, our team is here to make the process simple and straightforward.
+            </motion.p>
 
-              {/* CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-7 flex flex-wrap items-center gap-4"
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-7 flex flex-wrap items-center gap-4"
+            >
+              <a
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-900 shadow-xl shadow-teal-500/25 transition-all duration-200 hover:shadow-2xl hover:shadow-teal-500/40 hover:brightness-105"
               >
-                <a
-                  href="/contact"
-                  className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-900 shadow-xl shadow-teal-500/25 transition-all duration-200 hover:shadow-2xl hover:shadow-teal-500/40 hover:brightness-105"
-                >
-                  Contact Us Now
-                  <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-                </a>
-                <a
-                  href="https://wa.me/971504229389"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-slate-400/60 px-7 py-3.5 text-base font-medium text-slate-100 transition-colors duration-200 hover:border-teal-500/50 hover:text-teal-300"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  +971 50 422 9389
-                </a>
-              </motion.div>
-            </div>
+                Get Started Today
+                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+              </a>
+              <a
+                href="https://wa.me/971504229389"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-300/70 bg-navy-950/20 px-7 py-3.5 text-base font-medium text-white transition-colors duration-200 hover:border-teal-300 hover:text-teal-200"
+              >
+                <WhatsAppIcon className="h-5 w-5" />
+                +971 50 422 9389
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-10 grid grid-cols-1 gap-5 border-t border-white/20 pt-6 sm:grid-cols-3"
+            >
+              {[
+                { icon: Award, title: 'Trusted', description: 'Professional Support' },
+                { icon: Building2, title: 'UAE Expertise', description: 'Local Knowledge' },
+                { icon: UserCheck, title: 'End-to-End Service', description: 'From Setup to Growth' },
+              ].map((item) => (
+                <div key={item.title} className="flex items-center gap-3">
+                  <item.icon className="h-9 w-9 shrink-0 text-teal-300" strokeWidth={1.5} />
+                  <div>
+                    <p className="font-display text-sm font-bold text-white">{item.title}</p>
+                    <p className="mt-0.5 text-xs text-slate-300">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
