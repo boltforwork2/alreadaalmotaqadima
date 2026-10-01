@@ -206,15 +206,6 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="hidden items-center gap-3 lg:flex">
-            <a
-              href="https://wa.me/971504229389"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="WhatsApp"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-600 text-slate-300 transition-all duration-200 hover:border-teal-500 hover:bg-teal-500/10 hover:text-teal-400"
-            >
-              <MessageCircle className="h-5 w-5" />
-            </a>
             <Link
               to="/contact"
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 transition-all duration-200 hover:bg-teal-600 hover:shadow-xl hover:shadow-teal-500/40"
