@@ -421,7 +421,7 @@ export default function Home() {
                 Al Reyada Al Motaqadima is here to ensure Investors, Entrepreneurs, and Business Owners no longer
                 lose sleep worrying about the complexities and red tape involved with the business
                 setup process. We do all the heavy lifting by taking care of all the technical,
-                administrative, and financial aspects of setting up a business in the UAE.
+                and administrative aspects of setting up a business in the UAE.
               </p>
             </motion.div>
 
