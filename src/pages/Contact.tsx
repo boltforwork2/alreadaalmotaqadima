@@ -21,7 +21,7 @@ const contactInfo = [
   { icon: Mail, label: 'Email', value: 'info@alreyada-almotaqdima.ae' },
 ];
 
-const WHATSAPP_NUMBER = '971502577774';
+const WHATSAPP_NUMBER = '971504229389';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
