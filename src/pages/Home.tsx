@@ -418,7 +418,7 @@ export default function Home() {
                 Company Formation in Dubai UAE
               </h2>
               <p className="mt-6 text-base leading-relaxed text-slate-600">
-                Central Hub is here to ensure Investors, Entrepreneurs, and Business Owners no longer
+                Al Reyada Al Motaqadima is here to ensure Investors, Entrepreneurs, and Business Owners no longer
                 lose sleep worrying about the complexities and red tape involved with the business
                 setup process. We do all the heavy lifting by taking care of all the technical,
                 administrative, and financial aspects of setting up a business in the UAE.
