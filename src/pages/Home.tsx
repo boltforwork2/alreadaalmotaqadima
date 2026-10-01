@@ -491,6 +491,17 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+
+          {/* View All Services CTA */}
+          <div className="mt-12 text-center">
+            <Link
+              to="/services"
+              className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-900 shadow-lg shadow-teal-500/25 transition-all duration-200 hover:shadow-xl hover:shadow-teal-500/40 hover:brightness-105"
+            >
+              View all Services
+              <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
         </div>
       </section>
 
