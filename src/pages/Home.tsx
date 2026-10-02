@@ -104,6 +104,7 @@ const formationBenefits = [
   'Government Approvals & Documentation',
   'Ongoing PRO Support',
   'Trade License Issuance & Renewal',
+  'Business Activity & License Amendments',
 ];
 
 const services = [
