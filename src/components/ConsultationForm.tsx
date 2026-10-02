@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { User, Phone, Mail, Send, Check, Calculator } from 'lucide-react';
 
 export default function ConsultationForm() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: '', phone: '', email: '' });
   const [submitted, setSubmitted] = useState(false);
 
@@ -20,43 +22,43 @@ export default function ConsultationForm() {
 
   return (
     <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/5">
-      <h3 className="font-display text-xl font-bold text-navy-900">Get a Free Consultation</h3>
+      <h3 className="font-display text-xl font-bold text-navy-900">{t('ConsultationForm.title')}</h3>
       <p className="mt-1.5 text-sm text-navy-500">
-        Our experts will reach out within one business day.
+        {t('ConsultationForm.subtitle')}
       </p>
 
       <form onSubmit={handleSubmit} className="mt-5 space-y-3">
         <div className="relative">
-          <User className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400" />
+          <User className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400" />
           <input
             type="text"
             required
             value={form.name}
             onChange={update('name')}
-            placeholder="Full Name"
-            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+            placeholder={t('ConsultationForm.placeholders.fullName')}
+            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 ps-10 pe-3 text-start text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
           />
         </div>
         <div className="relative">
-          <Phone className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400" />
+          <Phone className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400" />
           <input
             type="tel"
             required
             value={form.phone}
             onChange={update('phone')}
-            placeholder="Phone Number"
-            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+            placeholder={t('ConsultationForm.placeholders.phoneNumber')}
+            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 ps-10 pe-3 text-start text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
           />
         </div>
         <div className="relative">
-          <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400" />
+          <Mail className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-navy-400" />
           <input
             type="email"
             required
             value={form.email}
             onChange={update('email')}
-            placeholder="Email Address"
-            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-3 text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+            placeholder={t('ConsultationForm.placeholders.emailAddress')}
+            className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2.5 ps-10 pe-3 text-start text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
           />
         </div>
         <button
@@ -66,12 +68,12 @@ export default function ConsultationForm() {
           {submitted ? (
             <>
               <Check className="h-4 w-4" />
-              Request Sent!
+              {t('ConsultationForm.buttons.requestSent')}
             </>
           ) : (
             <>
               <Send className="h-4 w-4" />
-              Request Callback
+              {t('ConsultationForm.buttons.requestCallback')}
             </>
           )}
         </button>
@@ -83,19 +85,19 @@ export default function ConsultationForm() {
           animate={{ opacity: 1, y: 0 }}
           className="mt-3 text-center text-xs font-medium text-teal-600"
         >
-          Thank you! We'll be in touch shortly.
+          {t('ConsultationForm.successMessage')}
         </motion.p>
       )}
 
       {/* Cost calculator CTA */}
       <div className="mt-5 rounded-xl border border-slate-100 bg-slate-50 p-4 text-center">
-        <p className="text-sm font-medium text-navy-700">Or calculate your cost instantly</p>
+        <p className="text-sm font-medium text-navy-700">{t('ConsultationForm.calculatorCtaText')}</p>
         <Link
           to="/cost-calculator"
           className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700"
         >
           <Calculator className="h-4 w-4" />
-          Open Cost Calculator
+          {t('ConsultationForm.openCostCalculator')}
         </Link>
       </div>
     </div>
