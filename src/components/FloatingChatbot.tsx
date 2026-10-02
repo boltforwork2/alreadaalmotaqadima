@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect, useMemo, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import {
   MessageSquare,
   X,
   Send,
-  Bot,
+  Hand,
   ArrowRight,
   ExternalLink,
   RotateCcw,
@@ -16,31 +17,51 @@ import {
   UserCheck,
   Clock,
   Headset,
-  Hand,
   type LucideIcon,
 } from 'lucide-react';
 
-type Action = {
-  label: string;
-  type: 'link' | 'external';
+type ActionType = 'link' | 'external';
+
+type ActionDef = {
+  labelKey: string;
+  type: ActionType;
   href: string;
 };
 
+type ReplyId =
+  | 'costFreeZone'
+  | 'costMainland'
+  | 'costGeneral'
+  | 'legal'
+  | 'compare'
+  | 'sponsor'
+  | 'timeline'
+  | 'goldenVisa'
+  | 'visa'
+  | 'bank'
+  | 'liquidation'
+  | 'license'
+  | 'consultant'
+  | 'fallback';
+
+type ActionDefResolved = { label: string; type: ActionType; href: string };
+
 type Reply = {
-  text: string;
-  actions?: Action[];
+  id: ReplyId;
+  textKey: string;
+  actions?: ActionDef[];
 };
 
 type Message = {
   id: string;
   sender: 'bot' | 'user';
   text: string;
-  actions?: Action[];
+  actions?: ActionDefResolved[];
 };
 
 type QuickOption = {
   id: string;
-  chip: string;
+  chipKey: string;
   icon: LucideIcon;
   reply: Reply;
 };
@@ -48,195 +69,167 @@ type QuickOption = {
 const WHATSAPP_URL = 'https://wa.me/971504229389';
 
 /* ------------------------------------------------------------------ */
-/* Knowledge base                                                      */
+/* Knowledge base (keys only — text resolved at render time)          */
 /* ------------------------------------------------------------------ */
 
 const costFreeZone: Reply = {
-  text: 'Free Zone business setup starts from approximately AED 4,888, with 100% foreign ownership, zero corporate tax (in most zones), and a fast 3–5 day turnaround. Use our Cost Calculator for an exact quote based on your activity and visa count.',
+  id: 'costFreeZone',
+  textKey: 'FloatingChatbot.replies.costFreeZone',
   actions: [
-    { label: 'Open Cost Calculator', type: 'link', href: '/cost-calculator' },
-    { label: 'Free Zone Benefits', type: 'link', href: '/free-zone' },
+    { labelKey: 'FloatingChatbot.replies.costFreeZone_actions.openCostCalculator', type: 'link', href: '/cost-calculator' },
+    { labelKey: 'FloatingChatbot.replies.costFreeZone_actions.freeZoneBenefits', type: 'link', href: '/free-zone' },
   ],
 };
 
 const costMainland: Reply = {
-  text: 'Mainland business setup starts from approximately AED 12,000. Since 2021, most commercial activities allow 100% foreign ownership — no local sponsor required. Get an exact figure with our Cost Calculator.',
+  id: 'costMainland',
+  textKey: 'FloatingChatbot.replies.costMainland',
   actions: [
-    { label: 'Open Cost Calculator', type: 'link', href: '/cost-calculator' },
-    { label: 'Explore Mainland Setup', type: 'link', href: '/mainland' },
+    { labelKey: 'FloatingChatbot.replies.costMainland_actions.openCostCalculator', type: 'link', href: '/cost-calculator' },
+    { labelKey: 'FloatingChatbot.replies.costMainland_actions.exploreMainlandSetup', type: 'link', href: '/mainland' },
   ],
 };
 
 const costGeneral: Reply = {
-  text: 'Business setup in the UAE starts from AED 4,888 for Free Zone packages and AED 12,000 for Mainland. You can use our instant Cost Calculator for an accurate quote!',
+  id: 'costGeneral',
+  textKey: 'FloatingChatbot.replies.costGeneral',
   actions: [
-    { label: 'Open Cost Calculator', type: 'link', href: '/cost-calculator' },
-    { label: 'Talk on WhatsApp', type: 'external', href: WHATSAPP_URL },
+    { labelKey: 'FloatingChatbot.replies.costGeneral_actions.openCostCalculator', type: 'link', href: '/cost-calculator' },
+    { labelKey: 'FloatingChatbot.replies.costGeneral_actions.talkOnWhatsApp', type: 'external', href: WHATSAPP_URL },
   ],
 };
 
 const legalReply: Reply = {
-  text: 'Foreign investors enjoy 100% foreign ownership in both Free Zones and Mainland (under the Commercial Companies Law), with 0% personal income tax.',
+  id: 'legal',
+  textKey: 'FloatingChatbot.replies.legal',
   actions: [
-    { label: 'Explore Mainland Setup', type: 'link', href: '/mainland' },
-    { label: 'Free Zone Benefits', type: 'link', href: '/free-zone' },
+    { labelKey: 'FloatingChatbot.replies.legal_actions.exploreMainlandSetup', type: 'link', href: '/mainland' },
+    { labelKey: 'FloatingChatbot.replies.legal_actions.freeZoneBenefits', type: 'link', href: '/free-zone' },
   ],
 };
 
 const compareReply: Reply = {
-  text: 'Mainland lets you trade anywhere in the UAE and bid on government contracts. Free Zones offer 100% capital repatriation and zero customs duty within the zone.',
+  id: 'compare',
+  textKey: 'FloatingChatbot.replies.compare',
   actions: [
-    { label: 'Mainland Setup', type: 'link', href: '/mainland' },
-    { label: 'Free Zone Setup', type: 'link', href: '/free-zone' },
+    { labelKey: 'FloatingChatbot.replies.compare_actions.mainlandSetup', type: 'link', href: '/mainland' },
+    { labelKey: 'FloatingChatbot.replies.compare_actions.freeZoneSetup', type: 'link', href: '/free-zone' },
   ],
 };
 
 const sponsorReply: Reply = {
-  text: 'Great news! Since the 2021 law update, foreign investors can have 100% ownership in Mainland companies for most commercial activities. No local sponsor is needed!',
+  id: 'sponsor',
+  textKey: 'FloatingChatbot.replies.sponsor',
   actions: [
-    { label: 'Explore Mainland Setup', type: 'link', href: '/mainland' },
-    { label: 'Talk on WhatsApp', type: 'external', href: WHATSAPP_URL },
+    { labelKey: 'FloatingChatbot.replies.sponsor_actions.exploreMainlandSetup', type: 'link', href: '/mainland' },
+    { labelKey: 'FloatingChatbot.replies.sponsor_actions.talkOnWhatsApp', type: 'external', href: WHATSAPP_URL },
   ],
 };
 
 const timelineReply: Reply = {
-  text: 'Free Zone setups can take just 3–5 days! Mainland setups typically take 1–2 weeks depending on approvals and activity type.',
+  id: 'timeline',
+  textKey: 'FloatingChatbot.replies.timeline',
   actions: [
-    { label: 'Free Zone Setup', type: 'link', href: '/free-zone' },
-    { label: 'Mainland Setup', type: 'link', href: '/mainland' },
+    { labelKey: 'FloatingChatbot.replies.timeline_actions.freeZoneSetup', type: 'link', href: '/free-zone' },
+    { labelKey: 'FloatingChatbot.replies.timeline_actions.mainlandSetup', type: 'link', href: '/mainland' },
   ],
 };
 
 const goldenVisaReply: Reply = {
-  text: 'The UAE Golden Visa grants 10-year residency! It requires a 2M AED real estate investment or specific entrepreneurial/talent criteria. We handle the full application.',
+  id: 'goldenVisa',
+  textKey: 'FloatingChatbot.replies.goldenVisa',
   actions: [
-    { label: 'Golden Visa Details', type: 'link', href: '/services/golden-visa' },
-    { label: 'Talk on WhatsApp', type: 'external', href: WHATSAPP_URL },
+    { labelKey: 'FloatingChatbot.replies.goldenVisa_actions.goldenVisaDetails', type: 'link', href: '/services/golden-visa' },
+    { labelKey: 'FloatingChatbot.replies.goldenVisa_actions.talkOnWhatsApp', type: 'external', href: WHATSAPP_URL },
   ],
 };
 
 const visaReply: Reply = {
-  text: 'We handle employment visas, dependent visas, visa cancellation, and the 10-year UAE Golden Visa for investors. Our team manages the entire process end-to-end.',
+  id: 'visa',
+  textKey: 'FloatingChatbot.replies.visa',
   actions: [
-    { label: 'Golden Visa Details', type: 'link', href: '/services/golden-visa' },
-    { label: 'Immigration Services', type: 'link', href: '/services/immigration' },
+    { labelKey: 'FloatingChatbot.replies.visa_actions.goldenVisaDetails', type: 'link', href: '/services/golden-visa' },
+    { labelKey: 'FloatingChatbot.replies.visa_actions.immigrationServices', type: 'link', href: '/services/immigration' },
   ],
 };
 
 const bankReply: Reply = {
-  text: 'We fast-track corporate bank account opening with leading UAE banks. The process typically takes 10–30 days depending on the owner\'s citizenship and compliance requirements.',
-  actions: [{ label: 'Bank Account Service', type: 'link', href: '/services/bank-account' }],
+  id: 'bank',
+  textKey: 'FloatingChatbot.replies.bank',
+  actions: [{ labelKey: 'FloatingChatbot.replies.bank_actions.bankAccountService', type: 'link', href: '/services/bank-account' }],
 };
 
 const liquidationReply: Reply = {
-  text: 'Company liquidation takes approximately 50–60 days. We handle the audit, visa cancellation, establishment card closure, and final license cancellation in full compliance.',
-  actions: [{ label: 'Liquidation Service', type: 'link', href: '/services/liquidation' }],
+  id: 'liquidation',
+  textKey: 'FloatingChatbot.replies.liquidation',
+  actions: [{ labelKey: 'FloatingChatbot.replies.liquidation_actions.liquidationService', type: 'link', href: '/services/liquidation' }],
 };
 
 const licenseReply: Reply = {
-  text: 'We handle new trade license issuance, renewal, and activity amendments. Most applications are completed within 5–7 working days.',
-  actions: [{ label: 'Trade License Service', type: 'link', href: '/services/trade-license' }],
+  id: 'license',
+  textKey: 'FloatingChatbot.replies.license',
+  actions: [{ labelKey: 'FloatingChatbot.replies.license_actions.tradeLicenseService', type: 'link', href: '/services/trade-license' }],
 };
 
 const consultantReply: Reply = {
-  text: 'Our consultants are available right now on WhatsApp to assist you step-by-step!',
-  actions: [{ label: 'Connect via WhatsApp', type: 'external', href: WHATSAPP_URL }],
+  id: 'consultant',
+  textKey: 'FloatingChatbot.replies.consultant',
+  actions: [{ labelKey: 'FloatingChatbot.replies.consultant_actions.connectViaWhatsApp', type: 'external', href: WHATSAPP_URL }],
 };
 
 const fallbackReply: Reply = {
-  text: "I'd love to help with that! For a tailored answer, connect with our consultants on WhatsApp — they'll guide you step-by-step.",
-  actions: [{ label: 'Connect via WhatsApp', type: 'external', href: WHATSAPP_URL }],
+  id: 'fallback',
+  textKey: 'FloatingChatbot.replies.fallback',
+  actions: [{ labelKey: 'FloatingChatbot.replies.fallback_actions.connectViaWhatsApp', type: 'external', href: WHATSAPP_URL }],
 };
 
 const quickOptions: QuickOption[] = [
-  { id: 'cost', chip: 'How much does business setup cost?', icon: Calculator, reply: costGeneral },
-  { id: 'legal', chip: 'What are the legal conditions?', icon: Scale, reply: legalReply },
-  { id: 'compare', chip: 'Mainland vs Free Zone?', icon: Building2, reply: compareReply },
-  { id: 'sponsor', chip: 'Do I need a local sponsor?', icon: UserCheck, reply: sponsorReply },
-  { id: 'time', chip: 'How long does it take?', icon: Clock, reply: timelineReply },
-  { id: 'consultant', chip: 'Speak with a Business Consultant', icon: Headset, reply: consultantReply },
+  { id: 'cost', chipKey: 'FloatingChatbot.quickOptions.cost', icon: Calculator, reply: costGeneral },
+  { id: 'legal', chipKey: 'FloatingChatbot.quickOptions.legal', icon: Scale, reply: legalReply },
+  { id: 'compare', chipKey: 'FloatingChatbot.quickOptions.compare', icon: Building2, reply: compareReply },
+  { id: 'sponsor', chipKey: 'FloatingChatbot.quickOptions.sponsor', icon: UserCheck, reply: sponsorReply },
+  { id: 'time', chipKey: 'FloatingChatbot.quickOptions.time', icon: Clock, reply: timelineReply },
+  { id: 'consultant', chipKey: 'FloatingChatbot.quickOptions.consultant', icon: Headset, reply: consultantReply },
 ];
 
 type KeywordEntry = { keywords: string[]; reply: Reply };
 
 const keywordMap: KeywordEntry[] = [
-  {
-    keywords: ['how much free', 'free zone cost', 'free zone price', 'freezone cost', 'free zone price'],
-    reply: costFreeZone,
-  },
-  {
-    keywords: ['how much mainland', 'mainland cost', 'mainland price', 'mainland license'],
-    reply: costMainland,
-  },
-  {
-    keywords: ['cost of visa', 'visa cost', 'visa price', 'how much visa'],
-    reply: visaReply,
-  },
-  {
-    keywords: ['price', 'cost', 'pricing', 'fee', 'fees', 'how much', 'سعر', 'تكلفة'],
-    reply: costGeneral,
-  },
-  {
-    keywords: ['visa', 'golden', 'residency', 'immigration', 'فيزا', 'إقامة'],
-    reply: visaReply,
-  },
-  {
-    keywords: ['golden visa', '10 year', '10-year'],
-    reply: goldenVisaReply,
-  },
-  {
-    keywords: ['sponsor', 'local sponsor', 'partner', 'كفيل', 'شريك'],
-    reply: sponsorReply,
-  },
-  {
-    keywords: ['how long', 'time', 'timeline', 'duration', 'how fast', 'days', 'وقت', 'مدة'],
-    reply: timelineReply,
-  },
-  {
-    keywords: ['legal', 'law', 'ownership', 'condition', 'conditions', 'قانون', 'شروط'],
-    reply: legalReply,
-  },
-  {
-    keywords: ['mainland', 'free zone', 'freezone', 'compare', 'jurisdiction', 'منطقة'],
-    reply: compareReply,
-  },
-  {
-    keywords: ['bank', 'account', 'banking', 'حساب', 'بنك'],
-    reply: bankReply,
-  },
-  {
-    keywords: ['liquidation', 'close', 'cancel', 'deregister', 'إلغاء', 'تصفية'],
-    reply: liquidationReply,
-  },
-  {
-    keywords: ['license', 'trade', 'renewal', 'رخصة', 'تجارية'],
-    reply: licenseReply,
-  },
-  {
-    keywords: ['whatsapp', 'contact', 'consultant', 'call', 'talk', 'speak', 'واتساب', 'اتصال'],
-    reply: consultantReply,
-  },
+  { keywords: ['how much free', 'free zone cost', 'free zone price', 'freezone cost', 'free zone price'], reply: costFreeZone },
+  { keywords: ['how much mainland', 'mainland cost', 'mainland price', 'mainland license'], reply: costMainland },
+  { keywords: ['cost of visa', 'visa cost', 'visa price', 'how much visa'], reply: visaReply },
+  { keywords: ['price', 'cost', 'pricing', 'fee', 'fees', 'how much', 'سعر', 'تكلفة'], reply: costGeneral },
+  { keywords: ['visa', 'golden', 'residency', 'immigration', 'فيزا', 'إقامة'], reply: visaReply },
+  { keywords: ['golden visa', '10 year', '10-year'], reply: goldenVisaReply },
+  { keywords: ['sponsor', 'local sponsor', 'partner', 'كفيل', 'شريك'], reply: sponsorReply },
+  { keywords: ['how long', 'time', 'timeline', 'duration', 'how fast', 'days', 'وقت', 'مدة'], reply: timelineReply },
+  { keywords: ['legal', 'law', 'ownership', 'condition', 'conditions', 'قانون', 'شروط'], reply: legalReply },
+  { keywords: ['mainland', 'free zone', 'freezone', 'compare', 'jurisdiction', 'منطقة'], reply: compareReply },
+  { keywords: ['bank', 'account', 'banking', 'حساب', 'بنك'], reply: bankReply },
+  { keywords: ['liquidation', 'close', 'cancel', 'deregister', 'إلغاء', 'تصفية'], reply: liquidationReply },
+  { keywords: ['license', 'trade', 'renewal', 'رخصة', 'تجارية'], reply: licenseReply },
+  { keywords: ['whatsapp', 'contact', 'consultant', 'call', 'talk', 'speak', 'واتساب', 'اتصال'], reply: consultantReply },
 ];
 
 /* ------------------------------------------------------------------ */
 /* Smart typing suggestions                                            */
 /* ------------------------------------------------------------------ */
 
-type Suggestion = { label: string; reply: Reply };
+type Suggestion = { labelKey: string; reply: Reply };
 
-const suggestionPool: { triggers: string[]; label: string; reply: Reply }[] = [
-  { triggers: ['how much', 'cost', 'price', 'fee'], label: 'How much is a Free Zone?', reply: costFreeZone },
-  { triggers: ['how much', 'cost', 'price', 'fee'], label: 'How much is a Mainland license?', reply: costMainland },
-  { triggers: ['how much', 'cost', 'price', 'fee', 'visa'], label: 'Cost of a visa?', reply: visaReply },
-  { triggers: ['visa', 'golden', 'residency'], label: 'What is the Golden Visa?', reply: goldenVisaReply },
-  { triggers: ['sponsor', 'partner', 'ownership'], label: 'Do I need a local sponsor?', reply: sponsorReply },
-  { triggers: ['time', 'how long', 'days', 'fast', 'timeline'], label: 'How long does setup take?', reply: timelineReply },
-  { triggers: ['mainland', 'free zone', 'freezone', 'compare'], label: 'Mainland vs Free Zone?', reply: compareReply },
-  { triggers: ['bank', 'account'], label: 'How to open a bank account?', reply: bankReply },
-  { triggers: ['legal', 'law', 'condition', 'ownership'], label: 'What are the legal conditions?', reply: legalReply },
-  { triggers: ['license', 'trade', 'renew'], label: 'How to get a trade license?', reply: licenseReply },
-  { triggers: ['close', 'cancel', 'liquidation'], label: 'How to close a company?', reply: liquidationReply },
-  { triggers: ['consultant', 'whatsapp', 'talk', 'speak', 'contact'], label: 'Speak with a consultant', reply: consultantReply },
+const suggestionPool: { triggers: string[]; labelKey: string; reply: Reply }[] = [
+  { triggers: ['how much', 'cost', 'price', 'fee'], labelKey: 'FloatingChatbot.suggestionLabels.howMuchFreeZone', reply: costFreeZone },
+  { triggers: ['how much', 'cost', 'price', 'fee'], labelKey: 'FloatingChatbot.suggestionLabels.howMuchMainland', reply: costMainland },
+  { triggers: ['how much', 'cost', 'price', 'fee', 'visa'], labelKey: 'FloatingChatbot.suggestionLabels.costOfVisa', reply: visaReply },
+  { triggers: ['visa', 'golden', 'residency'], labelKey: 'FloatingChatbot.suggestionLabels.whatIsGoldenVisa', reply: goldenVisaReply },
+  { triggers: ['sponsor', 'partner', 'ownership'], labelKey: 'FloatingChatbot.suggestionLabels.needLocalSponsor', reply: sponsorReply },
+  { triggers: ['time', 'how long', 'days', 'fast', 'timeline'], labelKey: 'FloatingChatbot.suggestionLabels.howLongSetupTake', reply: timelineReply },
+  { triggers: ['mainland', 'free zone', 'freezone', 'compare'], labelKey: 'FloatingChatbot.suggestionLabels.mainlandVsFreeZone', reply: compareReply },
+  { triggers: ['bank', 'account'], labelKey: 'FloatingChatbot.suggestionLabels.howToOpenBankAccount', reply: bankReply },
+  { triggers: ['legal', 'law', 'condition', 'ownership'], labelKey: 'FloatingChatbot.suggestionLabels.legalConditions', reply: legalReply },
+  { triggers: ['license', 'trade', 'renew'], labelKey: 'FloatingChatbot.suggestionLabels.howToGetTradeLicense', reply: licenseReply },
+  { triggers: ['close', 'cancel', 'liquidation'], labelKey: 'FloatingChatbot.suggestionLabels.howToCloseCompany', reply: liquidationReply },
+  { triggers: ['consultant', 'whatsapp', 'talk', 'speak', 'contact'], labelKey: 'FloatingChatbot.suggestionLabels.speakWithConsultant', reply: consultantReply },
 ];
 
 function getSuggestions(query: string): Suggestion[] {
@@ -245,10 +238,10 @@ function getSuggestions(query: string): Suggestion[] {
   const seen = new Set<string>();
   const results: Suggestion[] = [];
   for (const item of suggestionPool) {
-    if (seen.has(item.label)) continue;
+    if (seen.has(item.labelKey)) continue;
     if (item.triggers.some((t) => lower.includes(t))) {
-      seen.add(item.label);
-      results.push({ label: item.label, reply: item.reply });
+      seen.add(item.labelKey);
+      results.push({ labelKey: item.labelKey, reply: item.reply });
     }
   }
   return results.slice(0, 4);
@@ -257,12 +250,6 @@ function getSuggestions(query: string): Suggestion[] {
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
 /* ------------------------------------------------------------------ */
-
-const welcomeMessage: Message = {
-  id: 'welcome',
-  sender: 'bot',
-  text: 'Welcome to Central Hub. How can I assist with your UAE business setup today?',
-};
 
 let messageCounter = 0;
 const nextId = () => `msg-${messageCounter++}`;
@@ -282,13 +269,23 @@ function parseInput(text: string): Reply {
 /* ------------------------------------------------------------------ */
 
 export default function FloatingChatbot() {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([welcomeMessage]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const suggestions = useMemo(() => getSuggestions(input), [input]);
+
+  const welcomeMessage: Message = useMemo(
+    () => ({ id: 'welcome', sender: 'bot', text: t('FloatingChatbot.welcome') }),
+    [t],
+  );
+
+  useEffect(() => {
+    setMessages([welcomeMessage]);
+  }, [welcomeMessage]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -296,11 +293,17 @@ export default function FloatingChatbot() {
     }
   }, [messages, isTyping, open]);
 
+  const resolveReply = (reply: Reply): { text: string; actions: ActionDefResolved[] } => ({
+    text: t(reply.textKey),
+    actions: (reply.actions ?? []).map((a) => ({ label: t(a.labelKey), type: a.type, href: a.href })),
+  });
+
   const pushBotReply = (reply: Reply) => {
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
-      setMessages((prev) => [...prev, { id: nextId(), sender: 'bot', text: reply.text, actions: reply.actions }]);
+      const resolved = resolveReply(reply);
+      setMessages((prev) => [...prev, { id: nextId(), sender: 'bot', text: resolved.text, actions: resolved.actions }]);
     }, 650);
   };
 
@@ -309,9 +312,11 @@ export default function FloatingChatbot() {
     pushBotReply(reply);
   };
 
-  const handleQuickOption = (option: QuickOption) => sendUserMessage(option.chip, option.reply);
+  const handleQuickOption = (option: QuickOption) =>
+    sendUserMessage(t(option.chipKey), option.reply);
+
   const handleSuggestion = (s: Suggestion) => {
-    sendUserMessage(s.label, s.reply);
+    sendUserMessage(t(s.labelKey), s.reply);
     setInput('');
   };
 
@@ -330,7 +335,7 @@ export default function FloatingChatbot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-6 end-6 z-50 flex flex-col items-end gap-3">
       <AnimatePresence>
         {open && (
           <motion.div
@@ -347,28 +352,28 @@ export default function FloatingChatbot() {
                   <Hand className="h-5 w-5 text-teal-400" />
                 </div>
                 <div>
-                  <p className="font-display text-sm font-bold text-white">Central Hub Smart Assistant</p>
+                  <p className="font-display text-sm font-bold text-white">{t('FloatingChatbot.header.title')}</p>
                   <div className="mt-0.5 flex items-center gap-1.5">
                     <span className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
                     </span>
-                    <span className="text-xs font-medium text-slate-400">Online now</span>
+                    <span className="text-xs font-medium text-slate-400">{t('FloatingChatbot.header.online')}</span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <button
                   onClick={handleNewChat}
-                  aria-label="Start new chat"
-                  title="New Chat"
+                  aria-label={t('FloatingChatbot.aria.newChat')}
+                  title={t('FloatingChatbot.aria.newChatTitle')}
                   className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-navy-800 hover:text-teal-400"
                 >
                   <RotateCcw className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => setOpen(false)}
-                  aria-label="Close chat"
+                  aria-label={t('FloatingChatbot.aria.closeChat')}
                   className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-navy-800 hover:text-white"
                 >
                   <X className="h-5 w-5" />
@@ -383,8 +388,8 @@ export default function FloatingChatbot() {
                   <div
                     className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed shadow-sm ${
                       msg.sender === 'bot'
-                        ? 'rounded-tl-sm bg-white text-navy-700'
-                        : 'rounded-tr-sm bg-teal-500 text-white'
+                        ? 'rounded-ss-sm bg-white text-navy-700'
+                        : 'rounded-se-sm bg-teal-500 text-white'
                     }`}
                   >
                     {msg.text}
@@ -400,7 +405,7 @@ export default function FloatingChatbot() {
                             className="inline-flex items-center gap-1.5 rounded-lg border border-teal-200 bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-700 transition-colors hover:bg-teal-100"
                           >
                             {action.label}
-                            <ArrowRight className="h-3.5 w-3.5" />
+                            <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180" />
                           </Link>
                         ) : (
                           <a
@@ -422,7 +427,7 @@ export default function FloatingChatbot() {
 
               {isTyping && (
                 <div className="flex flex-col items-start">
-                  <div className="flex items-center gap-1.5 rounded-2xl rounded-tl-sm bg-white px-4 py-3 shadow-sm">
+                  <div className="flex items-center gap-1.5 rounded-2xl rounded-ss-sm bg-white px-4 py-3 shadow-sm">
                     <span className="h-2 w-2 animate-bounce rounded-full bg-slate-300 [animation-delay:-0.3s]" />
                     <span className="h-2 w-2 animate-bounce rounded-full bg-slate-300 [animation-delay:-0.15s]" />
                     <span className="h-2 w-2 animate-bounce rounded-full bg-slate-300" />
@@ -442,8 +447,8 @@ export default function FloatingChatbot() {
                       onClick={() => handleQuickOption(option)}
                       className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-navy-700 transition-colors hover:border-teal-300 hover:bg-teal-50 hover:text-teal-700"
                     >
-                      <Icon className="mr-1.5 h-4 w-4 shrink-0 text-teal-600" />
-                      {option.chip}
+                      <Icon className="me-1.5 h-4 w-4 shrink-0 text-teal-600" />
+                      {t(option.chipKey)}
                     </button>
                   );
                 })}
@@ -462,16 +467,16 @@ export default function FloatingChatbot() {
                 >
                   <div className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-slate-400">
                     <Sparkles className="h-3 w-3 text-teal-500" />
-                    Suggestions
+                    {t('FloatingChatbot.suggestions')}
                   </div>
                   <div className="flex flex-wrap gap-2 pb-2.5">
                     {suggestions.map((s) => (
                       <button
-                        key={s.label}
+                        key={s.labelKey}
                         onClick={() => handleSuggestion(s)}
                         className="rounded-full border border-teal-200 bg-white px-3 py-1.5 text-xs font-medium text-teal-700 transition-colors hover:bg-teal-50"
                       >
-                        {s.label}
+                        {t(s.labelKey)}
                       </button>
                     ))}
                   </div>
@@ -486,15 +491,16 @@ export default function FloatingChatbot() {
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Type a question..."
-                  className="min-w-0 flex-1 rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+                  placeholder={t('FloatingChatbot.placeholder')}
+                  dir="auto"
+                  className="min-w-0 flex-1 rounded-full border border-slate-200 bg-slate-50 px-4 py-2.5 text-start text-sm text-navy-900 placeholder:text-navy-400 transition-colors focus:border-teal-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500/20"
                 />
                 <button
                   type="submit"
-                  aria-label="Send message"
+                  aria-label={t('FloatingChatbot.aria.sendMessage')}
                   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-teal-500 to-teal-400 text-white shadow-lg shadow-teal-500/25 transition-transform duration-200 hover:scale-105"
                 >
-                  <Send className="h-4.5 w-4.5" />
+                  <Send className="h-4.5 w-4.5 rtl:rotate-180" />
                 </button>
               </div>
             </form>
@@ -505,7 +511,7 @@ export default function FloatingChatbot() {
       {/* Floating trigger button */}
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? 'Close assistant' : 'Open assistant'}
+        aria-label={open ? t('FloatingChatbot.aria.closeAssistant') : t('FloatingChatbot.aria.openAssistant')}
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-teal-500 text-white shadow-xl shadow-teal-500/40 transition-all duration-200 hover:scale-110 hover:bg-teal-600"
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -533,7 +539,7 @@ export default function FloatingChatbot() {
         </AnimatePresence>
 
         {!open && (
-          <span className="absolute -right-0.5 -top-0.5 flex h-5 w-5">
+          <span className="absolute -end-0.5 -top-0.5 flex h-5 w-5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal-300 opacity-75" />
             <span className="relative flex h-5 w-5 items-center justify-center rounded-full bg-teal-400 text-[10px] font-bold text-white">
               1

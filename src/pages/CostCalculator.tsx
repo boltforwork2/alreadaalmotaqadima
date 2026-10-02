@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Building2, Briefcase, ShoppingCart, PenTool, User, UserPlus, Users, UserCheck, ArrowRight, ArrowLeft, CircleCheck as CheckCircle, Sparkles, RotateCcw, TrendingUp, type LucideIcon } from 'lucide-react';
 
-type SetupType = 'Free Zone' | 'Dubai Mainland' | 'Dubai E-Trader' | 'Abu Dhabi Freelance';
+type SetupType = 'freeZone' | 'dubaiMainland' | 'dubaiETrader' | 'abuDhabiFreelance';
 
 type VisaOption = {
   id: string;
-  label: string;
+  labelKey: string;
   icon: LucideIcon;
   price: { min: number; max: number };
 };
@@ -15,66 +16,63 @@ type VisaOption = {
 type SetupConfig = {
   id: SetupType;
   icon: LucideIcon;
-  desc: string;
   visas: VisaOption[];
 };
 
 const setupConfigs: SetupConfig[] = [
   {
-    id: 'Free Zone',
+    id: 'freeZone',
     icon: Building2,
-    desc: '100% foreign ownership, ideal for international trade',
     visas: [
-      { id: '0', label: '0 Visas', icon: User, price: { min: 4000, max: 6000 } },
-      { id: '1', label: '1 Visa', icon: UserPlus, price: { min: 9000, max: 12000 } },
-      { id: '2', label: '2 Visas', icon: Users, price: { min: 12000, max: 14000 } },
-      { id: '3', label: '3 Visas', icon: Users, price: { min: 16000, max: 18000 } },
-      { id: '4', label: '4 Visas', icon: UserCheck, price: { min: 20000, max: 22000 } },
+      { id: '0', labelKey: 'CostCalculator.step2.visaOptions.0', icon: User, price: { min: 4000, max: 6000 } },
+      { id: '1', labelKey: 'CostCalculator.step2.visaOptions.1', icon: UserPlus, price: { min: 9000, max: 12000 } },
+      { id: '2', labelKey: 'CostCalculator.step2.visaOptions.2', icon: Users, price: { min: 12000, max: 14000 } },
+      { id: '3', labelKey: 'CostCalculator.step2.visaOptions.3', icon: Users, price: { min: 16000, max: 18000 } },
+      { id: '4', labelKey: 'CostCalculator.step2.visaOptions.4', icon: UserCheck, price: { min: 20000, max: 22000 } },
     ],
   },
   {
-    id: 'Dubai Mainland',
+    id: 'dubaiMainland',
     icon: Briefcase,
-    desc: 'Trade anywhere in the UAE local market',
     visas: [
-      { id: '0', label: '0 Visas', icon: User, price: { min: 12000, max: 18000 } },
-      { id: '1', label: '1 Visa', icon: UserPlus, price: { min: 18000, max: 24000 } },
-      { id: '2', label: '2 Visas', icon: Users, price: { min: 24000, max: 32000 } },
-      { id: '3', label: '3 Visas', icon: Users, price: { min: 30000, max: 40000 } },
-      { id: '4', label: '4 Visas', icon: UserCheck, price: { min: 36000, max: 48000 } },
+      { id: '0', labelKey: 'CostCalculator.step2.visaOptions.0', icon: User, price: { min: 12000, max: 18000 } },
+      { id: '1', labelKey: 'CostCalculator.step2.visaOptions.1', icon: UserPlus, price: { min: 18000, max: 24000 } },
+      { id: '2', labelKey: 'CostCalculator.step2.visaOptions.2', icon: Users, price: { min: 24000, max: 32000 } },
+      { id: '3', labelKey: 'CostCalculator.step2.visaOptions.3', icon: Users, price: { min: 30000, max: 40000 } },
+      { id: '4', labelKey: 'CostCalculator.step2.visaOptions.4', icon: UserCheck, price: { min: 36000, max: 48000 } },
     ],
   },
   {
-    id: 'Dubai E-Trader',
+    id: 'dubaiETrader',
     icon: ShoppingCart,
-    desc: 'Low-cost online business. Sell on digital platforms',
     visas: [
-      { id: 'no-visa', label: 'License Only - No Visa', icon: ShoppingCart, price: { min: 2000, max: 3000 } },
+      { id: 'noVisa', labelKey: 'CostCalculator.step2.visaOptions.noVisa', icon: ShoppingCart, price: { min: 2000, max: 3000 } },
     ],
   },
   {
-    id: 'Abu Dhabi Freelance',
+    id: 'abuDhabiFreelance',
     icon: PenTool,
-    desc: 'For specialists & creatives. Family sponsorship',
     visas: [
-      { id: '0', label: '0 Visas', icon: User, price: { min: 2000, max: 2000 } },
-      { id: '1', label: '1 Visa', icon: UserPlus, price: { min: 10000, max: 12000 } },
+      { id: '0', labelKey: 'CostCalculator.step2.visaOptions.0', icon: User, price: { min: 2000, max: 2000 } },
+      { id: '1', labelKey: 'CostCalculator.step2.visaOptions.1', icon: UserPlus, price: { min: 10000, max: 12000 } },
     ],
   },
 ];
 
-const steps = ['Setup', 'Visas'];
-
-function formatPrice(min: number, max: number) {
-  if (min === max) return `AED ${min.toLocaleString()}`;
-  return `AED ${min.toLocaleString()} – ${max.toLocaleString()}`;
+function formatPrice(min: number, max: number, t: (key: string) => string) {
+  const currency = t('CostCalculator.currency') || 'AED';
+  if (min === max) return `${currency} ${min.toLocaleString()}`;
+  return `${currency} ${min.toLocaleString()} – ${max.toLocaleString()}`;
 }
 
 export default function CostCalculator() {
+  const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const [setup, setSetup] = useState<SetupType | null>(null);
   const [selectedVisa, setSelectedVisa] = useState<VisaOption | null>(null);
   const [showResult, setShowResult] = useState(false);
+
+  const steps = t('CostCalculator.steps', { returnObjects: true }) as string[];
 
   const handleSetup = (s: SetupType) => {
     setSetup(s);
@@ -109,7 +107,7 @@ export default function CostCalculator() {
             className="inline-flex items-center gap-2 rounded-full bg-teal-50 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-teal-500"
           >
             <Sparkles className="h-4 w-4" />
-            Instant Estimate
+            {t('CostCalculator.eyebrow')}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -117,7 +115,7 @@ export default function CostCalculator() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="mt-5 font-display text-4xl font-bold tracking-tight text-navy-900 sm:text-5xl"
           >
-            Business Setup Cost Calculator
+            {t('CostCalculator.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -125,7 +123,7 @@ export default function CostCalculator() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="mt-4 text-base leading-relaxed text-slate-500"
           >
-            Get an instant estimate for your UAE company formation in less than 30 seconds.
+            {t('CostCalculator.subtitle')}
           </motion.p>
         </div>
       </section>
@@ -196,10 +194,10 @@ export default function CostCalculator() {
                   transition={{ duration: 0.3 }}
                 >
                   <h2 className="font-display text-2xl font-bold text-navy-900">
-                    Choose Your Setup
+                    {t('CostCalculator.step1.title')}
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                    Select the type of UAE company formation that fits your business needs.
+                    {t('CostCalculator.step1.subtitle')}
                   </p>
                   <div className="mt-6 space-y-4">
                     {setupConfigs.map((opt) => {
@@ -208,7 +206,7 @@ export default function CostCalculator() {
                         <button
                           key={opt.id}
                           onClick={() => handleSetup(opt.id)}
-                          className={`flex w-full items-center gap-4 rounded-xl border-2 p-5 text-left transition-all duration-200 ${
+                          className={`flex w-full items-center gap-4 rounded-xl border-2 p-5 text-start transition-all duration-200 ${
                             selected
                               ? 'border-teal-500 bg-teal-50 shadow-md shadow-teal-500/10'
                               : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50'
@@ -221,12 +219,12 @@ export default function CostCalculator() {
                           >
                             <opt.icon className="h-6 w-6" strokeWidth={1.75} />
                           </div>
-                          <div className="flex-1">
+                          <div className="flex-1 text-start">
                             <p className="font-display text-base font-bold text-navy-900">
-                              {opt.id}
+                              {t(`CostCalculator.step1.options.${opt.id}.label`)}
                             </p>
                             <p className="mt-0.5 text-xs leading-relaxed text-slate-500">
-                              {opt.desc}
+                              {t(`CostCalculator.step1.options.${opt.id}.desc`)}
                             </p>
                           </div>
                           {selected && (
@@ -249,10 +247,10 @@ export default function CostCalculator() {
                   transition={{ duration: 0.3 }}
                 >
                   <h2 className="font-display text-2xl font-bold text-navy-900">
-                    Number of Visas Required
+                    {t('CostCalculator.step2.title')}
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                    How many residency visas do you need for your team?
+                    {t('CostCalculator.step2.subtitle')}
                   </p>
                   <div className={`mt-6 ${currentConfig && currentConfig.visas.length > 2 ? 'grid grid-cols-2 gap-4 sm:grid-cols-3' : 'space-y-4'}`}>
                     {currentConfig?.visas.map((opt) => {
@@ -275,7 +273,7 @@ export default function CostCalculator() {
                             <opt.icon className="h-6 w-6" strokeWidth={1.75} />
                           </div>
                           <span className="font-display text-sm font-bold text-navy-900">
-                            {opt.label}
+                            {t(opt.labelKey)}
                           </span>
                         </button>
                       );
@@ -286,8 +284,8 @@ export default function CostCalculator() {
                       onClick={() => setStep(1)}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-navy-900"
                     >
-                      <ArrowLeft className="h-4 w-4" />
-                      Back
+                      <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+                      {t('CostCalculator.step2.back')}
                     </button>
                   </div>
                 </motion.div>
@@ -306,34 +304,34 @@ export default function CostCalculator() {
                     <TrendingUp className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
                   </div>
                   <h2 className="mt-5 font-display text-2xl font-bold text-navy-900">
-                    Your Estimated Cost
+                    {t('CostCalculator.result.title')}
                   </h2>
                   <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                    Based on your selections, here's your estimated setup cost:
+                    {t('CostCalculator.result.subtitle')}
                   </p>
 
                   {/* Price display */}
                   <div className="mt-6 rounded-2xl bg-gradient-to-br from-navy-900 to-slate-800 p-8">
                     <p className="text-xs font-bold uppercase tracking-wider text-teal-300">
-                      Estimated Range
+                      {t('CostCalculator.result.estimatedRange')}
                     </p>
-                    <p className="mt-2 font-display text-4xl font-bold text-teal-400">
-                      {formatPrice(selectedVisa.price.min, selectedVisa.price.max)}
+                    <p className="mt-2 font-display text-4xl font-bold text-teal-400" dir="ltr">
+                      {formatPrice(selectedVisa.price.min, selectedVisa.price.max, t)}
                     </p>
                     <p className="mt-3 text-xs text-slate-400">
-                      Final pricing depends on activity type and additional government fees.
+                      {t('CostCalculator.result.disclaimer')}
                     </p>
                   </div>
 
                   {/* Summary */}
-                  <div className="mt-6 space-y-2 text-left">
+                  <div className="mt-6 space-y-2 text-start">
                     <div className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 text-sm">
-                      <span className="text-slate-500">Setup Type</span>
-                      <span className="font-semibold text-navy-900">{setup}</span>
+                      <span className="text-slate-500">{t('CostCalculator.result.setupType')}</span>
+                      <span className="font-semibold text-navy-900">{t(`CostCalculator.step1.options.${setup}.label`)}</span>
                     </div>
                     <div className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 text-sm">
-                      <span className="text-slate-500">Visas</span>
-                      <span className="font-semibold text-navy-900">{selectedVisa.label}</span>
+                      <span className="text-slate-500">{t('CostCalculator.result.visas')}</span>
+                      <span className="font-semibold text-navy-900">{t(selectedVisa.labelKey)}</span>
                     </div>
                   </div>
 
@@ -342,15 +340,15 @@ export default function CostCalculator() {
                     to="/contact"
                     className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-teal-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-teal-500/25 transition-all duration-200 hover:bg-teal-600 hover:shadow-xl"
                   >
-                    Talk to an Expert
-                    <ArrowRight className="h-5 w-5" />
+                    {t('CostCalculator.result.talkToExpert')}
+                    <ArrowRight className="h-5 w-5 rtl:rotate-180" />
                   </Link>
                   <button
                     onClick={handleStartOver}
                     className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3.5 text-base font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-50"
                   >
                     <RotateCcw className="h-5 w-5" />
-                    Start Over
+                    {t('CostCalculator.result.startOver')}
                   </button>
                 </motion.div>
               )}
