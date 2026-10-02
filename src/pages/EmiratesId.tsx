@@ -1,28 +1,25 @@
 import ServiceLayout from '@/components/ServiceLayout';
+import { useTranslation } from 'react-i18next';
 import { CircleCheck as CheckCircle2 } from 'lucide-react';
 
-const benefits = [
-  'New Emirates ID applications',
-  'Renewal of existing IDs',
-  'Replacement of lost or damaged cards',
-  'Fast application follow-up',
-];
-
 export default function EmiratesId() {
+  const { t } = useTranslation();
+  const benefits = t('EmiratesId.benefits', { returnObjects: true }) as string[];
+
   return (
     <ServiceLayout
-      eyebrow="Corporate Service"
-      title="Emirates ID Services"
-      subtitle="Comprehensive support for all your Emirates identity card requirements."
+      eyebrow={t('EmiratesId.eyebrow')}
+      title={t('EmiratesId.title')}
+      subtitle={t('EmiratesId.subtitle')}
     >
       <article>
         <p className="text-lg font-medium leading-relaxed text-teal-700">
-          The Emirates ID is a mandatory identity card for all UAE residents. We provide seamless
-          assistance for new applications, renewals, and replacements, ensuring your ID is processed
-          quickly and accurately without typing errors or delays.
+          {t('EmiratesId.leadText')}
         </p>
 
-        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">Key Benefits</h2>
+        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
+          {t('EmiratesId.benefitsTitle')}
+        </h2>
         <ul className="mt-5 space-y-4">
           {benefits.map((b) => (
             <li key={b} className="flex gap-3">

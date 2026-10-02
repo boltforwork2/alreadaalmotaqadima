@@ -1,84 +1,47 @@
 import ServiceLayout from '@/components/ServiceLayout';
+import { useTranslation } from 'react-i18next';
 import { CircleCheck as CheckCircle2, TriangleAlert as AlertTriangle } from 'lucide-react';
 
-const processRows = [
-  {
-    process: 'Application with DLD',
-    documents: 'SPA, Title deed, Passport copy, HD photo, Health insurance',
-    conditions: 'Property value ≥ 2M AED',
-    timeframe: '2-3 working days',
-  },
-  {
-    process: 'Medical test',
-    documents: 'Original passport',
-    conditions: 'Blood type, X-Ray',
-    timeframe: '1 hour',
-  },
-  {
-    process: 'Biometrics & Emirates ID',
-    documents: 'Original passport, existing EID',
-    conditions: 'Applicant must be present',
-    timeframe: '30 minutes',
-  },
-  {
-    process: 'Visa stamping',
-    documents: 'Passport, medical result, EID',
-    conditions: 'All prior steps cleared',
-    timeframe: '5-7 working days',
-  },
-];
-
-const stages = [
-  {
-    title: 'DLD Approval',
-    description:
-      'The Dubai Land Department verifies the real estate investment meets the 2M AED threshold and issues the eligibility letter.',
-  },
-  {
-    title: 'Medical Tests',
-    description:
-      'A standard blood test and X-ray are conducted at an approved medical fitness center.',
-  },
-  {
-    title: 'Biometrics',
-    description:
-      'Fingerprinting and biometric capture are completed for the new Emirates ID issuance.',
-  },
-];
-
 export default function GoldenVisa() {
+  const { t } = useTranslation();
+
+  const stages = t('GoldenVisa.stages', { returnObjects: true }) as { title: string; description: string }[];
+  const tableHeaders = t('GoldenVisa.tableHeaders', { returnObjects: true }) as string[];
+  const tableRows = t('GoldenVisa.tableRows', { returnObjects: true }) as {
+    process: string;
+    documents: string;
+    conditions: string;
+    timeframe: string;
+  }[];
+
   return (
     <ServiceLayout
-      eyebrow="Corporate Service"
-      title="UAE Golden Visa"
-      subtitle="Long-term 10-year residency for investors, entrepreneurs, and talent."
+      eyebrow={t('GoldenVisa.eyebrow')}
+      title={t('GoldenVisa.title')}
+      subtitle={t('GoldenVisa.subtitle')}
     >
       <article>
         <p className="text-lg font-medium leading-relaxed text-teal-700">
-          The UAE Golden Visa offers long-term residency to investors, entrepreneurs, and
-          specialized talents.
+          {t('GoldenVisa.leadText')}
         </p>
 
         <p className="mt-6 text-lg leading-relaxed text-navy-600">
-          Secure your future and enjoy unparalleled benefits in the UAE, including the ability to
-          live, work, and study without the need for a national sponsor, with full ownership of
-          your business.
+          {t('GoldenVisa.p1')}
         </p>
 
         <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
-          Eligibility Conditions
+          {t('GoldenVisa.eligibilityTitle')}
         </h2>
         <div className="mt-4 flex items-start gap-3 rounded-xl border border-teal-200 bg-teal-50 p-5">
           <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-teal-600" />
           <p className="text-sm leading-relaxed text-navy-700">
-            <span className="font-semibold text-navy-900">Real estate investment:</span> The
-            applicant must own a property in the UAE valued at a minimum of{' '}
-            <span className="font-bold text-teal-700">2,000,000 AED</span> (either outright or via an
-            approved mortgage plan).
+            {t('GoldenVisa.eligibilityText')}
           </p>
         </div>
 
-        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">Main Stages</h2>
+        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
+          {t('GoldenVisa.stagesTitle')}
+        </h2>
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
           {stages.map((stage, i) => (
             <div
@@ -95,20 +58,21 @@ export default function GoldenVisa() {
         </div>
 
         <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
-          Golden Visa Process Timeline
+          {t('GoldenVisa.timelineTitle')}
         </h2>
         <div className="mt-5 overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
-          <table className="w-full border-collapse text-left text-sm">
+          <table className="w-full border-collapse text-start text-sm">
             <thead>
               <tr className="bg-navy-950 text-white">
-                <th className="px-4 py-3.5 font-semibold">Process</th>
-                <th className="px-4 py-3.5 font-semibold">Documents Required</th>
-                <th className="px-4 py-3.5 font-semibold">Additional Conditions</th>
-                <th className="px-4 py-3.5 font-semibold">Timeframe</th>
+                {tableHeaders.map((header) => (
+                  <th key={header} className="px-4 py-3.5 font-semibold text-start">
+                    {header}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {processRows.map((row, i) => (
+              {tableRows.map((row, i) => (
                 <tr key={row.process} className={i % 2 === 0 ? 'bg-white' : 'bg-slate-50'}>
                   <td className="border-t border-slate-200 px-4 py-3 font-medium text-navy-900">
                     {row.process}
@@ -133,10 +97,9 @@ export default function GoldenVisa() {
         <div className="mt-6 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-5">
           <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
           <div>
-            <h4 className="text-sm font-bold text-amber-800">Important Notice</h4>
+            <h4 className="text-sm font-bold text-amber-800">{t('GoldenVisa.noticeTitle')}</h4>
             <p className="mt-1 text-sm leading-relaxed text-amber-800">
-              The applicant cannot leave the country during the procedure. Plan your travel
-              accordingly to avoid delays or cancellation of the application.
+              {t('GoldenVisa.noticeText')}
             </p>
           </div>
         </div>
