@@ -1,36 +1,25 @@
 import ServiceLayout from '@/components/ServiceLayout';
+import { useTranslation } from 'react-i18next';
 import { CircleCheck as CheckCircle2 } from 'lucide-react';
 
-const services = [
-  'Power of Attorney (POA)',
-  'Company Agreements',
-  'MOA & Amendments',
-  'Declarations & Undertakings',
-  'Signature Attestation',
-  'Legal Documents Notarization',
-  'Civil & Commercial Agreements',
-  'Affidavits & Declarations',
-  'Translation & Notarization',
-];
-
 export default function NotaryServices() {
+  const { t } = useTranslation();
+  const services = t('NotaryServices.services', { returnObjects: true }) as string[];
+
   return (
     <ServiceLayout
-      eyebrow="Corporate Service"
-      title="Notary Public Services"
-      subtitle="Fast and reliable notarization, attestation, and legal document services in the UAE."
+      eyebrow={t('NotaryServices.eyebrow')}
+      title={t('NotaryServices.title')}
+      subtitle={t('NotaryServices.subtitle')}
     >
       <article>
 
         <p className="mt-8 text-lg leading-relaxed text-navy-600">
-          Professional notary and attestation services are essential for legalizing your business
-          and personal documents in the UAE. We provide expert, fast, and reliable support for
-          drafting, attesting, and notarizing all legal documents to ensure your business
-          operations remain fully compliant with UAE government regulations and judicial standards.
+          {t('NotaryServices.p1')}
         </p>
 
         <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
-          Comprehensive Notary Services
+          {t('NotaryServices.servicesTitle')}
         </h2>
         <ul className="mt-5 grid gap-4 sm:grid-cols-2">
           {services.map((service) => (

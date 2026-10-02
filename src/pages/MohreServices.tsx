@@ -1,29 +1,25 @@
 import ServiceLayout from '@/components/ServiceLayout';
+import { useTranslation } from 'react-i18next';
 import { CircleCheck as CheckCircle2 } from 'lucide-react';
 
-const benefits = [
-  'Processing work permits',
-  'Drafting and attestation of employment contracts',
-  'Labour-related transactions',
-  'Company labour file setup and services',
-  'Employee-related government procedures',
-];
-
 export default function MohreServices() {
+  const { t } = useTranslation();
+  const benefits = t('MohreServices.benefits', { returnObjects: true }) as string[];
+
   return (
     <ServiceLayout
-      eyebrow="Corporate Service"
-      title="Ministry of Human Resources Services"
-      subtitle="Complete management of Ministry of Human Resources and labour files."
+      eyebrow={t('MohreServices.eyebrow')}
+      title={t('MohreServices.title')}
+      subtitle={t('MohreServices.subtitle')}
     >
       <article>
         <p className="text-lg font-medium leading-relaxed text-teal-700">
-          Managing labor relations and MOHRE compliance is critical for any business with employees.
-          We efficiently handle your company's labor file, work permits, and employment contracts to
-          keep your business fully compliant with UAE labor laws.
+          {t('MohreServices.leadText')}
         </p>
 
-        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">Key Benefits</h2>
+        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
+          {t('MohreServices.benefitsTitle')}
+        </h2>
         <ul className="mt-5 space-y-4">
           {benefits.map((b) => (
             <li key={b} className="flex gap-3">

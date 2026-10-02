@@ -1,62 +1,48 @@
 import ServiceLayout from '@/components/ServiceLayout';
+import { useTranslation } from 'react-i18next';
 import { FilePlus, RefreshCw, CreditCard as Edit3, Clock } from 'lucide-react';
 
-const services = [
-  {
-    icon: FilePlus,
-    title: 'New License Issuance',
-    description:
-      'Obtain a brand-new trade license for your business activity, whether mainland or free zone.',
-  },
-  {
-    icon: RefreshCw,
-    title: 'License Renewal',
-    description: 'Timely renewal of your existing trade license to avoid penalties and downtime.',
-  },
-  {
-    icon: Edit3,
-    title: 'Activity Amendment',
-    description: 'Add, remove, or modify business activities on your existing license.',
-  },
-];
-
 export default function TradeLicense() {
+  const { t } = useTranslation();
+  const services = t('TradeLicense.services', { returnObjects: true }) as { title: string; description: string }[];
+
   return (
     <ServiceLayout
-      eyebrow="Corporate Service"
-      title="Trade License"
-      subtitle="New license issuance, renewal, and activity amendment handled end-to-end."
+      eyebrow={t('TradeLicense.eyebrow')}
+      title={t('TradeLicense.title')}
+      subtitle={t('TradeLicense.subtitle')}
     >
       <article>
         <p className="text-lg font-medium leading-relaxed text-teal-700">
-          As one of the best business setup consultants in Dubai, we specialize in making the
-          process of obtaining your trade license smooth and hassle-free.
+          {t('TradeLicense.leadText')}
         </p>
 
         <p className="mt-6 text-lg leading-relaxed text-navy-600">
-          New license issuance, renewal, and activity amendment handled end-to-end. We are UAE's
-          leading business setup & company formation company, ensuring your trade license is
-          obtained, maintained, and updated without friction.
+          {t('TradeLicense.p1')}
         </p>
 
         <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
-          What We Handle
+          {t('TradeLicense.servicesTitle')}
         </h2>
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50">
-                <service.icon className="h-5 w-5 text-teal-600" />
+          {services.map((service, i) => {
+            const icons = [FilePlus, RefreshCw, Edit3];
+            const Icon = icons[i] ?? FilePlus;
+            return (
+              <div
+                key={service.title}
+                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50">
+                  <Icon className="h-5 w-5 text-teal-600" />
+                </div>
+                <h3 className="mt-3 font-display text-base font-bold text-navy-900">
+                  {service.title}
+                </h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-navy-500">{service.description}</p>
               </div>
-              <h3 className="mt-3 font-display text-base font-bold text-navy-900">
-                {service.title}
-              </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-navy-500">{service.description}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-8 flex items-center gap-4 rounded-xl border border-teal-200 bg-teal-50 p-5">
@@ -65,12 +51,10 @@ export default function TradeLicense() {
           </div>
           <div>
             <h3 className="font-display text-base font-bold text-navy-900">
-              Typical Processing Time
+              {t('TradeLicense.processingTimeTitle')}
             </h3>
             <p className="mt-0.5 text-sm text-navy-600">
-              Most trade license applications are completed within{' '}
-              <span className="font-semibold text-teal-700">5-7 working days</span> from submission
-              of all required documents.
+              {t('TradeLicense.processingTimeText')}
             </p>
           </div>
         </div>
