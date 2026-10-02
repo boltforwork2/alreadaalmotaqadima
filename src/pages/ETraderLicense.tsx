@@ -1,78 +1,41 @@
 import { CircleCheck as CheckCircle2, Circle as XCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ServiceLayout from '@/components/ServiceLayout';
 import Tabs from '@/components/Tabs';
 import StatsBar from '@/components/StatsBar';
 
-const benefits = [
-  {
-    title: 'Lower-Cost Solution',
-    description: 'Highly affordable setup designed specifically to empower solo entrepreneurs.',
-  },
-  {
-    title: 'No Physical Office Required',
-    description: 'Completely legitimate operation from home without commercial leasing requirements.',
-  },
-  {
-    title: 'Online Marketplaces',
-    description: 'Sell through eligible online marketplaces such as Amazon and Noon, subject to platform and activity requirements.',
-  },
-  {
-    title: 'Digital & Social Media Services',
-    description: 'Ideal for providing consultancy, digital marketing, and professional online services.',
-  },
-  {
-    title: 'Quick Setup',
-    description: 'Streamlined approval process to get your business up and running rapidly.',
-  },
-];
-
-const limitations = [
-  {
-    title: 'No Residence Visa Included',
-    description: 'This license type does not provide residency visa eligibility.',
-  },
-  {
-    title: 'No Physical Shop or Staff',
-    description: 'Cannot open a physical shop or hire staff.',
-  },
-  {
-    title: 'Trading Activity Restrictions',
-    description: 'Commercial trading activities (selling physical goods) may have specific nationality restrictions depending on the issuing authority.',
-  },
-];
-
 export default function ETraderLicense() {
+  const { t } = useTranslation();
+
+  const benefits = t('ETraderLicense.benefits', { returnObjects: true }) as { title: string; description: string }[];
+  const limitations = t('ETraderLicense.limitations', { returnObjects: true }) as { title: string; description: string }[];
+
   return (
     <ServiceLayout
-      eyebrow="Business Setup Jurisdiction"
-      title="E-Trader License - Dubai"
-      subtitle="Start your online business with a lower-cost setup."
+      eyebrow={t('ETraderLicense.eyebrow')}
+      title={t('ETraderLicense.title')}
+      subtitle={t('ETraderLicense.subtitle')}
     >
       <article>
         <img
           src="/images/pages/page4.jpg"
-          alt="Online entrepreneur managing an e-commerce business"
+          alt={t('ETraderLicense.title')}
           className="h-64 w-full rounded-2xl object-cover object-center shadow-lg sm:h-80"
         />
 
         <p className="mt-8 text-lg leading-relaxed text-navy-600">
-          The E-Trader License is a specialized initiative aimed at supporting home-based
-          businesses and digital entrepreneurs. It allows individuals to conduct business online,
-          offering a regulated framework to sell services or products through social media and
-          digital platforms without the need for a physical storefront.
+          {t('ETraderLicense.p1')}
         </p>
 
         <p className="mt-4 text-lg leading-relaxed text-navy-600">
-          This setup is the perfect launchpad for startups, digital professionals, and online
-          service providers looking for a low-cost entry into the UAE market. It ensures consumer
-          confidence by giving your online business a legitimate, government-registered status.
+          {t('ETraderLicense.p2')}
         </p>
 
         <Tabs
           tabs={[
             {
               id: 'benefits',
-              label: 'Key Benefits',
+              label: t('ETraderLicense.benefitsTitle'),
               content: (
                 <ul className="space-y-4">
                   {benefits.map((b) => (
@@ -89,7 +52,7 @@ export default function ETraderLicense() {
             },
             {
               id: 'limitations',
-              label: 'Potential Limitations',
+              label: t('ETraderLicense.limitationsTitle'),
               content: (
                 <ul className="space-y-4">
                   {limitations.map((l) => (
