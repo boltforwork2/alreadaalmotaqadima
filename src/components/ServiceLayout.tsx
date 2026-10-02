@@ -36,7 +36,7 @@ export default function ServiceLayout({ eyebrow, title, subtitle, children }: Se
             <span className="text-sm font-semibold uppercase tracking-wide text-teal-400">
               {eyebrow}
             </span>
-            <h1 className="mt-3 font-display text-4xl font-bold text-white lg:text-5xl">
+            <h1 className="mt-3 font-display text-4xl font-bold leading-snug text-white lg:text-5xl">
               {title}
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-slate-300">{subtitle}</p>

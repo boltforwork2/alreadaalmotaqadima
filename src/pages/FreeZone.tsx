@@ -1,72 +1,36 @@
 import { CircleCheck as CheckCircle2, Circle as XCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import ServiceLayout from '@/components/ServiceLayout';
 import Tabs from '@/components/Tabs';
 import StatsBar from '@/components/StatsBar';
 
-const benefits = [
-  {
-    title: '100% Repatriation of Capital & Profits',
-    description: 'Full ownership and the ability to repatriate all capital and profits without restriction.',
-  },
-  {
-    title: '0% Corporate & Personal Tax',
-    description: 'Enjoy complete tax exemptions on corporate income and personal earnings.',
-  },
-  {
-    title: 'No Currency Restrictions',
-    description: 'Operate freely in AED, USD, EUR, and other currencies with no capital controls.',
-  },
-  {
-    title: 'Fast-Track Licensing',
-    description: 'Streamlined setup process with licenses often issued within days.',
-  },
-  {
-    title: 'World-Class Infrastructure',
-    description: 'Purpose-built business parks with state-of-the-art facilities and connectivity.',
-  },
-  {
-    title: 'Visa Quotas Based on Office Space',
-    description: 'Flexible visa allocations proportional to your leased office area.',
-  },
-];
-
-const limitations = [
-  {
-    title: 'Cannot Trade Directly on Mainland',
-    description: 'Free zone companies cannot directly trade with the UAE mainland market without a local distributor or agent.',
-  },
-  {
-    title: 'Restricted to Free Zone Premises',
-    description: 'Operations must be physically located within the designated free zone boundary.',
-  },
-];
-
 export default function FreeZone() {
+  const { t } = useTranslation();
+
+  const benefits = t('FreeZone.benefits', { returnObjects: true }) as { title: string; description: string }[];
+  const limitations = t('FreeZone.limitations', { returnObjects: true }) as { title: string; description: string }[];
+  const dmccFeatures = t('FreeZone.jurisdictions.dmcc.features', { returnObjects: true }) as string[];
+  const dsoFeatures = t('FreeZone.jurisdictions.dso.features', { returnObjects: true }) as string[];
+
   return (
     <ServiceLayout
-      eyebrow="Business Setup Jurisdiction"
-      title="Free Zone Company Setup"
-      subtitle="100% foreign ownership, tax exemptions, and fast-track licensing across 50+ specialized free zones."
+      eyebrow={t('FreeZone.eyebrow')}
+      title={t('FreeZone.title')}
+      subtitle={t('FreeZone.subtitle')}
     >
       <article>
         <img
           src="/images/pages/image.png"
-          alt="Business team collaborating in a Dubai office"
+          alt={t('FreeZone.title')}
           className="h-64 w-full rounded-2xl object-cover object-center shadow-lg sm:h-80"
         />
 
         <p className="mt-8 text-lg leading-relaxed text-navy-600">
-          With more than fifty Free Zones in the UAE, each catering to specific industries and
-          business activities, free zone company formation offers 100% foreign ownership, full
-          repatriation of capital and profits, and complete tax exemptions. Free zones are ideal for
-          trading, services, technology, media, logistics, and holding companies that do not
-          require direct access to the UAE mainland market.
+          {t('FreeZone.p1')}
         </p>
 
         <p className="mt-4 text-lg leading-relaxed text-navy-600">
-          Each free zone has its own regulatory authority, licensing framework, and fee structure.
-          Choosing the right free zone depends on your business activity, office space requirements,
-          and visa needs — our team helps you compare and select the optimal jurisdiction.
+          {t('FreeZone.p2')}
         </p>
 
         {/* Benefits vs Limitations */}
@@ -74,7 +38,7 @@ export default function FreeZone() {
           tabs={[
             {
               id: 'benefits',
-              label: 'Key Benefits',
+              label: t('FreeZone.benefitsTitle'),
               content: (
                 <ul className="space-y-4">
                   {benefits.map((b) => (
@@ -91,7 +55,7 @@ export default function FreeZone() {
             },
             {
               id: 'limitations',
-              label: 'Potential Limitations',
+              label: t('FreeZone.limitationsTitle'),
               content: (
                 <ul className="space-y-4">
                   {limitations.map((l) => (
@@ -111,8 +75,8 @@ export default function FreeZone() {
         />
 
         {/* Jurisdictions */}
-        <h2 className="mt-12 font-display text-2xl font-bold text-navy-900">
-          Popular Free Zone Jurisdictions
+        <h2 className="mt-12 font-display text-2xl font-bold leading-snug text-navy-900">
+          {t('FreeZone.jurisdictionsTitle')}
         </h2>
         <Tabs
           tabs={[
@@ -122,15 +86,15 @@ export default function FreeZone() {
               content: (
                 <div>
                   <p className="text-base leading-relaxed text-navy-600">
-                    DMCC is the dedicated global centre for more than 18,000 businesses, located in
-                    the heart of Dubai's JLT district. Recognised as the world's leading free zone
-                    for multiple consecutive years, DMCC offers a world-class ecosystem for
-                    commodities trading, crypto, finance, and professional services.
+                    {t('FreeZone.jurisdictions.dmcc.description')}
                   </p>
                   <ul className="mt-4 space-y-2 text-sm text-navy-600">
-                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-teal-500" /> 18,000+ registered businesses</li>
-                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-teal-500" /> Flexible office and co-working options</li>
-                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-teal-500" /> Multi-activity license available</li>
+                    {dmccFeatures.map((feature) => (
+                      <li key={feature} className="flex gap-2">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" />
+                        {feature}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               ),
@@ -141,15 +105,15 @@ export default function FreeZone() {
               content: (
                 <div>
                   <p className="text-base leading-relaxed text-navy-600">
-                    DSO is a globally recognized free zone and an integrated technology park located
-                    in Dubai Silicon Oasis. It provides a comprehensive ecosystem for technology,
-                    engineering, and innovation-driven companies, combining residential, commercial,
-                    and industrial zones in one community.
+                    {t('FreeZone.jurisdictions.dso.description')}
                   </p>
                   <ul className="mt-4 space-y-2 text-sm text-navy-600">
-                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-teal-500" /> Technology-focused infrastructure</li>
-                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-teal-500" /> Affordable licensing and visa packages</li>
-                    <li className="flex gap-2"><CheckCircle2 className="h-4 w-4 shrink-0 text-teal-500" /> Smart city amenities and R&D facilities</li>
+                    {dsoFeatures.map((feature) => (
+                      <li key={feature} className="flex gap-2">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-500" />
+                        {feature}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               ),
