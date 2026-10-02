@@ -44,6 +44,7 @@ export default function ConsultationForm() {
           <input
             type="tel"
             required
+            dir="auto"
             value={form.phone}
             onChange={update('phone')}
             placeholder={t('ConsultationForm.placeholders.phoneNumber')}
