@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   Circle as XCircle,
   Wallet,
@@ -18,215 +19,131 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 
+type ServiceKey =
+  | 'tradeLicense'
+  | 'notaryPublic'
+  | 'mohre'
+  | 'gdrfa'
+  | 'sira'
+  | 'rta'
+  | 'proServices'
+  | 'goldenVisa'
+  | 'emiratesId'
+  | 'bankAccount'
+  | 'immigration'
+  | 'liquidation';
+
 type Service = {
-  name: string;
+  key: ServiceKey;
   path: string;
   icon: typeof XCircle;
-  description: string;
-  features: string[];
   image?: string;
   imageAlt?: string;
 };
 
 const services: Service[] = [
   {
-    name: 'Monthly PRO Contract',
-    path: '/monthly-contract',
-    icon: CalendarCheck,
-    description: 'Complete ongoing government support and transaction management.',
-    features: [
-      'Dedicated PRO Support',
-      'Residency & Visa Support',
-      'Trade License & MOHRE Support',
-      'Deadline & Expiry Reminders',
-    ],
-  },
-  {
-    name: 'Trade License',
+    key: 'tradeLicense',
     path: '/services/trade-license',
     icon: FileText,
-    description: 'New license issuance, renewal, and activity amendment handled end-to-end.',
-    features: [
-      'New license issuance',
-      'Annual license renewal',
-      'Business activity amendments',
-      'Partner & manager updates',
-    ],
     image: 'https://images.pexels.com/photos/6814526/pexels-photo-6814526.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Person signing a business document at an office desk',
   },
   {
-    name: 'Notary Public Services',
+    key: 'notaryPublic',
     path: '/notary-services',
     icon: Stamp,
-    description: 'Fast and reliable notarization, attestation, and legal document services in the UAE.',
-    features: [
-      'Power of Attorney (POA)',
-      'MOA & Amendments',
-      'Signature Attestation',
-      'Legal Documents Notarization',
-    ],
     image: '/images/pages/courts copy 2.jpg',
     imageAlt: 'Dubai Courts building representing notary and legal document services',
   },
   {
-    name: 'MOHRE Services',
+    key: 'mohre',
     path: '/mohre-services',
     icon: UsersIcon,
-    description: 'Complete management of Ministry of Human Resources and labour files.',
-    features: [
-      'Work permits issuance',
-      'Employment contracts',
-      'Company labour file services',
-      'Employee government procedures',
-    ],
     image: 'https://images.pexels.com/photos/36765720/pexels-photo-36765720.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Professionals discussing business in a modern office meeting',
   },
   {
-    name: 'GDRFA Services',
+    key: 'gdrfa',
     path: '/gdrfa-services',
     icon: Stamp,
-    description: 'Expert handling of all immigration, visa, and residency transactions.',
-    features: [
-      'Residence & Entry permits',
-      'Visa services & stamping',
-      'Residence renewal',
-      'Visa cancellation',
-    ],
     image: 'https://images.pexels.com/photos/33497885/pexels-photo-33497885.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Passport and travel documents symbolizing immigration and visa services',
   },
   {
-    name: 'SIRA Services',
+    key: 'sira',
     path: '/sira-services',
     icon: ShieldCheck,
-    description: 'Securing necessary safety and security approvals for your business premises.',
-    features: [
-      'SIRA applications',
-      'CCTV & Security approvals',
-      'NOC procedures',
-      'Security licensing procedures',
-    ],
     image: 'https://images.pexels.com/photos/20783671/pexels-photo-20783671.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Modern surveillance camera mounted on a building exterior',
   },
   {
-    name: 'RTA Services',
+    key: 'rta',
     path: '/rta-services',
     icon: Car,
-    description: 'Smooth processing of transport authority approvals and vehicle procedures.',
-    features: [
-      'RTA-related transactions',
-      'Vehicle government procedures',
-      'Commercial transport approvals',
-      'Application follow-up',
-    ],
     image: '/images/pages/rta.jpg',
     imageAlt: 'Roads and Transport Authority logo',
   },
   {
-    name: 'PRO Services',
+    key: 'proServices',
     path: '/pro-services',
     icon: Briefcase,
-    description: 'We handle your company and government transactions from start to finish.',
-    features: [
-      'Government applications & approvals',
-      'Document processing & clearance',
-      'Government authority coordination',
-      'Fast application follow-up',
-    ],
     image: 'https://images.pexels.com/photos/8112138/pexels-photo-8112138.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Professional consultant reviewing legal paperwork in a modern office',
   },
   {
-    name: 'UAE Golden Visa',
+    key: 'goldenVisa',
     path: '/services/golden-visa',
     icon: Award,
-    description: 'Long-term 10-year residency for investors, entrepreneurs, and talent.',
-    features: [
-      '10-year long-term residency',
-      'For investors, talents & entrepreneurs',
-      'No local sponsor required',
-      'Family and domestic staff sponsorship',
-    ],
     image: '/images/pages/gvisa.jpg',
     imageAlt: 'Golden Visa document with the Dubai skyline in the background',
   },
   {
-    name: 'Emirates ID Services',
+    key: 'emiratesId',
     path: '/emirates-id',
     icon: IdCard,
-    description: 'Comprehensive support for all your Emirates identity card requirements.',
-    features: [
-      'New Emirates ID applications',
-      'ID Renewal procedures',
-      'Replacement of lost cards',
-      'Fast application follow-up',
-    ],
     image: '/images/pages/id.jpg',
     imageAlt: 'United Arab Emirates identity card displayed with the Dubai skyline',
   },
   {
-    name: 'Corporate Bank Account',
+    key: 'bankAccount',
     path: '/services/bank-account',
     icon: Wallet,
-    description: 'Fast-track corporate bank account opening with leading UAE banks.',
-    features: [
-      'Partnerships with top UAE banks',
-      'Fast-track approval process',
-      'Multi-currency account options',
-      'Dedicated banking assistance',
-    ],
     image: 'https://images.pexels.com/photos/8062357/pexels-photo-8062357.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Wallet and credit cards representing corporate banking services',
   },
   {
-    name: 'Immigration & Registration',
+    key: 'immigration',
     path: '/services/immigration',
     icon: Plane,
-    description: 'Visa processing, Emirates ID, and medical fitness for you and your staff.',
-    features: [
-      'Investor & employee visa processing',
-      'Emirates ID applications & renewals',
-      'Medical fitness test coordination',
-      'Family sponsorship support',
-    ],
     image: 'https://images.pexels.com/photos/39075595/pexels-photo-39075595.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Person holding a passport at a busy airport terminal',
   },
   {
-    name: 'Company Liquidation',
+    key: 'liquidation',
     path: '/services/liquidation',
     icon: XCircle,
-    description: 'Professional closure and deregistration of your company in full compliance.',
-    features: [
-      'Official company deregistration',
-      'Visa and establishment card closure',
-      'Audit report & clearance letters',
-      'Full compliance with UAE laws',
-    ],
     image: 'https://images.pexels.com/photos/9169925/pexels-photo-9169925.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Closed sign symbolizing company liquidation and deregistration',
   },
 ];
 
-const heroServices = [
-  { label: 'Trade License', detail: 'Services', icon: FileText },
-  { label: 'Employee', detail: 'Procedures', icon: UsersIcon },
-  { label: 'MOHRE', detail: 'Transactions', icon: Briefcase },
-  { label: 'Immigration', detail: '& Residency', icon: Plane },
-  { label: 'Municipality', detail: '& Land Services', icon: ShieldCheck },
-  { label: 'RTA', detail: 'Transactions', icon: Car },
-  { label: 'Corporate', detail: 'Bank Account', icon: Wallet },
-  { label: 'Ongoing', detail: 'PRO Support', icon: CalendarCheck },
-];
+const heroServiceIcons: Record<string, typeof FileText> = {
+  tradeLicense: FileText,
+  employee: UsersIcon,
+  mohre: Briefcase,
+  immigration: Plane,
+  municipality: ShieldCheck,
+  rta: Car,
+  corporate: Wallet,
+  ongoing: CalendarCheck,
+};
+
+const heroServiceKeys = ['tradeLicense', 'employee', 'mohre', 'immigration', 'municipality', 'rta', 'corporate', 'ongoing'] as const;
 
 const container = {
   hidden: {},
-  show: {
-    transition: { staggerChildren: 0.1 },
-  },
+  show: { transition: { staggerChildren: 0.1 } },
 };
 
 const cardVariants = {
@@ -262,15 +179,15 @@ const governmentPartners = [
 ];
 
 export default function Services() {
-  const featured = services.find((s) => s.path === '/monthly-contract')!;
-  const rest = services.filter((s) => s.path !== '/monthly-contract');
+  const { t } = useTranslation();
+  const featuredFeatures = t('Services.corporateServices.featured.features', { returnObjects: true }) as string[];
 
   return (
     <main>
       {/* Services hero */}
       <section className="relative overflow-hidden bg-[#f7f8fa]">
-        <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full border-[26px] border-white/80" />
-        <div className="pointer-events-none absolute bottom-[-7rem] left-[44%] h-72 w-72 rotate-45 border-[34px] border-teal-500/20" />
+        <div className="pointer-events-none absolute -start-24 -top-24 h-72 w-72 rounded-full border-[26px] border-white/80" />
+        <div className="pointer-events-none absolute bottom-[-7rem] start-[44%] h-72 w-72 rotate-45 border-[34px] border-teal-500/20" />
         <div className="relative mx-auto grid max-w-7xl grid-cols-1 lg:min-h-[32rem] lg:grid-cols-[1.08fr_0.92fr]">
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -280,19 +197,19 @@ export default function Services() {
           >
             <div className="max-w-2xl">
               <p className="font-display text-4xl font-bold leading-[1.02] tracking-tight text-navy-950 sm:text-5xl lg:text-[3.6rem]">
-                Business &
-                <span className="block text-teal-600">Government Services</span>
+                {t('Services.hero.title')}
+                <span className="block text-teal-600">{t('Services.hero.titleHighlight')}</span>
               </p>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-navy-700 sm:text-lg">
-                Professional support for your company&apos;s setup and ongoing government transactions in the UAE.
+                {t('Services.hero.description')}
               </p>
 
               <div className="mt-8 grid max-w-2xl grid-cols-2 gap-2.5 sm:grid-cols-4">
-                {heroServices.map((service, index) => {
-                  const ServiceIcon = service.icon;
+                {heroServiceKeys.map((serviceKey, index) => {
+                  const ServiceIcon = heroServiceIcons[serviceKey];
                   return (
                     <motion.div
-                      key={service.label}
+                      key={serviceKey}
                       initial={{ opacity: 0, y: 12 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.35, delay: 0.25 + index * 0.05 }}
@@ -302,8 +219,10 @@ export default function Services() {
                         <ServiceIcon className="h-5 w-5" strokeWidth={1.7} />
                       </span>
                       <span className="text-[11px] font-bold leading-tight text-navy-900 sm:text-xs">
-                        {service.label}
-                        <span className="block font-medium text-navy-500">{service.detail}</span>
+                        {t(`Services.hero.heroItems.${serviceKey}.label`)}
+                        <span className="block font-medium text-navy-500">
+                          {t(`Services.hero.heroItems.${serviceKey}.detail`)}
+                        </span>
                       </span>
                     </motion.div>
                   );
@@ -324,7 +243,7 @@ export default function Services() {
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#f7f8fa] via-[#f7f8fa]/15 to-transparent lg:from-[#f7f8fa] lg:via-transparent lg:to-transparent" />
-            <div className="absolute inset-y-0 left-0 hidden w-20 bg-[#f7f8fa] [clip-path:polygon(0_0,100%_0,35%_50%,100%_100%,0_100%)] lg:block" />
+            <div className="absolute inset-y-0 start-0 hidden w-20 bg-[#f7f8fa] [clip-path:polygon(0_0,100%_0,35%_50%,100%_100%,0_100%)] lg:block" />
           </motion.div>
         </div>
       </section>
@@ -339,7 +258,7 @@ export default function Services() {
             transition={{ duration: 0.4 }}
             className="text-center font-display text-3xl font-bold text-navy-900"
           >
-            Our Corporate Services
+            {t('Services.corporateServices.title')}
           </motion.h2>
 
           {/* Featured card */}
@@ -353,20 +272,20 @@ export default function Services() {
             <div className="group flex flex-col rounded-2xl border-2 border-teal-300 bg-gradient-to-br from-teal-50 to-white p-8 shadow-lg shadow-teal-500/10 transition-all duration-300 hover:shadow-xl hover:shadow-teal-500/20 sm:p-10">
               <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-teal-100 transition-colors duration-300 group-hover:bg-teal-200">
-                  <featured.icon className="h-9 w-9 text-teal-500" strokeWidth={1.75} />
+                  <CalendarCheck className="h-9 w-9 text-teal-500" strokeWidth={1.75} />
                 </div>
                 <span className="rounded-full bg-teal-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-                  Featured
+                  {t('Services.corporateServices.featured.tag')}
                 </span>
               </div>
               <h3 className="mt-6 font-display text-2xl font-bold text-navy-900">
-                {featured.name}
+                {t('Services.corporateServices.featured.name')}
               </h3>
               <p className="mt-3 text-base leading-relaxed text-navy-500">
-                {featured.description}
+                {t('Services.corporateServices.featured.description')}
               </p>
               <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {featured.features.map((feature) => (
+                {featuredFeatures.map((feature) => (
                   <li key={feature} className="flex items-start gap-2.5">
                     <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-100">
                       <Check className="h-3.5 w-3.5 text-teal-600" strokeWidth={3} />
@@ -376,11 +295,11 @@ export default function Services() {
                 ))}
               </ul>
               <Link
-                to={featured.path}
+                to="/monthly-contract"
                 className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-6 py-3 text-base font-semibold text-navy-900 shadow-lg shadow-teal-500/25 transition-all duration-200 group-hover:shadow-xl group-hover:shadow-teal-500/40"
               >
-                Learn More
-                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+                {t('Services.corporateServices.featured.button')}
+                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
               </Link>
             </div>
           </motion.div>
@@ -393,67 +312,70 @@ export default function Services() {
             viewport={{ once: true, margin: '-80px' }}
             className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
-            {rest.map((item) => (
-              <motion.div
-                key={item.path}
-                variants={cardVariants}
-                whileHover={{ y: -8 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl"
-              >
-                {item.image && (
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.imageAlt ?? item.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
-                    <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-lg bg-navy-950/85 text-teal-300 backdrop-blur-sm">
-                      <item.icon className="h-5 w-5" strokeWidth={1.75} />
-                    </div>
-                  </div>
-                )}
-                <div className="flex flex-1 flex-col p-6">
-                  {!item.image && (
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 transition-colors duration-300 group-hover:bg-teal-100">
-                      <item.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
+            {services.map((item) => {
+              const features = t(`Services.corporateServices.items.${item.key}.features`, { returnObjects: true }) as string[];
+              return (
+                <motion.div
+                  key={item.path}
+                  variants={cardVariants}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl"
+                >
+                  {item.image && (
+                    <div className="relative h-40 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.imageAlt ?? t(`Services.corporateServices.items.${item.key}.name`)}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
+                      <div className="absolute bottom-3 start-3 flex h-10 w-10 items-center justify-center rounded-lg bg-navy-950/85 text-teal-300 backdrop-blur-sm">
+                        <item.icon className="h-5 w-5" strokeWidth={1.75} />
+                      </div>
                     </div>
                   )}
-                  <h3 className="font-display text-lg font-bold text-navy-900">
-                    {item.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                    {item.description}
-                  </p>
-                  <ul className="mt-5 flex-1 space-y-2.5">
-                    {item.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2.5">
-                        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
-                          <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
-                        </span>
-                        <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    to={item.path}
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-teal-300 bg-teal-50 px-4 py-2.5 text-sm font-semibold text-teal-700 transition-colors duration-200 group-hover:bg-teal-500 group-hover:text-white"
-                  >
-                    Learn More
-                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="flex flex-1 flex-col p-6">
+                    {!item.image && (
+                      <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50 transition-colors duration-300 group-hover:bg-teal-100">
+                        <item.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
+                      </div>
+                    )}
+                    <h3 className="font-display text-lg font-bold text-navy-900">
+                      {t(`Services.corporateServices.items.${item.key}.name`)}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-navy-500">
+                      {t(`Services.corporateServices.items.${item.key}.description`)}
+                    </p>
+                    <ul className="mt-5 flex-1 space-y-2.5">
+                      {features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2.5">
+                          <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
+                            <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
+                          </span>
+                          <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      to={item.path}
+                      className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-teal-300 bg-teal-50 px-4 py-2.5 text-sm font-semibold text-teal-700 transition-colors duration-200 group-hover:bg-teal-500 group-hover:text-white"
+                    >
+                      {t('Services.corporateServices.learnMore')}
+                      <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
 
       {/* Government partners */}
       <section className="relative overflow-hidden border-y border-[#eee5d8] bg-[#fbf7ef] py-12 sm:py-14">
-        <div className="pointer-events-none absolute -left-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-white/70 blur-3xl" />
-        <div className="pointer-events-none absolute -right-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#eadfcf]/40 blur-3xl" />
+        <div className="pointer-events-none absolute -start-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-white/70 blur-3xl" />
+        <div className="pointer-events-none absolute -end-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-[#eadfcf]/40 blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -463,10 +385,10 @@ export default function Services() {
             className="mb-8 text-center"
           >
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-700">
-              Trusted government liaison
+              {t('Services.governmentPartners.eyebrow')}
             </span>
             <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-navy-950 sm:text-3xl">
-              Government Authorities We Support
+              {t('Services.governmentPartners.title')}
             </h2>
           </motion.div>
 
@@ -487,7 +409,7 @@ export default function Services() {
                   hidden: { opacity: 0, y: 10 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
                 }}
-                className="group flex min-h-32 items-center justify-center border-b border-[#eee5d8] px-4 py-5 transition-colors duration-200 hover:bg-white sm:min-h-36 sm:px-5 sm:py-6 lg:min-h-40 lg:border-b-0 lg:border-r lg:last:border-r-0"
+                className="group flex min-h-32 items-center justify-center border-b border-[#eee5d8] px-4 py-5 transition-colors duration-200 hover:bg-white sm:min-h-36 sm:px-5 sm:py-6 lg:min-h-40 lg:border-b-0 lg:border-e lg:last:border-e-0"
               >
                 <img
                   src={partner.logo}
@@ -510,7 +432,7 @@ export default function Services() {
             transition={{ duration: 0.4 }}
             className="font-display text-3xl font-bold text-white md:text-4xl"
           >
-            Ready to start your business in Dubai?
+            {t('Services.cta.title')}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -524,8 +446,8 @@ export default function Services() {
               className="group inline-flex items-center gap-2 rounded-full bg-navy-900 px-7 py-3.5 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:bg-navy-800 hover:shadow-xl"
             >
               <Calculator className="h-5 w-5" />
-              Calculate Your Cost Now
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+              {t('Services.cta.button')}
+              <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
             </Link>
           </motion.div>
         </div>

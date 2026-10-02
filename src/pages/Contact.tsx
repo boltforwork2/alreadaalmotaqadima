@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, CircleCheck as CheckCircle, Navigation } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
@@ -10,21 +11,37 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    label: 'Address',
-    value: 'Office G83, Elegant Star Business Center, Deira, Dubai, UAE',
-  },
-  { icon: Phone, label: 'Call', value: '+971 50 250 7774' },
-  { icon: Phone, label: 'WhatsApp', value: '+971 50 422 9389' },
-  { icon: Mail, label: 'Email', value: 'info@alreyada-almotaqdima.ae' },
-];
-
 const WHATSAPP_NUMBER = '971504229389';
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
+
+  const contactInfo = [
+    {
+      icon: MapPin,
+      label: t('Contact.info.addressLabel'),
+      value: t('Contact.info.addressValue'),
+    },
+    {
+      icon: Phone,
+      label: t('Contact.info.callLabel'),
+      value: t('Contact.info.callValue'),
+      href: 'tel:+971502507774',
+    },
+    {
+      icon: Phone,
+      label: t('Contact.info.whatsappLabel'),
+      value: t('Contact.info.whatsappValue'),
+      href: 'https://wa.me/971504229389',
+    },
+    {
+      icon: Mail,
+      label: t('Contact.info.emailLabel'),
+      value: t('Contact.info.emailValue'),
+      href: 'mailto:info@alreyada-almotaqdima.ae',
+    },
+  ];
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,8 +74,8 @@ export default function Contact() {
       {/* ===== Hero ===== */}
       <section className="relative overflow-hidden bg-gradient-to-br from-navy-950 via-navy-950 to-navy-900 py-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -right-32 top-10 h-96 w-96 rounded-full border border-teal-500/10" />
-          <div className="absolute -left-40 bottom-0 h-80 w-80 rounded-full bg-teal-500/5 blur-3xl" />
+          <div className="absolute -end-32 top-10 h-96 w-96 rounded-full border border-teal-500/10" />
+          <div className="absolute -start-40 bottom-0 h-80 w-80 rounded-full bg-teal-500/5 blur-3xl" />
         </div>
         <div className="relative mx-auto max-w-3xl px-6 text-center sm:px-8 lg:px-12">
           <motion.h1
@@ -67,7 +84,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="font-display text-5xl font-bold tracking-tight text-white"
           >
-            Contact Us
+            {t('Contact.hero.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 24 }}
@@ -75,7 +92,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-5 text-lg font-medium text-teal-300"
           >
-            Let us help your business move forward. Get in touch with our experts today.
+            {t('Contact.hero.subtitle')}
           </motion.p>
         </div>
       </section>
@@ -92,15 +109,13 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
             >
               <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-                Contact Information
+                {t('Contact.info.eyebrow')}
               </span>
               <h2 className="mt-4 font-display text-3xl font-bold tracking-tight text-navy-900">
-                Get in Touch
+                {t('Contact.info.title')}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
-                Whether you're setting up a new business or expanding an existing one, our team is
-                ready to guide you through every step. Reach out and we'll respond within one
-                business day.
+                {t('Contact.info.description')}
               </p>
 
               <ul className="mt-8 space-y-6">
@@ -113,7 +128,20 @@ export default function Contact() {
                       <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                         {item.label}
                       </p>
-                      <p className="mt-1 text-sm leading-relaxed text-slate-700">{item.value}</p>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith('http') ? '_blank' : undefined}
+                          rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
+                          className="mt-1 block text-sm leading-relaxed text-slate-700 transition-colors hover:text-teal-500"
+                        >
+                          <bdi>{item.value}</bdi>
+                        </a>
+                      ) : (
+                        <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                          <bdi>{item.value}</bdi>
+                        </p>
+                      )}
                     </div>
                   </li>
                 ))}
@@ -139,7 +167,7 @@ export default function Contact() {
                 className="group mt-4 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-teal-500/25 transition-all duration-200 hover:bg-teal-600 hover:shadow-xl hover:shadow-teal-500/40"
               >
                 <Navigation className="h-4 w-4" />
-                Open in Maps
+                {t('Contact.info.openInMaps')}
               </a>
             </motion.div>
 
@@ -157,17 +185,16 @@ export default function Contact() {
                     <CheckCircle className="h-9 w-9 text-green-500" strokeWidth={1.75} />
                   </div>
                   <h3 className="mt-5 font-display text-2xl font-bold text-navy-900">
-                    Opening WhatsApp
+                    {t('Contact.form.successTitle')}
                   </h3>
                   <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-500">
-                    Your message has been prepared in WhatsApp. Just hit send there to reach our
-                    team directly.
+                    {t('Contact.form.successBody')}
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
                     className="mt-6 text-sm font-semibold text-teal-500 hover:text-teal-600"
                   >
-                    Send another message
+                    {t('Contact.form.sendAnother')}
                   </button>
                 </div>
               ) : (
@@ -177,7 +204,7 @@ export default function Contact() {
                       htmlFor="fullName"
                       className="block text-sm font-semibold text-slate-700"
                     >
-                      Full Name
+                      {t('Contact.form.fullName')}
                     </label>
                     <input
                       id="fullName"
@@ -185,7 +212,7 @@ export default function Contact() {
                       type="text"
                       required
                       className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30"
-                      placeholder="John Doe"
+                      placeholder={t('Contact.form.fullNamePlaceholder')}
                     />
                   </div>
                   <div>
@@ -193,14 +220,14 @@ export default function Contact() {
                       htmlFor="email"
                       className="block text-sm font-semibold text-slate-700"
                     >
-                      Email Address <span className="font-normal text-slate-400">(Optional)</span>
+                      {t('Contact.form.emailOptional')}
                     </label>
                     <input
                       id="email"
                       name="email"
                       type="email"
                       className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30"
-                      placeholder="john@example.com"
+                      placeholder={t('Contact.form.emailPlaceholder')}
                     />
                   </div>
                   <div>
@@ -208,7 +235,7 @@ export default function Contact() {
                       htmlFor="phone"
                       className="block text-sm font-semibold text-slate-700"
                     >
-                      Phone Number
+                      {t('Contact.form.phone')}
                     </label>
                     <input
                       id="phone"
@@ -216,7 +243,7 @@ export default function Contact() {
                       type="tel"
                       required
                       className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30"
-                      placeholder="+971 4 000 0000"
+                      placeholder={t('Contact.form.phonePlaceholder')}
                     />
                   </div>
                   <div>
@@ -224,14 +251,14 @@ export default function Contact() {
                       htmlFor="subject"
                       className="block text-sm font-semibold text-slate-700"
                     >
-                      Subject <span className="font-normal text-slate-400">(Optional)</span>
+                      {t('Contact.form.subjectOptional')}
                     </label>
                     <input
                       id="subject"
                       name="subject"
                       type="text"
                       className="mt-2 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30"
-                      placeholder="How can we help?"
+                      placeholder={t('Contact.form.subjectPlaceholder')}
                     />
                   </div>
                   <div>
@@ -239,7 +266,7 @@ export default function Contact() {
                       htmlFor="message"
                       className="block text-sm font-semibold text-slate-700"
                     >
-                      Message
+                      {t('Contact.form.message')}
                     </label>
                     <textarea
                       id="message"
@@ -247,14 +274,14 @@ export default function Contact() {
                       rows={4}
                       required
                       className="mt-2 w-full resize-none rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors focus:border-teal-500 focus:ring-2 focus:ring-teal-500/30"
-                      placeholder="Tell us about your business needs..."
+                      placeholder={t('Contact.form.messagePlaceholder')}
                     />
                   </div>
                   <button
                     type="submit"
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-teal-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-teal-500/25 transition-all duration-200 hover:bg-teal-600 hover:shadow-xl hover:shadow-teal-500/30"
                   >
-                    Send WhatsApp Message
+                    {t('Contact.form.button')}
                     <WhatsAppIcon className="h-5 w-5" />
                   </button>
                 </form>

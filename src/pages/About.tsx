@@ -1,66 +1,35 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Flag, Globe, ShieldCheck, UserCheck, Eye, Zap, Globe as Globe2, Layers, MessageSquare, ArrowRight, CircleCheck as CheckCircle } from 'lucide-react';
 
 const MotionLink = motion(Link);
 
-const features = [
-  {
-    icon: Flag,
-    title: 'Local & Independent',
-    points: [
-      '100% Emirati-owned',
-      'Sponsors onshore companies directly',
-      'Unrestricted local market access',
-      'Day-to-day operations remain with foreign owners',
-    ],
-  },
-  {
-    icon: Globe,
-    title: 'Reach & Network',
-    points: [
-      'Member of leading Dubai family',
-      'Access to investors & high-level government officials',
-      'Strong working relationships with key sectors',
-      'Operates within a related group of companies',
-    ],
-  },
-];
-
-const pillars = [
-  {
-    icon: ShieldCheck,
-    title: 'Your Success is Paramount',
-    text: 'Dedicated account manager from start to finish.',
-  },
-  {
-    icon: Eye,
-    title: 'Transparent',
-    text: 'All fees clearly laid out; no hidden costs.',
-  },
-  {
-    icon: Zap,
-    title: 'Efficient & Invisible',
-    text: 'Proactive background work; centralized document repository.',
-  },
-  {
-    icon: Globe2,
-    title: 'Globally Inclusive',
-    text: 'Multicultural, multilingual team serving all nationalities.',
-  },
-  {
-    icon: Layers,
-    title: 'Full Service',
-    text: 'All-inclusive end-to-end service from first interaction.',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Accessible',
-    text: 'Reachable throughout engagement; open to updates.',
-  },
-];
-
 export default function About() {
+  const { t } = useTranslation();
+
+  const features = [
+    {
+      icon: Flag,
+      titleKey: 'About.features.localIndependent.title',
+      pointsKey: 'About.features.localIndependent.points',
+    },
+    {
+      icon: Globe,
+      titleKey: 'About.features.reachNetwork.title',
+      pointsKey: 'About.features.reachNetwork.points',
+    },
+  ] as const;
+
+  const pillars = [
+    { icon: ShieldCheck, key: 'successParamount' },
+    { icon: Eye, key: 'transparent' },
+    { icon: Zap, key: 'efficientInvisible' },
+    { icon: Globe2, key: 'globallyInclusive' },
+    { icon: Layers, key: 'fullService' },
+    { icon: MessageSquare, key: 'accessible' },
+  ] as const;
+
   return (
     <div>
       {/* ===== Hero ===== */}
@@ -86,9 +55,9 @@ export default function About() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="mt-6 whitespace-nowrap font-display text-2xl font-bold tracking-tight text-teal-400 sm:text-4xl lg:text-5xl"
+            className="mt-6 font-display text-2xl font-bold tracking-tight text-teal-400 sm:text-4xl lg:text-5xl"
           >
-            Al Reyada Al Motaqadima
+            {t('About.hero.title')}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -96,7 +65,7 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-100 sm:text-lg"
           >
-            Your trusted partner for business setup and government services in the UAE.
+            {t('About.hero.subtitle')}
           </motion.p>
         </div>
       </section>
@@ -112,17 +81,16 @@ export default function About() {
               transition={{ duration: 0.5 }}
             >
               <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-                Who is Al Reyada Al Motaqadima ?
+                {t('About.who.eyebrow')}
               </span>
               <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900">
-                Your Trusted Partner for Business Setup & Growth
+                {t('About.who.title')}
               </h2>
               <p className="mt-6 text-base leading-relaxed text-slate-600">
-                We help entrepreneurs and businesses start, manage and grow their companies in the UAE with professional business setup, PRO and government services.
+                {t('About.who.p1')}
               </p>
               <p className="mt-4 text-base leading-relaxed text-slate-600">
-                From company formation and trade licences to visas, PRO services and government approvals, our team provides practical support throughout your business journey.
-Our goal is simple: to make UAE business setup and government processes easier, faster and more straightforward for our clients.
+                {t('About.who.p2')}
               </p>
             </motion.div>
 
@@ -147,31 +115,34 @@ Our goal is simple: to make UAE business setup and government processes easier, 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {features.map((feature, i) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-80px' }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="rounded-2xl border border-navy-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-900/5"
-              >
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50">
-                  <feature.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
-                </div>
-                <h3 className="mt-5 font-display text-xl font-bold text-slate-900">
-                  {feature.title}
-                </h3>
-                <ul className="mt-5 space-y-3">
-                  {feature.points.map((point) => (
-                    <li key={point} className="flex items-start gap-3">
-                      <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-teal-500" strokeWidth={2} />
-                      <span className="text-sm leading-relaxed text-slate-600">{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+            {features.map((feature, i) => {
+              const points = t(feature.pointsKey, { returnObjects: true }) as string[];
+              return (
+                <motion.div
+                  key={feature.titleKey}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: '-80px' }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="rounded-2xl border border-navy-100 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-900/5"
+                >
+                  <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-teal-50">
+                    <feature.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-bold text-slate-900">
+                    {t(feature.titleKey)}
+                  </h3>
+                  <ul className="mt-5 space-y-3">
+                    {points.map((point) => (
+                      <li key={point} className="flex items-start gap-3">
+                        <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-teal-500" strokeWidth={2} />
+                        <span className="text-sm leading-relaxed text-slate-600">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -181,16 +152,16 @@ Our goal is simple: to make UAE business setup and government processes easier, 
         <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
             <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-              Our Approach
+              {t('About.approach.eyebrow')}
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-              Our Approach for your Business Success
+              {t('About.approach.title')}
             </h2>
           </div>
           <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {pillars.map((pillar, i) => (
               <motion.div
-                key={pillar.title}
+                key={pillar.key}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
@@ -201,9 +172,11 @@ Our goal is simple: to make UAE business setup and government processes easier, 
                   <pillar.icon className="h-6 w-6 text-teal-500" strokeWidth={1.75} />
                 </div>
                 <h3 className="mt-5 font-display text-lg font-bold text-slate-900">
-                  {pillar.title}
+                  {t(`About.approach.pillars.${pillar.key}.title`)}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-500">{pillar.text}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                  {t(`About.approach.pillars.${pillar.key}.text`)}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -220,8 +193,7 @@ Our goal is simple: to make UAE business setup and government processes easier, 
             transition={{ duration: 0.5 }}
             className="font-display text-2xl font-bold leading-tight tracking-tight text-navy-900 sm:text-3xl"
           >
-            Looking for UAE Trade License pricing? Calculate the cost now. It takes less than 30
-            seconds.
+            {t('About.cta.title')}
           </motion.h2>
           <MotionLink
             to="/cost-calculator"
@@ -231,8 +203,8 @@ Our goal is simple: to make UAE business setup and government processes easier, 
             transition={{ duration: 0.5, delay: 0.1 }}
             className="group mt-8 inline-flex items-center gap-2 rounded-lg bg-navy-900 px-7 py-3.5 text-base font-semibold text-white shadow-xl shadow-navy-900/25 transition-all duration-200 hover:bg-navy-800 hover:shadow-2xl hover:shadow-navy-900/40"
           >
-            Cost Calculator
-            <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
+            {t('About.cta.button')}
+            <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
           </MotionLink>
         </div>
       </section>
