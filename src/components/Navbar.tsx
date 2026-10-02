@@ -217,14 +217,17 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setMobileOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-100 transition-colors hover:bg-white/10 lg:hidden"
-            aria-label={t('Navbar.toggleMenu')}
-          >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Mobile controls */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setMobileOpen((v) => !v)}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-100 transition-colors hover:bg-white/10"
+              aria-label={t('Navbar.toggleMenu')}
+            >
+              {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 
@@ -325,7 +328,6 @@ export default function Navbar() {
                   >
                     <MessageCircle className="h-5 w-5" />
                   </a>
-                  <LanguageSwitcher />
                   <Link
                     to="/contact"
                     className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 hover:bg-teal-600"

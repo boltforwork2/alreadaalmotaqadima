@@ -767,6 +767,7 @@
   },
 
   "CostCalculator": {
+    "currency": "AED",
     "eyebrow": "Instant Estimate",
     "title": "Business Setup Cost Calculator",
     "subtitle": "Get an instant estimate for your UAE company formation in less than 30 seconds.",
