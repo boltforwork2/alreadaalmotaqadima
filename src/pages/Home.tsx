@@ -97,13 +97,13 @@ const jurisdictionCardVariants = {
 };
 
 const formationBenefits = [
-  '100% Foreign Ownership',
-  'Investors Rights & Protection',
-  'No Corporate or Personal Tax',
-  'Advantageous Geographical Location',
-  'Secure & Quality Lifestyle',
-  'Exceptional Government Support',
-  'Easy Visa Obtaining Process',
+  'Mainland Company Formation',
+  'Free Zone Company Formation',
+  'E-Commerce License',
+  'Freelance License – Abu Dhabi',
+  'Government Approvals & Documentation',
+  'Ongoing PRO Support',
+  'Trade License Issuance & Renewal',
 ];
 
 const services = [
@@ -415,13 +415,10 @@ export default function Home() {
                 Business Setup in Dubai
               </span>
               <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900">
-                Company Formation in Dubai UAE
+                Business Setup in Dubai & UAE
               </h2>
               <p className="mt-6 text-base leading-relaxed text-slate-600">
-                Al Reyada Al Motaqadima is here to ensure Investors, Entrepreneurs, and Business Owners no longer
-                lose sleep worrying about the complexities and red tape involved with the business
-                setup process. We do all the heavy lifting by taking care of all the technical,
-                and administrative aspects of setting up a business in the UAE.
+                AL REYADA AL MOTAQADIMA BUSINESSMEN SERVICES L.L.C. provides professional business setup and company formation services in the UAE. We help businesses choose the right setup, handle trade license procedures, prepare the required documentation and manage the necessary government approvals from start to finish.
               </p>
             </motion.div>
 
