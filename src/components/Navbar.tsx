@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, MessageCircle, ArrowRight, ChevronDown, ArrowRight as ArrowRightIcon } from 'lucide-react';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 type SimpleLink = { name: string; path: string };
 type DropdownLink = { name: string; path: string };
@@ -206,6 +207,7 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="hidden items-center gap-3 lg:flex">
+            <LanguageSwitcher />
             <Link
               to="/contact"
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 transition-all duration-200 hover:bg-teal-600 hover:shadow-xl hover:shadow-teal-500/40"
@@ -323,6 +325,7 @@ export default function Navbar() {
                   >
                     <MessageCircle className="h-5 w-5" />
                   </a>
+                  <LanguageSwitcher />
                   <Link
                     to="/contact"
                     className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 hover:bg-teal-600"

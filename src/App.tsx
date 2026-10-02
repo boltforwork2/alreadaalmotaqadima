@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import '@/i18n';
+import LanguageProvider from '@/i18n/LanguageProvider';
 import ScrollToTop from '@/components/ScrollToTop';
 import Layout from '@/layout/Layout';
 import Home from '@/pages/Home';
@@ -29,8 +31,9 @@ import NotaryServices from '@/pages/NotaryServices';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
+    <LanguageProvider>
+      <BrowserRouter>
+        <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -61,5 +64,6 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </LanguageProvider>
   );
 }
