@@ -2,56 +2,56 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, MessageCircle, ArrowRight, ChevronDown, ArrowRight as ArrowRightIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 
-type SimpleLink = { name: string; path: string };
-type DropdownLink = { name: string; path: string };
-type DropdownItem = { name: string; path: string; children: DropdownLink[] };
+type SimpleLink = { path: string; key: string };
+type DropdownLink = { path: string; key: string };
+type DropdownItem = { path: string; key: string; children: DropdownLink[] };
 
 const simpleLinks: SimpleLink[] = [
-  { name: 'Home', path: '/' },
+  { key: 'home', path: '/' },
 ];
 
 const dropdowns: DropdownItem[] = [
   {
-    name: 'Business Setup',
+    key: 'businessSetup',
     path: '/business-setup',
     children: [
-      { name: 'Mainland License', path: '/mainland' },
-      { name: 'Free Zone License', path: '/free-zone' },
-      { name: 'Freelance License \u2013 Abu Dhabi', path: '/freelance-license-abu-dhabi' },
-      { name: 'E-Trader License \u2013 Dubai', path: '/e-trader-license' },
+      { key: 'mainlandLicense', path: '/mainland' },
+      { key: 'freeZoneLicense', path: '/free-zone' },
+      { key: 'freelanceLicenseAbuDhabi', path: '/freelance-license-abu-dhabi' },
+      { key: 'eTraderLicenseDubai', path: '/e-trader-license' },
     ],
   },
   {
-    name: 'Services',
+    key: 'services',
     path: '/services',
     children: [
-      { name: 'Monthly PRO Contract', path: '/monthly-contract' },
-      { name: 'Trade License', path: '/services/trade-license' },
-      { name: 'MOHRE Services', path: '/mohre-services' },
-      { name: 'Emirates ID Services', path: '/emirates-id' },
-      { name: 'UAE Golden Visa', path: '/services/golden-visa' },
-      { name: 'PRO Services', path: '/pro-services' },
-      { name: 'Corporate Bank Account', path: '/services/bank-account' },
-      { name: 'Immigration & Registration', path: '/services/immigration' },
-      { name: 'Company Liquidation', path: '/services/liquidation' },
-      { name: 'GDRFA Services', path: '/gdrfa-services' },
-      { name: 'RTA Services', path: '/rta-services' },
-      { name: 'SIRA Services', path: '/sira-services' },
-      { name: 'Notary Public Services', path: '/notary-services' },
+      { key: 'monthlyProContract', path: '/monthly-contract' },
+      { key: 'tradeLicense', path: '/services/trade-license' },
+      { key: 'mohreServices', path: '/mohre-services' },
+      { key: 'emiratesIdServices', path: '/emirates-id' },
+      { key: 'uaeGoldenVisa', path: '/services/golden-visa' },
+      { key: 'proServices', path: '/pro-services' },
+      { key: 'corporateBankAccount', path: '/services/bank-account' },
+      { key: 'immigrationRegistration', path: '/services/immigration' },
+      { key: 'companyLiquidation', path: '/services/liquidation' },
+      { key: 'gdrfaServices', path: '/gdrfa-services' },
+      { key: 'rtaServices', path: '/rta-services' },
+      { key: 'siraServices', path: '/sira-services' },
+      { key: 'notaryPublicServices', path: '/notary-services' },
     ],
   },
 ];
 
 const trailingLinks: SimpleLink[] = [
-  { name: 'About', path: '/about' },
-  { name: 'Contact', path: '/contact' },
+  { key: 'about', path: '/about' },
+  { key: 'contact', path: '/contact' },
 ];
 
-const allDropdownPaths = dropdowns.flatMap((d) => [d.path, ...d.children.map((c) => c.path)]);
-
 export default function Navbar() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -110,7 +110,7 @@ export default function Navbar() {
                     active ? 'text-teal-400' : 'text-slate-200 hover:text-teal-400'
                   }`}
                 >
-                  {link.name}
+                  {t(`Navbar.links.${link.key}`)}
                   {active && (
                     <motion.span
                       layoutId="nav-active"
@@ -136,7 +136,7 @@ export default function Navbar() {
                       active ? 'text-teal-400' : 'text-slate-200 group-hover:text-teal-400'
                     }`}
                   >
-                    {dd.name}
+                    {t(`Navbar.links.${dd.key}`)}
                     <ChevronDown
                       className={`h-4 w-4 transition-transform duration-200 group-hover:rotate-180 ${
                         active ? 'text-teal-400' : 'text-slate-400 group-hover:text-teal-400'
@@ -164,7 +164,7 @@ export default function Navbar() {
                                 : 'text-slate-300 hover:bg-navy-800 hover:text-teal-400'
                             }`}
                           >
-                            {child.name}
+                            {t(`Navbar.dropdowns.${dd.key}.${child.key}`)}
                           </Link>
                         );
                       })}
@@ -173,7 +173,7 @@ export default function Navbar() {
                           to="/services"
                           className="flex items-center justify-between border-t-2 border-teal-500/30 bg-teal-500/5 px-5 py-3 text-sm font-bold text-teal-400 transition-colors duration-200 hover:bg-teal-500/15"
                         >
-                          View All Services
+                          {t('Navbar.viewAllServices')}
                           <ArrowRightIcon className="h-4 w-4" />
                         </Link>
                       )}
@@ -193,7 +193,7 @@ export default function Navbar() {
                     active ? 'text-teal-400' : 'text-slate-200 hover:text-teal-400'
                   }`}
                 >
-                  {link.name}
+                  {t(`Navbar.links.${link.key}`)}
                   {active && (
                     <motion.span
                       layoutId="nav-active"
@@ -212,7 +212,7 @@ export default function Navbar() {
               to="/contact"
               className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 transition-all duration-200 hover:bg-teal-600 hover:shadow-xl hover:shadow-teal-500/40"
             >
-              Request Quote
+              {t('Navbar.requestQuote')}
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -221,7 +221,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen((v) => !v)}
             className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-100 transition-colors hover:bg-white/10 lg:hidden"
-            aria-label="Toggle menu"
+            aria-label={t('Navbar.toggleMenu')}
           >
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -260,7 +260,7 @@ export default function Navbar() {
                           : 'text-navy-700 hover:bg-navy-50 hover:text-teal-500'
                       }`}
                     >
-                      {link.name}
+                      {t(`Navbar.links.${link.key}`)}
                     </Link>
                   );
                 })}
@@ -275,9 +275,9 @@ export default function Navbar() {
                           : 'text-navy-700 hover:bg-navy-50 hover:text-teal-500'
                       }`}
                     >
-                      {dd.name}
+                      {t(`Navbar.links.${dd.key}`)}
                     </Link>
-                    <div className="ml-3 border-l border-navy-100 pl-3">
+                    <div className="ms-3 border-s border-navy-100 ps-3">
                       {dd.children.map((child) => {
                         const active = isActive(child.path);
                         return (
@@ -290,7 +290,7 @@ export default function Navbar() {
                                 : 'text-navy-600 hover:bg-navy-50 hover:text-teal-500'
                             }`}
                           >
-                            {child.name}
+                            {t(`Navbar.dropdowns.${dd.key}.${child.key}`)}
                           </Link>
                         );
                       })}
@@ -310,7 +310,7 @@ export default function Navbar() {
                           : 'text-navy-700 hover:bg-navy-50 hover:text-teal-500'
                       }`}
                     >
-                      {link.name}
+                      {t(`Navbar.links.${link.key}`)}
                     </Link>
                   );
                 })}
@@ -330,7 +330,7 @@ export default function Navbar() {
                     to="/contact"
                     className="flex flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-500 to-teal-400 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-teal-500/25 hover:bg-teal-600"
                   >
-                    Request Quote
+                    {t('Navbar.requestQuote')}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>

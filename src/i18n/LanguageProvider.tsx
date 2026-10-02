@@ -7,8 +7,6 @@ const rtlLanguages: SupportedLanguage[] = ['ar'];
 const fontMap: Record<SupportedLanguage, string> = {
   en: "'Montserrat', 'Inter', system-ui, sans-serif",
   ar: "'Tajawal', system-ui, sans-serif",
-  ru: "'Montserrat', 'Inter', system-ui, sans-serif",
-  hi: "'Poppins', system-ui, sans-serif",
 };
 
 function LanguageSync() {
@@ -22,7 +20,6 @@ function LanguageSync() {
       html.lang = langKey;
       html.dir = rtlLanguages.includes(langKey) ? 'rtl' : 'ltr';
       html.style.fontFamily = fontMap[langKey];
-      // Toggle a class for RTL-specific CSS overrides
       html.classList.toggle('lang-rtl', rtlLanguages.includes(langKey));
       html.classList.toggle('lang-ltr', !rtlLanguages.includes(langKey));
     };

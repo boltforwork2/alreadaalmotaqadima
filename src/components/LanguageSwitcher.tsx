@@ -12,12 +12,10 @@ import {
 const flagEmoji: Record<SupportedLanguage, string> = {
   en: '🇬🇧',
   ar: '🇦🇪',
-  ru: '🇷🇺',
-  hi: '🇮🇳',
 };
 
 export default function LanguageSwitcher() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -43,7 +41,7 @@ export default function LanguageSwitcher() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
-        aria-label="Switch language"
+        aria-label={t('LanguageSwitcher.ariaSwitchLanguage')}
         className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3.5 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:border-teal-400/60 hover:bg-white/10"
       >
         <Globe className="h-4 w-4 text-teal-400" />

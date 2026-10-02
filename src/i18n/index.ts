@@ -1,22 +1,20 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import en from '@/locales/en.json';
+import ar from '@/locales/ar.json';
 
-export const supportedLanguages = ['en', 'ar', 'ru', 'hi'] as const;
+export const supportedLanguages = ['en', 'ar'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageLabels: Record<SupportedLanguage, string> = {
   en: 'English',
   ar: 'العربية',
-  ru: 'Русский',
-  hi: 'हिन्दी',
 };
 
 export const languageShort: Record<SupportedLanguage, string> = {
   en: 'EN',
   ar: 'AR',
-  ru: 'RU',
-  hi: 'HI',
 };
 
 i18n
@@ -24,10 +22,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { translation: {} },
-      ar: { translation: {} },
-      ru: { translation: {} },
-      hi: { translation: {} },
+      en: { translation: en },
+      ar: { translation: ar },
     },
     fallbackLng: 'en',
     supportedLngs: [...supportedLanguages],

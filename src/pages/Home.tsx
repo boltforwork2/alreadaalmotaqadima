@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowRight, Briefcase, ShieldCheck, Check, CircleCheck as CheckCircle, Building2, Globe as Globe2, Archive, Award, Stamp, UserCheck, Landmark, Plane, ShoppingCart, ChevronDown } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
 
@@ -220,6 +221,7 @@ const faqs = [
 ];
 
 export default function Home() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: '', contact: '' });
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -253,7 +255,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 rounded-full border border-teal-400/40 bg-navy-950/40 px-4 py-1.5 text-sm font-medium text-teal-200 backdrop-blur-sm"
             >
               <span className="flex h-2 w-2 rounded-full bg-teal-400" />
-              Your Trusted Dubai Business Setup Partner
+              {t('Home.hero.badge')}
             </motion.div>
 
             <motion.h1
@@ -262,9 +264,9 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Business Setup in Dubai &{' '}
+              {t('Home.hero.title')}{' '}
               <span className="bg-gradient-to-r from-teal-300 to-teal-100 bg-clip-text text-transparent">
-                UAE Company Formation & PRO Services
+                {t('Home.hero.titleHighlight')}
               </span>
             </motion.h1>
 
@@ -274,7 +276,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-5 max-w-xl text-base leading-relaxed text-slate-200 sm:text-lg"
             >
-              Start, manage and grow your business in the UAE with professional business setup and government services. Whether you need a Mainland or Free Zone company, trade licence, visa services, PRO services or government approvals, our team is here to make the process simple and straightforward.
+              {t('Home.hero.description')}
             </motion.p>
 
             <motion.div
@@ -287,7 +289,7 @@ export default function Home() {
                 href="/contact"
                 className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-900 shadow-xl shadow-teal-500/25 transition-all duration-200 hover:shadow-2xl hover:shadow-teal-500/40 hover:brightness-105"
               >
-                Get Started Today
+                {t('Home.hero.getStartedToday')}
                 <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
               </a>
               <a
@@ -297,7 +299,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 rounded-lg border border-slate-300/70 bg-navy-950/20 px-7 py-3.5 text-base font-medium text-white transition-colors duration-200 hover:border-teal-300 hover:text-teal-200"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                +971 50 422 9389
+                {t('Home.hero.whatsappNumber')}
               </a>
             </motion.div>
 
@@ -308,15 +310,15 @@ export default function Home() {
               className="mt-7 grid grid-cols-1 gap-5 border-t border-white/20 pt-5 sm:grid-cols-3"
             >
               {[
-                { icon: Award, title: 'Trusted', description: 'Professional Support' },
-                { icon: Building2, title: 'UAE Expertise', description: 'Local Knowledge' },
-                { icon: UserCheck, title: 'End-to-End Service', description: 'From Setup to Growth' },
+                { icon: Award, titleKey: 'Home.hero.highlights.trusted', descKey: 'Home.hero.highlights.trustedDesc' },
+                { icon: Building2, titleKey: 'Home.hero.highlights.uaeExpertise', descKey: 'Home.hero.highlights.uaeExpertiseDesc' },
+                { icon: UserCheck, titleKey: 'Home.hero.highlights.endToEndService', descKey: 'Home.hero.highlights.endToEndServiceDesc' },
               ].map((item) => (
-                <div key={item.title} className="flex items-center gap-3">
+                <div key={item.titleKey} className="flex items-center gap-3">
                   <item.icon className="h-9 w-9 shrink-0 text-teal-300" strokeWidth={1.5} />
                   <div>
-                    <p className="font-display text-sm font-bold text-white">{item.title}</p>
-                    <p className="mt-0.5 text-xs text-slate-300">{item.description}</p>
+                    <p className="font-display text-sm font-bold text-white">{t(item.titleKey)}</p>
+                    <p className="mt-0.5 text-xs text-slate-300">{t(item.descKey)}</p>
                   </div>
                 </div>
               ))}
