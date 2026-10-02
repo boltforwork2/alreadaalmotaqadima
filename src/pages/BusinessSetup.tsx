@@ -82,7 +82,7 @@ export default function BusinessSetup() {
           alt="Dubai skyline viewed from a modern business office"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/95 to-navy-950/20" />
+        <div className="absolute inset-0 -z-10 ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-navy-950 via-navy-950/95 to-navy-950/20" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-950/80 via-transparent to-navy-950/20" />
 
         <div className="mx-auto grid min-h-[35rem] max-w-7xl items-center px-5 py-16 sm:px-8 lg:min-h-[38rem] lg:grid-cols-[1.1fr_0.9fr] lg:px-12">
@@ -95,7 +95,7 @@ export default function BusinessSetup() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-300 sm:text-sm">
               {t('BusinessSetup.hero.eyebrow')}
             </span>
-            <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[0.98] tracking-tight text-white sm:text-5xl lg:text-7xl">
+            <h1 className="mt-3 font-display text-3xl font-extrabold uppercase leading-[1.15] tracking-tight text-white sm:text-4xl lg:text-6xl">
               {t('BusinessSetup.hero.title')}
               <span className="block">
                 {t('BusinessSetup.hero.titleLine2')}{' '}
