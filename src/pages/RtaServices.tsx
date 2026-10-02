@@ -1,28 +1,25 @@
 import ServiceLayout from '@/components/ServiceLayout';
+import { useTranslation } from 'react-i18next';
 import { CircleCheck as CheckCircle2 } from 'lucide-react';
 
-const benefits = [
-  'RTA-related company transactions',
-  'Vehicle-related government procedures',
-  'Commercial transport approvals',
-  'Fast application follow-up',
-];
-
 export default function RtaServices() {
+  const { t } = useTranslation();
+  const benefits = t('RtaServices.benefits', { returnObjects: true }) as string[];
+
   return (
     <ServiceLayout
-      eyebrow="Corporate Service"
-      title="RTA Services & Approvals"
-      subtitle="Smooth processing of transport authority approvals and vehicle procedures."
+      eyebrow={t('RtaServices.eyebrow')}
+      title={t('RtaServices.title')}
+      subtitle={t('RtaServices.subtitle')}
     >
       <article>
         <p className="text-lg font-medium leading-relaxed text-teal-700">
-          For businesses requiring commercial vehicles, delivery fleets, or transport-related
-          approvals, dealing with the Roads and Transport Authority (RTA) is essential. We
-          facilitate all RTA-related corporate transactions and NOCs.
+          {t('RtaServices.leadText')}
         </p>
 
-        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">Key Benefits</h2>
+        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
+          {t('RtaServices.benefitsTitle')}
+        </h2>
         <ul className="mt-5 space-y-4">
           {benefits.map((b) => (
             <li key={b} className="flex gap-3">

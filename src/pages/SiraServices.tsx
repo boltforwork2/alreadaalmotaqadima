@@ -1,29 +1,25 @@
 import ServiceLayout from '@/components/ServiceLayout';
+import { useTranslation } from 'react-i18next';
 import { CircleCheck as CheckCircle2 } from 'lucide-react';
 
-const benefits = [
-  'SIRA portal applications',
-  'Security and CCTV approvals',
-  'NOC procedures for specific business activities',
-  'Security-related licensing procedures',
-  'Application follow-up',
-];
-
 export default function SiraServices() {
+  const { t } = useTranslation();
+  const benefits = t('SiraServices.benefits', { returnObjects: true }) as string[];
+
   return (
     <ServiceLayout
-      eyebrow="Corporate Service"
-      title="SIRA Services & Approvals"
-      subtitle="Securing necessary safety and security approvals for your business premises."
+      eyebrow={t('SiraServices.eyebrow')}
+      title={t('SiraServices.title')}
+      subtitle={t('SiraServices.subtitle')}
     >
       <article>
         <p className="text-lg font-medium leading-relaxed text-teal-700">
-          The Security Industry Regulatory Agency (SIRA) regulates security compliance in Dubai. We
-          assist businesses that require SIRA approvals, ensuring your commercial premises meet all
-          CCTV licensing and security regulations.
+          {t('SiraServices.leadText')}
         </p>
 
-        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">Key Benefits</h2>
+        <h2 className="mt-10 font-display text-2xl font-bold text-navy-900">
+          {t('SiraServices.benefitsTitle')}
+        </h2>
         <ul className="mt-5 space-y-4">
           {benefits.map((b) => (
             <li key={b} className="flex gap-3">
