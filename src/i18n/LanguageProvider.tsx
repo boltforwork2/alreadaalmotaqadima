@@ -6,7 +6,7 @@ const rtlLanguages: SupportedLanguage[] = ['ar'];
 
 const fontMap: Record<SupportedLanguage, string> = {
   en: "'Montserrat', 'Inter', system-ui, sans-serif",
-  ar: "'Tajawal', system-ui, sans-serif",
+  ar: "'Alexandria', system-ui, sans-serif",
 };
 
 function LanguageSync() {
