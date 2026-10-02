@@ -13,77 +13,44 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
-type Jurisdiction = {
-  name: string;
+type JurisdictionKey = 'mainland' | 'freeZone' | 'freelanceAbuDhabi' | 'eTrader';
+
+type JurisdictionItem = {
+  key: JurisdictionKey;
   path: string;
   icon: typeof Building2;
-  description: string;
-  features: string[];
   image: string;
   imageAlt: string;
-  buttonText: string;
 };
 
-const jurisdictions: Jurisdiction[] = [
+const jurisdictionItems: JurisdictionItem[] = [
   {
-    name: 'Mainland License',
+    key: 'mainland',
     path: '/mainland',
     icon: Building2,
-    description: 'For businesses that want to operate directly in the UAE local market.',
-    features: [
-      'Physical office required',
-      'Wide range of business activities',
-      'Operate in the UAE local market',
-      'Investor and employee visa options',
-    ],
     image: 'https://images.pexels.com/photos/25309271/pexels-photo-25309271.jpeg?auto=compress&cs=tinysrgb&w=1000',
     imageAlt: 'Dubai skyline with modern business towers',
-    buttonText: 'Learn More',
   },
   {
-    name: 'Free Zone License',
+    key: 'freeZone',
     path: '/free-zone',
     icon: Globe2,
-    description: 'Flexible company setup without a physical office under our available packages.',
-    features: [
-      'No physical office required',
-      'Up to 10 investor visas depending on the Free Zone and selected package',
-      'Import & Export activities',
-      'Sell products online / E-Commerce',
-    ],
     image: '/images/pages/freezone.jpg',
     imageAlt: 'Dubai Free Zone business center',
-    buttonText: 'Learn More',
   },
   {
-    name: 'Freelance License \u2013 Abu Dhabi',
+    key: 'freelanceAbuDhabi',
     path: '/freelance-license-abu-dhabi',
     icon: Briefcase,
-    description: 'Work independently in Abu Dhabi under an eligible freelance activity.',
-    features: [
-      'No physical office required',
-      'One residence visa for the license holder',
-      'Family sponsorship available subject to requirements',
-      'Suitable for consultants, designers, and developers',
-    ],
     image: '/images/pages/freelance.jpg',
     imageAlt: 'Freelancer working in a modern home office',
-    buttonText: 'Learn More',
   },
   {
-    name: 'E-Trader License - Dubai ',
+    key: 'eTrader',
     path: '/e-trader-license',
     icon: ShoppingCart,
-    description: 'Start your online business with a lower-cost setup.',
-    features: [
-      'No physical office required',
-      'No residence visa included',
-      'Lower-cost solution',
-      'Sell through eligible online marketplaces such as Amazon and Noon, subject to platform and activity requirements.',
-    ],
     image: '/images/pages/e-trader.jpg',
     imageAlt: 'Online seller packing products for an ecommerce business',
-    buttonText: 'Learn More',
   },
 ];
 
@@ -97,127 +64,37 @@ const jurisdictionCardVariants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
 };
 
-const formationBenefits = [
-  'Mainland Company Formation',
-  'Free Zone Company Formation',
-  'E-Commerce License',
-  'Freelance License – Abu Dhabi',
-  'Government Approvals & Documentation',
-  'Ongoing PRO Support',
-  'Trade License Issuance & Renewal',
-  'Business Activity & License Amendments',
+type ServiceKey = 'companyFormation' | 'companyLiquidation' | 'businessLicense' | 'proVisaServices' | 'corporateSponsor' | 'bankLiaison' | 'governmentServices' | 'immigrationLabour';
+
+type ServiceItem = {
+  key: ServiceKey;
+  icon: typeof Building2;
+};
+
+const serviceItems: ServiceItem[] = [
+  { key: 'companyFormation', icon: Building2 },
+  { key: 'companyLiquidation', icon: Archive },
+  { key: 'businessLicense', icon: Award },
+  { key: 'proVisaServices', icon: Stamp },
+  { key: 'corporateSponsor', icon: UserCheck },
+  { key: 'bankLiaison', icon: Landmark },
+  { key: 'governmentServices', icon: ShieldCheck },
+  { key: 'immigrationLabour', icon: Plane },
 ];
 
-const services = [
-  {
-    icon: Building2,
-    title: 'Company Formation in Dubai',
-    description:
-      'Starting a Dubai company involves tons of paperwork. Let us do our job and you can focus on your business.',
-  },
-  {
-    icon: Archive,
-    title: 'Company Liquidation',
-    description:
-      'Expert company liquidation advice and opinion best liquidation approach, Dubai liquidators.',
-  },
-  {
-    icon: Award,
-    title: 'Business License',
-    description: "We are UAE's Leading business setup & company formation company.",
-  },
-  {
-    icon: Stamp,
-    title: 'PRO & Visa Services',
-    description:
-      'Commercial License, Employee Visas, Attestations, Translation & Immigration Services.',
-  },
-  {
-    icon: UserCheck,
-    title: 'Corporate Sponsor & Nominee',
-    description:
-      "Establish your company with Dubai's leading corporate nominee services.",
-  },
-  {
-    icon: Landmark,
-    title: 'Bank Liaison & Assistance',
-    description:
-      'We can help you set up such a structure which can later be transformed into a subsidiary or branch office.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Government Services',
-    description:
-      'With direct access to Government Departments and Ministries, we can get your job done in very timely manner.',
-  },
-  {
-    icon: Plane,
-    title: 'Immigration & Labour',
-    description:
-      'We undertake all kinds of Labor & Immigration Registration in Dubai, UAE for individuals and company.',
-  },
+type StatKey = 'clientsHelped' | 'yearsExperience' | 'expertConsultants' | 'clientSatisfaction';
+
+const statItems: { endValue: number; suffix: string; labelKey: StatKey }[] = [
+  { endValue: 2500, suffix: '+', labelKey: 'clientsHelped' },
+  { endValue: 12, suffix: '+', labelKey: 'yearsExperience' },
+  { endValue: 25, suffix: '+', labelKey: 'expertConsultants' },
+  { endValue: 97, suffix: '%', labelKey: 'clientSatisfaction' },
 ];
 
-const stats = [
-  { endValue: 2500, suffix: '+', label: 'Clients Helped' },
-  { endValue: 12, suffix: '+', label: 'Years Experience' },
-  { endValue: 25, suffix: '+', label: 'Expert Consultants' },
-  { endValue: 97, suffix: '%', label: 'Client Satisfaction' },
-];
-
-const faqs = [
-  {
-    q: 'Why should someone set up a mainland business in the UAE?',
-    a: 'The UAE is a prime destination offering myriad business opportunities. Location of target market and business activities should guide the choice between Dubai and Abu Dhabi.',
-  },
-  {
-    q: 'How can a foreigner start a business in Dubai?',
-    a: 'The CCL permits 100% foreign ownership. Steps: determine entity type, select company name, apply for a business license, get pre-approvals, register your business, and get your license.',
-  },
-  {
-    q: 'What is the best free zone to open a company in Dubai?',
-    a: 'Key factors include location, chosen business activities, and office space requirements. Contact our experts to find the perfect fit.',
-  },
-  {
-    q: 'Which business license should I choose?',
-    a: 'It depends on your business activity, office requirements, visa needs and budget. Contact us and we\u2019ll help you identify the suitable option.',
-  },
-  {
-    q: 'Do I need an office for a Mainland company?',
-    a: 'A physical office or business premises is generally required, subject to the activity and applicable regulations.',
-  },
-  {
-    q: 'Do I need an office for a Free Zone company?',
-    a: 'Our available Free Zone packages can be established without a physical office. Requirements vary depending on the Free Zone and package.',
-  },
-  {
-    q: 'Can I get a Free Zone license without a residence visa?',
-    a: 'Yes, selected packages can be issued without a residence visa.',
-  },
-  {
-    q: 'How many investor visas can I get with a Free Zone company?',
-    a: 'Visa capacity depends on the Free Zone and selected package and can reach up to 10 investor visas in applicable packages.',
-  },
-  {
-    q: 'Can I open a company as a Freelancer?',
-    a: 'Eligible professionals may be able to obtain a Freelance license depending on their activity and qualifications.',
-  },
-  {
-    q: 'Can you handle my visa after setting up the company?',
-    a: 'Yes. We provide visa and immigration-related services as part of our business support.',
-  },
-  {
-    q: 'Do you provide license renewal services?',
-    a: 'Yes. We assist with license renewal and various license amendments.',
-  },
-  {
-    q: 'Do you provide trademark registration?',
-    a: 'Yes. We provide support with trademark registration procedures in the UAE.',
-  },
-  {
-    q: 'Do you provide Municipality services?',
-    a: 'Yes. We assist with municipality permits and approvals required for eligible business activities and premises.',
-  },
+const heroHighlights = [
+  { icon: Award, titleKey: 'Home.hero.highlights.trusted', descKey: 'Home.hero.highlights.trustedDesc' },
+  { icon: Building2, titleKey: 'Home.hero.highlights.uaeExpertise', descKey: 'Home.hero.highlights.uaeExpertiseDesc' },
+  { icon: UserCheck, titleKey: 'Home.hero.highlights.endToEndService', descKey: 'Home.hero.highlights.endToEndServiceDesc' },
 ];
 
 export default function Home() {
@@ -225,6 +102,9 @@ export default function Home() {
   const [form, setForm] = useState({ name: '', contact: '' });
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  const faqs = t('Home.faq.items', { returnObjects: true }) as { q: string; a: string }[];
+  const formationBenefits = t('Home.formation.benefits', { returnObjects: true }) as string[];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -247,7 +127,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-navy-950/20" />
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-10 sm:px-8 lg:px-12 lg:py-12">
-          <div className="max-w-2xl text-left">
+          <div className="max-w-2xl text-start">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -299,7 +179,7 @@ export default function Home() {
                 className="inline-flex items-center gap-2 rounded-lg border border-slate-300/70 bg-navy-950/20 px-7 py-3.5 text-base font-medium text-white transition-colors duration-200 hover:border-teal-300 hover:text-teal-200"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                {t('Home.hero.whatsappNumber')}
+                <bdi>{t('Home.hero.whatsappNumber')}</bdi>
               </a>
             </motion.div>
 
@@ -309,11 +189,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="mt-7 grid grid-cols-1 gap-5 border-t border-white/20 pt-5 sm:grid-cols-3"
             >
-              {[
-                { icon: Award, titleKey: 'Home.hero.highlights.trusted', descKey: 'Home.hero.highlights.trustedDesc' },
-                { icon: Building2, titleKey: 'Home.hero.highlights.uaeExpertise', descKey: 'Home.hero.highlights.uaeExpertiseDesc' },
-                { icon: UserCheck, titleKey: 'Home.hero.highlights.endToEndService', descKey: 'Home.hero.highlights.endToEndServiceDesc' },
-              ].map((item) => (
+              {heroHighlights.map((item) => (
                 <div key={item.titleKey} className="flex items-center gap-3">
                   <item.icon className="h-9 w-9 shrink-0 text-teal-300" strokeWidth={1.5} />
                   <div>
@@ -338,13 +214,13 @@ export default function Home() {
             className="text-center"
           >
             <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-              UAE Company Formation
+              {t('Home.jurisdictions.eyebrow')}
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-              Choose Your Best Setup
+              {t('Home.jurisdictions.title')}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-slate-500">
-              Explore the best setups for your company. Each option offers unique advantages tailored to different business needs.
+              {t('Home.jurisdictions.subtitle')}
             </p>
           </motion.div>
 
@@ -355,50 +231,53 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
             className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
           >
-            {jurisdictions.map((item) => (
-              <motion.div
-                key={item.path}
-                variants={jurisdictionCardVariants}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl hover:shadow-navy-900/10"
-              >
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.imageAlt}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-lg bg-navy-950/85 text-teal-300 backdrop-blur-sm">
-                    <item.icon className="h-5 w-5" strokeWidth={1.75} />
+            {jurisdictionItems.map((item) => {
+              const features = t(`Home.jurisdictions.items.${item.key}.features`, { returnObjects: true }) as string[];
+              return (
+                <motion.div
+                  key={item.path}
+                  variants={jurisdictionCardVariants}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-xl hover:shadow-navy-900/10"
+                >
+                  <div className="relative h-44 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
+                    <div className="absolute bottom-3 start-3 flex h-10 w-10 items-center justify-center rounded-lg bg-navy-950/85 text-teal-300 backdrop-blur-sm">
+                      <item.icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-display text-lg font-bold leading-tight text-navy-900">
-                    {item.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-navy-500">
-                    {item.description}
-                  </p>
-                  <ul className="mt-5 flex-1 space-y-2.5">
-                    {item.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-2.5">
-                        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
-                          <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
-                        </span>
-                        <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    to={item.path}
-                    className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-teal-500 px-4 py-2.5 text-sm font-semibold text-navy-950 transition-all duration-200 hover:bg-teal-400"
-                  >
-                    {item.buttonText}
-                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="font-display text-lg font-bold leading-tight text-navy-900">
+                      {t(`Home.jurisdictions.items.${item.key}.name`)}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-navy-500">
+                      {t(`Home.jurisdictions.items.${item.key}.description`)}
+                    </p>
+                    <ul className="mt-5 flex-1 space-y-2.5">
+                      {features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2.5">
+                          <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-teal-100">
+                            <Check className="h-3 w-3 text-teal-600" strokeWidth={3} />
+                          </span>
+                          <span className="text-sm leading-relaxed text-navy-600">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      to={item.path}
+                      className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-teal-500 px-4 py-2.5 text-sm font-semibold text-navy-950 transition-all duration-200 hover:bg-teal-400"
+                    >
+                      {t(`Home.jurisdictions.items.${item.key}.buttonText`)}
+                      <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -415,13 +294,13 @@ export default function Home() {
               transition={{ duration: 0.5 }}
             >
               <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-                Business Setup in Dubai
+                {t('Home.formation.eyebrow')}
               </span>
               <h2 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-slate-900">
-                Business Setup in Dubai & UAE
+                {t('Home.formation.title')}
               </h2>
               <p className="mt-6 text-base leading-relaxed text-slate-600">
-                AL REYADA AL MOTAQADIMA BUSINESSMEN SERVICES L.L.C. provides professional business setup and company formation services in the UAE. We help businesses choose the right setup, handle trade license procedures, prepare the required documentation and manage the necessary government approvals from start to finish.
+                {t('Home.formation.description')}
               </p>
             </motion.div>
 
@@ -461,18 +340,18 @@ export default function Home() {
           {/* Header */}
           <div className="mx-auto max-w-3xl text-center">
             <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
-              Dubai Business Setup Services
+              {t('Home.services.eyebrow')}
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-              Services We Provide to Set Up Your Company in Dubai UAE
+              {t('Home.services.title')}
             </h2>
           </div>
 
           {/* Grid */}
           <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((service, i) => (
+            {serviceItems.map((service, i) => (
               <motion.div
-                key={service.title}
+                key={service.key}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
@@ -483,10 +362,10 @@ export default function Home() {
                   <service.icon className="h-8 w-8 text-teal-500" strokeWidth={1.75} />
                 </div>
                 <h3 className="mt-5 font-display text-lg font-bold text-slate-900">
-                  {service.title}
+                  {t(`Home.services.items.${service.key}.title`)}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-500">
-                  {service.description}
+                  {t(`Home.services.items.${service.key}.description`)}
                 </p>
               </motion.div>
             ))}
@@ -498,7 +377,7 @@ export default function Home() {
               to="/services"
               className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-900 shadow-lg shadow-teal-500/25 transition-all duration-200 hover:shadow-xl hover:shadow-teal-500/40 hover:brightness-105"
             >
-              View all Services
+              {t('Home.services.viewAllServices')}
               <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -513,9 +392,9 @@ export default function Home() {
         </div>
         <div className="relative mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, i) => (
+            {statItems.map((stat, i) => (
               <motion.div
-                key={stat.label}
+                key={stat.labelKey}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
@@ -525,7 +404,7 @@ export default function Home() {
                 <div className="font-display text-5xl font-bold text-teal-500">
                   <AnimatedCounter endValue={stat.endValue} suffix={stat.suffix} />
                 </div>
-                <div className="mt-3 text-lg text-slate-300">{stat.label}</div>
+                <div className="mt-3 text-lg text-slate-300">{t(`Home.stats.${stat.labelKey}`)}</div>
               </motion.div>
             ))}
           </div>
@@ -537,12 +416,14 @@ export default function Home() {
         <div className="mx-auto max-w-3xl px-6 sm:px-8">
           {/* Header */}
           <div className="text-center">
-            <span className="text-sm font-bold uppercase tracking-wider text-teal-500">FAQ</span>
+            <span className="text-sm font-bold uppercase tracking-wider text-teal-500">
+              {t('Home.faq.eyebrow')}
+            </span>
             <h2 className="mt-4 font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-              Frequently Asked Questions
+              {t('Home.faq.title')}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-slate-600">
-              Everything you need to know about setting up your business in Dubai.
+              {t('Home.faq.subtitle')}
             </p>
           </div>
 
@@ -552,14 +433,14 @@ export default function Home() {
               const isOpen = openFaq === i;
               return (
                 <div
-                  key={faq.q}
+                  key={i}
                   className={`overflow-hidden rounded-xl border bg-white transition-colors duration-200 ${
                     isOpen ? 'border-teal-300' : 'border-slate-200'
                   }`}
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-start"
                   >
                     <span
                       className={`font-display text-base font-semibold sm:text-lg ${
@@ -591,12 +472,12 @@ export default function Home() {
 
           {/* Bottom CTA */}
           <div className="mt-12 text-center">
-            <p className="text-base text-slate-700">Still have questions?</p>
+            <p className="text-base text-slate-700">{t('Home.faq.stillHaveQuestions')}</p>
             <a
               href="/contact"
               className="mt-4 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-900 shadow-lg shadow-teal-500/25 transition-all duration-200 hover:shadow-xl hover:shadow-teal-500/40 hover:brightness-105"
             >
-              Contact us today for a Free Consultation
+              {t('Home.faq.ctaButton')}
               <ArrowRight className="h-5 w-5" />
             </a>
           </div>
@@ -617,12 +498,12 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center"
           >
-            <span className="text-sm font-bold uppercase tracking-wider text-teal-400">Get Started</span>
+            <span className="text-sm font-bold uppercase tracking-wider text-teal-400">{t('Home.quote.eyebrow')}</span>
             <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Request a Free Quote
+              {t('Home.quote.title')}
             </h2>
             <p className="mt-3 text-base leading-relaxed text-slate-300">
-              Tell us a little about your business goals and our consultants will reach out to you shortly.
+              {t('Home.quote.subtitle')}
             </p>
           </motion.div>
 
@@ -635,24 +516,24 @@ export default function Home() {
           >
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="text-sm font-medium text-navy-200">Full Name</label>
+                <label className="text-sm font-medium text-navy-200">{t('Home.quote.fullNameLabel')}</label>
                 <input
                   type="text"
                   required
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  placeholder="Enter your full name"
+                  placeholder={t('Home.quote.fullNamePlaceholder')}
                   className="mt-1.5 w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-white placeholder:text-navy-400 transition-colors focus:border-teal-500/50 focus:bg-white/10 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="text-sm font-medium text-navy-200">Email / Phone</label>
+                <label className="text-sm font-medium text-navy-200">{t('Home.quote.contactLabel')}</label>
                 <input
                   type="text"
                   required
                   value={form.contact}
                   onChange={(e) => setForm({ ...form, contact: e.target.value })}
-                  placeholder="Email or phone number"
+                  placeholder={t('Home.quote.contactPlaceholder')}
                   className="mt-1.5 w-full rounded-lg border border-white/15 bg-white/5 px-4 py-2.5 text-white placeholder:text-navy-400 transition-colors focus:border-teal-500/50 focus:bg-white/10 focus:outline-none"
                 />
               </div>
@@ -663,11 +544,11 @@ export default function Home() {
                 {submitted ? (
                   <>
                     <Check className="h-5 w-5" />
-                    Sent!
+                    {t('Home.quote.buttonSent')}
                   </>
                 ) : (
                   <>
-                    Request A Free Quote
+                    {t('Home.quote.button')}
                     <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </>
                 )}
@@ -679,7 +560,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mt-3 text-center text-sm text-teal-300"
               >
-                Thank you! One of our consultants will reach out to you shortly.
+                {t('Home.quote.successMessage')}
               </motion.p>
             )}
           </motion.div>
