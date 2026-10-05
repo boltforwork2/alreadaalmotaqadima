@@ -8,6 +8,7 @@ const fontMap: Record<SupportedLanguage, string> = {
   en: "'Montserrat', 'Inter', system-ui, sans-serif",
   ar: "'Alexandria', system-ui, sans-serif",
   ru: "'Montserrat', 'Inter', system-ui, sans-serif",
+  zh: "'Montserrat', 'Inter', system-ui, sans-serif",
 };
 
 function LanguageSync() {

@@ -4,20 +4,23 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from '@/locales/en.json';
 import ar from '@/locales/ar.json';
 import ru from '@/locales/ru.json';
+import zh from '@/locales/zh.json';
 
-export const supportedLanguages = ['en', 'ar', 'ru'] as const;
+export const supportedLanguages = ['en', 'ar', 'ru', 'zh'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageLabels: Record<SupportedLanguage, string> = {
   en: 'English',
   ar: 'العربية',
   ru: 'Русский',
+  zh: '中文',
 };
 
 export const languageShort: Record<SupportedLanguage, string> = {
   en: 'EN',
   ar: 'AR',
   ru: 'RU',
+  zh: 'ZH',
 };
 
 i18n
@@ -28,6 +31,7 @@ i18n
       en: { translation: en },
       ar: { translation: ar },
       ru: { translation: ru },
+      zh: { translation: zh },
     },
     fallbackLng: 'en',
     supportedLngs: [...supportedLanguages],

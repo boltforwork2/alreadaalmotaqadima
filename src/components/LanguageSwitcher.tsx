@@ -13,6 +13,7 @@ const flagEmoji: Record<SupportedLanguage, string> = {
   en: '🇬🇧',
   ar: '🇦🇪',
   ru: '🇷🇺',
+  zh: '🇨🇳',
 };
 
 export default function LanguageSwitcher() {
