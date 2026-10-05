@@ -22,7 +22,6 @@ type Jurisdiction = {
   path: string;
   icon: typeof Building2;
   image: string;
-  imageAlt: string;
 };
 
 const jurisdictions: Jurisdiction[] = [
@@ -31,28 +30,24 @@ const jurisdictions: Jurisdiction[] = [
     path: '/mainland',
     icon: Building2,
     image: 'https://images.pexels.com/photos/25309271/pexels-photo-25309271.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Dubai skyline with modern business towers',
   },
   {
     key: 'freeZone',
     path: '/free-zone',
     icon: Globe2,
     image: '/images/pages/freezone.jpg',
-    imageAlt: 'Dubai Free Zone business center',
   },
   {
     key: 'freelanceAbuDhabi',
     path: '/freelance-license-abu-dhabi',
     icon: Briefcase,
     image: '/images/pages/freelance.jpg',
-    imageAlt: 'Freelancer working in a modern home office',
   },
   {
     key: 'eTrader',
     path: '/e-trader-license',
     icon: ShoppingCart,
     image: '/images/pages/e-trader.jpg',
-    imageAlt: 'Online seller packing products for an ecommerce business',
   },
 ];
 
@@ -79,7 +74,7 @@ export default function BusinessSetup() {
       <section className="relative isolate overflow-hidden bg-navy-950">
         <img
           src="https://images.pexels.com/photos/25309271/pexels-photo-25309271.jpeg?auto=compress&cs=tinysrgb&w=1800"
-          alt="Dubai skyline viewed from a modern business office"
+          alt={t('BusinessSetup.hero.imageAlt')}
           className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-navy-950 via-navy-950/95 to-navy-950/20" />
@@ -172,7 +167,7 @@ export default function BusinessSetup() {
                   <div className="relative h-44 overflow-hidden">
                     <img
                       src={item.image}
-                      alt={item.imageAlt}
+                      alt={t(`BusinessSetup.jurisdictions.items.${item.key}.imageAlt`)}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
