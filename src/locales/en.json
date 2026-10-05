@@ -1002,44 +1002,93 @@
 
   "FreelanceLicenseAbuDhabi": {
     "eyebrow": "Business Setup Jurisdiction",
-    "title": "Freelance License - Abu Dhabi",
-    "subtitle": "Work independently in Abu Dhabi under an eligible freelance activity.",
-    "p1": "The Abu Dhabi Freelance License is designed for skilled professionals looking to work independently in the UAE. Issued by the Abu Dhabi Department of Economic Development (ADDED), it provides a flexible and cost-effective way to offer your specialized services without the overhead of renting a physical office.",
-    "p2": "Whether you are a consultant, designer, developer, or creative professional, this license legally empowers you to work with clients across the UAE. It is an ideal stepping stone for individuals aiming to establish their personal brand and build a client base in a thriving economic hub.",
-    "visaNote": "One residence visa for the license holder. Family sponsorship available for eligible wife and children, subject to applicable requirements.",
-    "benefitsTitle": "Key Benefits",
-    "benefits": [
+    "title": "Freelance License – Abu Dhabi",
+    "subtitle": "Practice your profession independently in the Emirate of Abu Dhabi. Obtain a freelance licence to carry out your professional activities independently under approved activities, in accordance with the highest standards and requirements for doing business. This licence is designed to be the optimal choice for specialists and highly experienced professionals in technical, digital, marketing, creative, and consulting fields.",
+    "eligibilityAlertTitle": "⚠️ Are You Eligible for a Freelance Licence?",
+    "eligibilityAlertText": "Please note that the freelance licence is not a general option suitable for all individuals or all business activities. Eligibility depends primarily on the nature of the activity to be practiced, as well as academic qualifications, professional experience record, and supporting documents required. At Al Reyada Al Motaqadima, we conduct a thorough review of your activity, qualifications, and documents before initiating any procedures, to ensure full confirmation of your suitability and compliance with the licence issuance requirements.",
+    "eligibilityAlertButton": "Check Your Eligibility Now",
+    "whatIsItTitle": "What is the Abu Dhabi Freelance Licence?",
+    "whatIsItText": "The freelance licence is a legally recognised licence dedicated exclusively to specialists and skilled professionals who aspire to practice their professional activities independently in the Emirate of Abu Dhabi within a specific list of approved activities. This licence grants you full legal authority to provide your services to companies and individuals, manage your business freely, and build a broad client base in accordance with the legal framework and requirements applicable in the Emirate.",
+    "activitiesTitle": "Approved Activities",
+    "activities": [
       {
-        "title": "No Physical Office Required",
-        "description": "Operate flexibly without the mandatory expense of leasing commercial space."
+        "title": "Technology & Digital Services",
+        "description": "Website design, software and system design and development, IT consultancy, IT network management services, AI application and software development."
       },
       {
-        "title": "100% Foreign Ownership",
-        "description": "Retain full control over your freelance practice and earnings."
+        "title": "Marketing & Digital Media",
+        "description": "Advanced marketing consultancy and studies, campaign and operations management, online advertising services, media consultancy and studies, specialised public relations consultancy."
       },
       {
-        "title": "Residency Options",
-        "description": "Eligible to apply for a UAE residence visa for yourself and sponsor eligible dependents."
+        "title": "E-Commerce",
+        "description": "Online trading through websites, trading via social media platforms, commercial information services, data entry services, advanced data classification and analysis."
       },
       {
-        "title": "Cost-Effective Setup",
-        "description": "Significantly lower setup and renewal costs compared to standard corporate licenses."
+        "title": "Design & Creativity",
+        "description": "Graphic and creative design services, fashion and apparel design, jewellery and precious ornaments design, professional photography services, personal video production and filming."
       },
       {
-        "title": "Work with Multiple Clients",
-        "description": "Legally provide services to both individuals and corporate entities across the UAE."
+        "title": "Consulting",
+        "description": "Management consultancy and studies, project development and management consultancy, economic consultancy and feasibility studies, HR development consultancy, specialised logistics consultancy."
       }
     ],
-    "limitationsTitle": "Potential Limitations",
-    "limitations": [
+    "activitiesNote": "Important note: These are just prominent examples of activities listed under the freelance licence activities list, and not a comprehensive list of all available activities. Eligibility criteria and requirements vary significantly depending on the chosen activity type and the applicant's profile.",
+    "requirementsTitle": "Key Requirements",
+    "requirements": [
       {
-        "title": "Restricted Activities",
-        "description": "Limited to specific professional and creative activities; not suitable for general trading."
+        "title": "Academic Qualification",
+        "description": "An academic qualification (university or equivalent) relevant and related to the nature of the activity may be required."
       },
       {
-        "title": "No Employee Sponsorship",
-        "description": "Cannot hire employees or sponsor staff visas under this license type."
+        "title": "Professional Experience",
+        "description": "Certified experience certificates or official documents proving your practical experience are often required."
+      },
+      {
+        "title": "Professional Certifications",
+        "description": "Specialised professional certifications or accreditations from recognised bodies may be needed."
+      },
+      {
+        "title": "Digital Identity (UAE Pass)",
+        "description": "An active and verified account on the UAE Pass digital identity app is required."
+      },
+      {
+        "title": "Financial Documents",
+        "description": "Bank statements or proof of income demonstrating your financial capacity may be requested."
+      },
+      {
+        "title": "Additional Documents & Approvals",
+        "description": "Some activities may require prior approvals or additional documents from the relevant government authorities."
       }
+    ],
+    "warningTitle": "⚠️ Important Alert Before Applying",
+    "warningText": "It must be understood that the freelance licence is completely different from a general commercial licence. Your chosen activity must be listed exclusively among the approved activities for this type of licence. Qualification, experience, and document requirements vary significantly from one activity to another. Moreover, merely holding an academic qualification or professional experience does not automatically guarantee approval for licence issuance. Therefore, at Al Reyada Al Motaqadima, we are committed to reviewing your profile, activity, and documents comprehensively before taking any step to save your time and effort.",
+    "benefitsTitle": "Key Benefits",
+    "benefits": [
+      "No physical office or premises required (subject to activity requirements).",
+      "Maximum flexibility in practicing your activity and providing services to clients independently.",
+      "100% independent ownership under the legal structure of the licence.",
+      "Options to apply for a UAE residence visa (subject to eligibility and requirements).",
+      "Legal authority to contract and work with multiple clients and entities simultaneously."
+    ],
+    "targetAudienceTitle": "Target Audience",
+    "targetAudience": [
+      "Designers and creatives across various fields.",
+      "Consultants and experts (management, economics, human resources).",
+      "Specialists in digital marketing and advertising.",
+      "Professionals in the e-commerce and data management sector.",
+      "Web developers, programmers, and IT experts.",
+      "Photographers and visual content creators."
+    ],
+    "ourServicesTitle": "Our Services",
+    "ourServices": [
+      "Thorough assessment and review of the activity best suited to your expertise.",
+      "Preliminary eligibility review before paying any government fees.",
+      "Verification of academic qualifications and experience certificates.",
+      "Collection, preparation, and drafting of all required documents.",
+      "Real-time tracking of licence issuance procedures with relevant authorities.",
+      "Professional assistance with residency procedures (upon meeting eligibility).",
+      "Comprehensive support for family sponsorship and residency procedures in accordance with the law.",
+      "End-to-end follow-up of the transaction from A to Z until successful completion."
     ]
   },
 
