@@ -6,8 +6,9 @@ import ar from '@/locales/ar.json';
 import ru from '@/locales/ru.json';
 import zh from '@/locales/zh.json';
 import fr from '@/locales/fr.json';
+import fa from '@/locales/fa.json';
 
-export const supportedLanguages = ['en', 'ar', 'ru', 'zh', 'fr'] as const;
+export const supportedLanguages = ['en', 'ar', 'ru', 'zh', 'fr', 'fa'] as const;
 export type SupportedLanguage = (typeof supportedLanguages)[number];
 
 export const languageLabels: Record<SupportedLanguage, string> = {
@@ -16,6 +17,7 @@ export const languageLabels: Record<SupportedLanguage, string> = {
   ru: 'Русский',
   zh: '中文',
   fr: 'Français',
+  fa: 'فارسی',
 };
 
 export const languageShort: Record<SupportedLanguage, string> = {
@@ -24,6 +26,7 @@ export const languageShort: Record<SupportedLanguage, string> = {
   ru: 'RU',
   zh: 'ZH',
   fr: 'FR',
+  fa: 'FA',
 };
 
 i18n
@@ -36,6 +39,7 @@ i18n
       ru: { translation: ru },
       zh: { translation: zh },
       fr: { translation: fr },
+      fa: { translation: fa },
     },
     fallbackLng: 'en',
     supportedLngs: [...supportedLanguages],
