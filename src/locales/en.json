@@ -578,6 +578,7 @@
       "title": "Business &",
       "titleHighlight": "Government Services",
       "description": "Professional support for your company's setup and ongoing government transactions in the UAE.",
+      "imageAlt": "Dubai skyline at sunset",
       "heroItems": {
         "tradeLicense": { "label": "Trade License", "detail": "Services" },
         "employee": { "label": "Employee", "detail": "Procedures" },
@@ -607,6 +608,7 @@
         "tradeLicense": {
           "name": "Trade License",
           "description": "New license issuance, renewal, and activity amendment handled end-to-end.",
+          "imageAlt": "Person signing a business document at an office desk",
           "features": [
             "New license issuance",
             "Annual license renewal",
@@ -617,6 +619,7 @@
         "notaryPublic": {
           "name": "Notary Public Services",
           "description": "Fast and reliable notarization, attestation, and legal document services in the UAE.",
+          "imageAlt": "Dubai Courts building representing notary and legal document services",
           "features": [
             "Power of Attorney (POA)",
             "MOA & Amendments",
@@ -627,6 +630,7 @@
         "mohre": {
           "name": "MOHRE Services",
           "description": "Complete management of Ministry of Human Resources and labour files.",
+          "imageAlt": "Professionals discussing business in a modern office meeting",
           "features": [
             "Work permits issuance",
             "Employment contracts",
@@ -637,6 +641,7 @@
         "gdrfa": {
           "name": "GDRFA Services",
           "description": "Expert handling of all immigration, visa, and residency transactions.",
+          "imageAlt": "Passport and travel documents symbolizing immigration and visa services",
           "features": [
             "Residence & Entry permits",
             "Visa services & stamping",
@@ -647,6 +652,7 @@
         "sira": {
           "name": "SIRA Services",
           "description": "Securing necessary safety and security approvals for your business premises.",
+          "imageAlt": "Modern surveillance camera mounted on a building exterior",
           "features": [
             "SIRA applications",
             "CCTV & Security approvals",
@@ -657,6 +663,7 @@
         "rta": {
           "name": "RTA Services",
           "description": "Smooth processing of transport authority approvals and vehicle procedures.",
+          "imageAlt": "Roads and Transport Authority logo",
           "features": [
             "RTA-related transactions",
             "Vehicle government procedures",
@@ -667,6 +674,7 @@
         "proServices": {
           "name": "PRO Services",
           "description": "We handle your company and government transactions from start to finish.",
+          "imageAlt": "Professional consultant reviewing legal paperwork in a modern office",
           "features": [
             "Government applications & approvals",
             "Document processing & clearance",
@@ -677,6 +685,7 @@
         "goldenVisa": {
           "name": "UAE Golden Visa",
           "description": "Long-term 10-year residency for investors, entrepreneurs, and talent.",
+          "imageAlt": "Golden Visa document with the Dubai skyline in the background",
           "features": [
             "10-year long-term residency",
             "For investors, talents & entrepreneurs",
@@ -687,6 +696,7 @@
         "emiratesId": {
           "name": "Emirates ID Services",
           "description": "Comprehensive support for all your Emirates identity card requirements.",
+          "imageAlt": "United Arab Emirates identity card displayed with the Dubai skyline",
           "features": [
             "New Emirates ID applications",
             "ID Renewal procedures",
@@ -697,6 +707,7 @@
         "bankAccount": {
           "name": "Corporate Bank Account",
           "description": "Fast-track corporate bank account opening with leading UAE banks.",
+          "imageAlt": "Wallet and credit cards representing corporate banking services",
           "features": [
             "Partnerships with top UAE banks",
             "Fast-track approval process",
@@ -707,6 +718,7 @@
         "immigration": {
           "name": "Immigration & Registration",
           "description": "Visa processing, Emirates ID, and medical fitness for you and your staff.",
+          "imageAlt": "Person holding a passport at a busy airport terminal",
           "features": [
             "Investor & employee visa processing",
             "Emirates ID applications & renewals",
@@ -717,6 +729,7 @@
         "liquidation": {
           "name": "Company Liquidation",
           "description": "Professional closure and deregistration of your company in full compliance.",
+          "imageAlt": "Closed sign symbolizing company liquidation and deregistration",
           "features": [
             "Official company deregistration",
             "Visa and establishment card closure",
@@ -729,7 +742,15 @@
     },
     "governmentPartners": {
       "eyebrow": "Trusted government liaison",
-      "title": "Government Authorities We Support"
+      "title": "Government Authorities We Support",
+      "items": {
+        "gdrfa": "General Directorate of Residency and Foreigners Affairs",
+        "mohre": "Ministry of Human Resources and Emiratisation",
+        "rta": "Roads and Transport Authority",
+        "dubai": "Dubai Department of Economy and Tourism",
+        "municipality": "Dubai Municipality",
+        "sira": "Security Industry Regulatory Agency"
+      }
     },
     "cta": {
       "title": "Ready to start your business in Dubai?",
@@ -1512,7 +1533,15 @@
     },
     "governmentPartners": {
       "eyebrow": "Trusted government liaison",
-      "title": "Government Authorities We Support"
+      "title": "Government Authorities We Support",
+      "items": {
+        "gdrfa": "General Directorate of Residency and Foreigners Affairs",
+        "mohre": "Ministry of Human Resources and Emiratisation",
+        "rta": "Roads and Transport Authority",
+        "dubai": "Dubai Department of Economy and Tourism",
+        "municipality": "Dubai Municipality",
+        "sira": "Security Industry Regulatory Agency"
+      }
     }
   },
 

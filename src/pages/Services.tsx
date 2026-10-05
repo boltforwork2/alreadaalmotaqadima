@@ -38,7 +38,6 @@ type Service = {
   path: string;
   icon: typeof XCircle;
   image?: string;
-  imageAlt?: string;
 };
 
 const services: Service[] = [
@@ -47,84 +46,72 @@ const services: Service[] = [
     path: '/services/trade-license',
     icon: FileText,
     image: 'https://images.pexels.com/photos/6814526/pexels-photo-6814526.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Person signing a business document at an office desk',
   },
   {
     key: 'notaryPublic',
     path: '/notary-services',
     icon: Stamp,
     image: '/images/pages/courts copy 2.jpg',
-    imageAlt: 'Dubai Courts building representing notary and legal document services',
   },
   {
     key: 'mohre',
     path: '/mohre-services',
     icon: UsersIcon,
     image: 'https://images.pexels.com/photos/36765720/pexels-photo-36765720.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Professionals discussing business in a modern office meeting',
   },
   {
     key: 'gdrfa',
     path: '/gdrfa-services',
     icon: Stamp,
     image: 'https://images.pexels.com/photos/33497885/pexels-photo-33497885.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Passport and travel documents symbolizing immigration and visa services',
   },
   {
     key: 'sira',
     path: '/sira-services',
     icon: ShieldCheck,
     image: 'https://images.pexels.com/photos/20783671/pexels-photo-20783671.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Modern surveillance camera mounted on a building exterior',
   },
   {
     key: 'rta',
     path: '/rta-services',
     icon: Car,
     image: '/images/pages/rta.jpg',
-    imageAlt: 'Roads and Transport Authority logo',
   },
   {
     key: 'proServices',
     path: '/pro-services',
     icon: Briefcase,
     image: 'https://images.pexels.com/photos/8112138/pexels-photo-8112138.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Professional consultant reviewing legal paperwork in a modern office',
   },
   {
     key: 'goldenVisa',
     path: '/services/golden-visa',
     icon: Award,
     image: '/images/pages/gvisa.jpg',
-    imageAlt: 'Golden Visa document with the Dubai skyline in the background',
   },
   {
     key: 'emiratesId',
     path: '/emirates-id',
     icon: IdCard,
     image: '/images/pages/id.jpg',
-    imageAlt: 'United Arab Emirates identity card displayed with the Dubai skyline',
   },
   {
     key: 'bankAccount',
     path: '/services/bank-account',
     icon: Wallet,
     image: 'https://images.pexels.com/photos/8062357/pexels-photo-8062357.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Wallet and credit cards representing corporate banking services',
   },
   {
     key: 'immigration',
     path: '/services/immigration',
     icon: Plane,
     image: 'https://images.pexels.com/photos/39075595/pexels-photo-39075595.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Person holding a passport at a busy airport terminal',
   },
   {
     key: 'liquidation',
     path: '/services/liquidation',
     icon: XCircle,
     image: 'https://images.pexels.com/photos/9169925/pexels-photo-9169925.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Closed sign symbolizing company liquidation and deregistration',
   },
 ];
 
@@ -152,30 +139,12 @@ const cardVariants = {
 };
 
 const governmentPartners = [
-  {
-    name: 'General Directorate of Residency and Foreigners Affairs',
-    logo: '/images/pages/gdfra.png',
-  },
-  {
-    name: 'Ministry of Human Resources and Emiratisation',
-    logo: '/images/pages/mohre.png',
-  },
-  {
-    name: 'Roads and Transport Authority',
-    logo: '/images/pages/rta.png',
-  },
-  {
-    name: 'Dubai Department of Economy and Tourism',
-    logo: '/images/pages/dubai.png',
-  },
-  {
-    name: 'Dubai Municipality',
-    logo: '/images/pages/muni.png',
-  },
-  {
-    name: 'Security Industry Regulatory Agency',
-    logo: '/images/pages/sira.png',
-  },
+  { key: 'gdrfa', logo: '/images/pages/gdfra.png' },
+  { key: 'mohre', logo: '/images/pages/mohre.png' },
+  { key: 'rta', logo: '/images/pages/rta.png' },
+  { key: 'dubai', logo: '/images/pages/dubai.png' },
+  { key: 'municipality', logo: '/images/pages/muni.png' },
+  { key: 'sira', logo: '/images/pages/sira.png' },
 ];
 
 export default function Services() {
@@ -239,7 +208,7 @@ export default function Services() {
           >
             <img
               src="https://images.pexels.com/photos/17238022/pexels-photo-17238022.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="Dubai skyline at sunset"
+              alt={t('Services.hero.imageAlt')}
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#f7f8fa] via-[#f7f8fa]/15 to-transparent lg:from-[#f7f8fa] lg:via-transparent lg:to-transparent" />
@@ -326,7 +295,7 @@ export default function Services() {
                     <div className="relative h-40 overflow-hidden">
                       <img
                         src={item.image}
-                        alt={item.imageAlt ?? t(`Services.corporateServices.items.${item.key}.name`)}
+                        alt={t(`Services.corporateServices.items.${item.key}.imageAlt`)}
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
@@ -404,7 +373,7 @@ export default function Services() {
           >
             {governmentPartners.map((partner) => (
               <motion.div
-                key={partner.name}
+                key={partner.key}
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
@@ -413,7 +382,7 @@ export default function Services() {
               >
                 <img
                   src={partner.logo}
-                  alt={partner.name}
+                  alt={t(`Services.governmentPartners.items.${partner.key}`)}
                   className="max-h-24 w-full max-w-[9rem] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-28"
                 />
               </motion.div>

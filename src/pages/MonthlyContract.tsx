@@ -46,30 +46,12 @@ const packageKeys = ['basic', 'standard', 'premium'] as const;
 /* ------------------------------------------------------------------ */
 
 const governmentPartners = [
-  {
-    name: 'General Directorate of Residency and Foreigners Affairs',
-    logo: '/images/pages/gdfra.png',
-  },
-  {
-    name: 'Ministry of Human Resources and Emiratisation',
-    logo: '/images/pages/mohre.png',
-  },
-  {
-    name: 'Roads and Transport Authority',
-    logo: '/images/pages/rta.png',
-  },
-  {
-    name: 'Dubai Department of Economy and Tourism',
-    logo: '/images/pages/dubai.png',
-  },
-  {
-    name: 'Dubai Municipality',
-    logo: '/images/pages/muni.png',
-  },
-  {
-    name: 'Security Industry Regulatory Agency',
-    logo: '/images/pages/sira.png',
-  },
+  { key: 'gdrfa', logo: '/images/pages/gdfra.png' },
+  { key: 'mohre', logo: '/images/pages/mohre.png' },
+  { key: 'rta', logo: '/images/pages/rta.png' },
+  { key: 'dubai', logo: '/images/pages/dubai.png' },
+  { key: 'municipality', logo: '/images/pages/muni.png' },
+  { key: 'sira', logo: '/images/pages/sira.png' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -368,7 +350,7 @@ export default function MonthlyContract() {
           >
             {governmentPartners.map((partner) => (
               <motion.div
-                key={partner.name}
+                key={partner.key}
                 variants={{
                   hidden: { opacity: 0, y: 10 },
                   show: { opacity: 1, y: 0, transition: { duration: 0.35 } },
@@ -377,7 +359,7 @@ export default function MonthlyContract() {
               >
                 <img
                   src={partner.logo}
-                  alt={partner.name}
+                  alt={t(`MonthlyContract.governmentPartners.items.${partner.key}`)}
                   className="max-h-24 w-full max-w-[9rem] object-contain transition-transform duration-300 group-hover:scale-105 sm:max-h-28"
                 />
               </motion.div>
