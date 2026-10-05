@@ -36,7 +36,7 @@ export default function About() {
       <section className="relative isolate min-h-[30rem] overflow-hidden bg-navy-950 sm:min-h-[34rem]">
         <img
           src="/images/pages/aboutbc.jpg"
-          alt="Dubai skyline and a modern business office at sunset"
+          alt={t('About.hero.imageAlt')}
           className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 -z-10 bg-navy-950/70" />
@@ -45,7 +45,7 @@ export default function About() {
         <div className="relative mx-auto flex min-h-[30rem] max-w-5xl flex-col items-center justify-center px-6 py-16 text-center sm:min-h-[34rem] sm:px-8 lg:px-12">
           <motion.img
             src="/logo.png"
-            alt="Al Reyada Al Motaqadima logo"
+            alt={t('About.hero.logoAlt')}
             initial={{ opacity: 0, scale: 0.92, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, ease: 'easeOut' }}
@@ -103,7 +103,7 @@ export default function About() {
             >
               <img
                 src="/images/pages/about.jpg"
-                alt="Central Hub business leader in a modern Dubai office"
+                alt={t('About.who.imageAlt')}
                 className="h-full w-full object-cover object-center"
               />
             </motion.div>

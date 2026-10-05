@@ -54,7 +54,7 @@ export default function Contact() {
     const message = (formData.get('message') as string)?.trim() ?? '';
 
     const lines = [
-      'New Inquiry from Website:',
+      t('Contact.form.whatsappHeader'),
       '',
       `Name: ${name}`,
       `Phone: ${phone}`,
@@ -150,7 +150,7 @@ export default function Contact() {
               {/* Map Embed */}
               <div className="mt-8 overflow-hidden rounded-xl shadow-lg ring-1 ring-slate-200">
                 <iframe
-                  title="Elegant Star Business Center, Deira, Dubai — Map"
+                  title={t('Contact.info.mapTitle')}
                   src="https://www.google.com/maps?q=Elegant+Star+Business+Center,+Deira,+Dubai,+UAE&output=embed"
                   className="h-80 w-full border-0"
                   loading="lazy"
