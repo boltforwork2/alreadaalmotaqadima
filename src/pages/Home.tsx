@@ -20,7 +20,6 @@ type JurisdictionItem = {
   path: string;
   icon: typeof Building2;
   image: string;
-  imageAlt: string;
 };
 
 const jurisdictionItems: JurisdictionItem[] = [
@@ -29,28 +28,24 @@ const jurisdictionItems: JurisdictionItem[] = [
     path: '/mainland',
     icon: Building2,
     image: 'https://images.pexels.com/photos/25309271/pexels-photo-25309271.jpeg?auto=compress&cs=tinysrgb&w=1000',
-    imageAlt: 'Dubai skyline with modern business towers',
   },
   {
     key: 'freeZone',
     path: '/free-zone',
     icon: Globe2,
     image: '/images/pages/freezone.jpg',
-    imageAlt: 'Dubai Free Zone business center',
   },
   {
     key: 'freelanceAbuDhabi',
     path: '/freelance-license-abu-dhabi',
     icon: Briefcase,
     image: '/images/pages/freelance.jpg',
-    imageAlt: 'Freelancer working in a modern home office',
   },
   {
     key: 'eTrader',
     path: '/e-trader-license',
     icon: ShoppingCart,
     image: '/images/pages/e-trader.jpg',
-    imageAlt: 'Online seller packing products for an ecommerce business',
   },
 ];
 
@@ -120,7 +115,7 @@ export default function Home() {
       <section className="relative flex min-h-[72vh] flex-col justify-center overflow-hidden">
         <img
           src="/images/bc copy.jpg"
-          alt="Luxury Dubai business office overlooking the skyline"
+          alt={t('Home.hero.heroImageAlt')}
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 ltr:bg-gradient-to-r rtl:bg-gradient-to-l from-navy-950/95 via-navy-950/75 to-navy-950/10" />
@@ -242,7 +237,7 @@ export default function Home() {
                   <div className="relative h-44 overflow-hidden">
                     <img
                       src={item.image}
-                      alt={item.imageAlt}
+                      alt={t(`Home.jurisdictions.items.${item.key}.imageAlt`)}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-950/55 via-transparent to-transparent" />
