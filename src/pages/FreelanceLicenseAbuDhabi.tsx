@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   CircleCheck as CheckCircle2,
@@ -43,6 +43,11 @@ const fadeUp = {
 
 export default function FreelanceLicenseAbuDhabi() {
   const { t } = useTranslation();
+  const requirementsRef = useRef<HTMLDivElement>(null);
+
+  const scrollToRequirements = () => {
+    requirementsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const activities = t('FreelanceLicenseAbuDhabi.activities', { returnObjects: true }) as { title: string; description: string }[];
   const requirements = t('FreelanceLicenseAbuDhabi.requirements', { returnObjects: true }) as { title: string; description: string }[];
@@ -71,13 +76,14 @@ export default function FreelanceLicenseAbuDhabi() {
               <p className="mt-3 text-sm leading-relaxed text-amber-800/90">
                 {t('FreelanceLicenseAbuDhabi.eligibilityAlertText')}
               </p>
-              <Link
-                to="/contact"
+              <button
+                type="button"
+                onClick={scrollToRequirements}
                 className="group mt-5 inline-flex items-center gap-2 rounded-lg bg-amber-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-amber-600/20 transition-all duration-200 hover:bg-amber-700 hover:shadow-xl"
               >
                 {t('FreelanceLicenseAbuDhabi.eligibilityAlertButton')}
                 <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -151,7 +157,7 @@ export default function FreelanceLicenseAbuDhabi() {
         </div>
 
         {/* Requirements */}
-        <div className="mt-12">
+        <div ref={requirementsRef} className="mt-12 scroll-mt-24">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50">
               <FileStack className="h-6 w-6 text-teal-600" />
@@ -287,13 +293,14 @@ export default function FreelanceLicenseAbuDhabi() {
           <p className="max-w-md text-sm leading-relaxed text-slate-300">
             {t('ConsultationForm.subtitle')}
           </p>
-          <Link
-            to="/contact"
+          <button
+            type="button"
+            onClick={scrollToRequirements}
             className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-950 shadow-lg shadow-teal-500/25 transition-all duration-200 hover:shadow-xl hover:shadow-teal-500/40"
           >
             {t('FreelanceLicenseAbuDhabi.eligibilityAlertButton')}
             <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1 rtl:rotate-180" />
-          </Link>
+          </button>
         </div>
       </article>
     </ServiceLayout>

@@ -1004,7 +1004,7 @@
     "eyebrow": "Business Setup Jurisdiction",
     "title": "Freelance License – Abu Dhabi",
     "subtitle": "Practice your profession independently in the Emirate of Abu Dhabi. Obtain a freelance licence to carry out your professional activities independently under approved activities, in accordance with the highest standards and requirements for doing business. This licence is designed to be the optimal choice for specialists and highly experienced professionals in technical, digital, marketing, creative, and consulting fields.",
-    "eligibilityAlertTitle": "⚠️ Are You Eligible for a Freelance Licence?",
+    "eligibilityAlertTitle": "Are You Eligible for a Freelance Licence?",
     "eligibilityAlertText": "Please note that the freelance licence is not a general option suitable for all individuals or all business activities. Eligibility depends primarily on the nature of the activity to be practiced, as well as academic qualifications, professional experience record, and supporting documents required. At Al Reyada Al Motaqadima, we conduct a thorough review of your activity, qualifications, and documents before initiating any procedures, to ensure full confirmation of your suitability and compliance with the licence issuance requirements.",
     "eligibilityAlertButton": "Check Your Eligibility Now",
     "whatIsItTitle": "What is the Abu Dhabi Freelance Licence?",
@@ -1060,7 +1060,7 @@
         "description": "Some activities may require prior approvals or additional documents from the relevant government authorities."
       }
     ],
-    "warningTitle": "⚠️ Important Alert Before Applying",
+    "warningTitle": "Important Alert Before Applying",
     "warningText": "It must be understood that the freelance licence is completely different from a general commercial licence. Your chosen activity must be listed exclusively among the approved activities for this type of licence. Qualification, experience, and document requirements vary significantly from one activity to another. Moreover, merely holding an academic qualification or professional experience does not automatically guarantee approval for licence issuance. Therefore, at Al Reyada Al Motaqadima, we are committed to reviewing your profile, activity, and documents comprehensively before taking any step to save your time and effort.",
     "benefitsTitle": "Key Benefits",
     "benefits": [
