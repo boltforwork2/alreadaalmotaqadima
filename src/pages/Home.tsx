@@ -313,7 +313,7 @@ export default function Home() {
             >
               {formationBenefits.map((benefit, i) => (
                 <motion.li
-                  key={benefit}
+                  key={`formation-benefit-${i}`}
                   custom={i}
                   variants={{
                     hidden: { opacity: 0, x: 24 },
