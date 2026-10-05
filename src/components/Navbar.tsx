@@ -95,7 +95,7 @@ export default function Navbar() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
           {/* Logo */}
           <Link to="/" className="group flex items-center">
-            <img src="/logo4.png" alt="CentralHub" className="h-14 w-auto" />
+            <img src="/logo4.png" alt={t('Navbar.logoAlt')} className="h-14 w-auto" />
           </Link>
 
           {/* Desktop nav */}
@@ -324,7 +324,7 @@ export default function Navbar() {
                     target="_blank"
                     rel="noreferrer"
                     className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy-200 text-navy-700 transition-colors hover:border-teal-400 hover:text-teal-600"
-                    aria-label="WhatsApp"
+                    aria-label={t('Navbar.whatsappLabel')}
                   >
                     <MessageCircle className="h-5 w-5" />
                   </a>

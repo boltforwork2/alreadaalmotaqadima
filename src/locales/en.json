@@ -32,7 +32,9 @@
     },
     "viewAllServices": "View All Services",
     "requestQuote": "Request Quote",
-    "toggleMenu": "Toggle menu"
+    "toggleMenu": "Toggle menu",
+    "logoAlt": "Al Reyada Al Motaqadima",
+    "whatsappLabel": "WhatsApp"
   },
 
   "ConsultationForm": {
@@ -980,6 +982,7 @@
     "jurisdictionsTitle": "Available Offshore Jurisdictions",
     "jurisdictions": {
       "ajman": {
+        "tabLabel": "Ajman Offshore",
         "description": "Established in 1988 as one of the first free zones in the UAE, Ajman Offshore provides a cost-effective and efficient offshore company registration option within the UAE. It is widely used for holding structures, asset protection, and international trading.",
         "features": [
           "UAE-based offshore jurisdiction",
@@ -989,6 +992,7 @@
         ]
       },
       "bvi": {
+        "tabLabel": "BVI",
         "description": "The British Virgin Islands (BVI) is the world's leading and most popular offshore centre, with over 400,000 incorporated companies. BVI Business Companies are widely used for international holding, trading, and investment structures, offering flexibility, tax neutrality, and a well-established legal framework.",
         "features": [
           "World's most popular offshore jurisdiction",
@@ -998,6 +1002,7 @@
         ]
       },
       "seychelles": {
+        "tabLabel": "Seychelles",
         "description": "With its favourable tax policies, Seychelles has increasingly become a preferred business destination for international entrepreneurs. Seychelles International Business Companies (IBCs) offer tax exemption on foreign income, minimal reporting requirements, and a fast incorporation process.",
         "features": [
           "Zero tax on foreign-sourced income",
@@ -1649,5 +1654,11 @@
 
   "LanguageSwitcher": {
     "ariaSwitchLanguage": "Switch language"
+  },
+
+  "NotFound": {
+    "title": "Page Not Found",
+    "message": "The page you are looking for doesn't exist or has been moved. Please return to the home page.",
+    "backHome": "Back to Home"
   }
 }
