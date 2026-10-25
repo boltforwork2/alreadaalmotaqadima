@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowRight, Briefcase, ShieldCheck, Check, CircleCheck as CheckCircle, Building2, Globe as Globe2, Archive, Award, Stamp, UserCheck, Landmark, Plane, ShoppingCart, ChevronDown } from 'lucide-react';
+import { ArrowRight, Briefcase, ShieldCheck, Check, CircleCheck as CheckCircle, Building2, Globe as Globe2, Archive, Award, Stamp, UserCheck, Landmark, Plane, ShoppingCart, ChevronDown, MapPin } from 'lucide-react';
 import AnimatedCounter from '@/components/AnimatedCounter';
 
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -160,13 +160,13 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mt-7 flex flex-wrap items-center gap-4"
             >
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="group inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-400 px-7 py-3.5 text-base font-semibold text-navy-900 shadow-xl shadow-teal-500/25 transition-all duration-200 hover:shadow-2xl hover:shadow-teal-500/40 hover:brightness-105"
               >
+                <MapPin className="h-5 w-5" />
                 {t('Home.hero.getStartedToday')}
-                <ArrowRight className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a
                 href="https://wa.me/971504229389"
                 target="_blank"
